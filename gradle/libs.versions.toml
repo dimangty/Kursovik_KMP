@@ -48,3 +48,4 @@ kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 moko-res = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-res" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight"}
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
