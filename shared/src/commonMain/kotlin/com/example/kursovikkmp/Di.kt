@@ -21,7 +21,7 @@ internal val commonModule = module {
     single(named(IO_DISPATCHER_NAME)) { Dispatchers.IO }
     single(named(MAIN_DISPATCHER_NAME)) { Dispatchers.Main }
     single(named(DEFAULT_DISPATCHER_NAME)) { Dispatchers.Default }
-    //factoryOf(::LceStateManager)
+    factoryOf(::LceStateManager)
 }
 
 //internal expect val platformModule: Module
