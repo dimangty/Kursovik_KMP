@@ -25,6 +25,8 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
             isStatic = true
+            export("dev.icerock.moko:resources:0.24.4")
+            export("dev.icerock.moko:graphics:0.9.0")
         }
     }
 
@@ -33,6 +35,9 @@ kotlin {
             //put your multiplatform dependencies here
             //Sqldelight
             implementation(libs.sqldelight.coroutines.extensions)
+
+            //Moko
+            api(libs.moko.resources)
 
             //Network
             implementation(libs.ktor.client.core)

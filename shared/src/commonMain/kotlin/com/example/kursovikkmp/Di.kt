@@ -1,10 +1,12 @@
 package com.example.kursovikkmp
 
 import com.example.kursovikkmp.common.mvvm.LceStateManager
+import com.example.kursovikkmp.feature.auth.login.mvvm.AuthService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -21,6 +23,7 @@ internal val commonModule = module {
     single(named(IO_DISPATCHER_NAME)) { Dispatchers.IO }
     single(named(MAIN_DISPATCHER_NAME)) { Dispatchers.Main }
     single(named(DEFAULT_DISPATCHER_NAME)) { Dispatchers.Default }
+    singleOf(::AuthService)
     factoryOf(::LceStateManager)
 }
 
