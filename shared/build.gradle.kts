@@ -16,7 +16,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -24,8 +24,8 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
-            isStatic = true
-            export("dev.icerock.moko:resources:0.24.4")
+            isStatic = false
+            export("dev.icerock.moko:resources:0.24.3")
             export("dev.icerock.moko:graphics:0.9.0")
         }
     }
