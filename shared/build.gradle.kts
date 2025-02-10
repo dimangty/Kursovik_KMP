@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.serialization)
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -47,11 +48,16 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.koin.core)
+            api(libs.moko.resources)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
     }
+}
+
+multiplatformResources {
+    resourcesPackage.set("com.example.kursovikkmp")
 }
 
 android {
