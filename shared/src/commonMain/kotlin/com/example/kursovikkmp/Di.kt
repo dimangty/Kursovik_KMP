@@ -1,7 +1,10 @@
 package com.example.kursovikkmp
 
+import com.example.kursovikkmp.DI.NetworkModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
 import com.example.kursovikkmp.feature.auth.login.mvvm.AuthService
+import com.example.kursovikkmp.feature.news.list.model.NewsService
+import com.example.kursovikkmp.network.NetworkSettings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.core.module.Module
@@ -16,15 +19,18 @@ const val DEFAULT_DISPATCHER_NAME = "defaultDispatcher"
 
 val sharedModule: Module
     get() = module {
-        includes(commonModule)// + platformModule)
+        includes(commonModule + NetworkCompositeModule)
     }
 
 internal val commonModule = module {
     single(named(IO_DISPATCHER_NAME)) { Dispatchers.IO }
     single(named(MAIN_DISPATCHER_NAME)) { Dispatchers.Main }
     single(named(DEFAULT_DISPATCHER_NAME)) { Dispatchers.Default }
-    singleOf(::AuthService)
+    singleOf(::NewsService)
     factoryOf(::LceStateManager)
+    singleOf(::NetworkSettings)
 }
 
-//internal expect val platformModule: Module
+internal val NetworkCompositeModule: Module = module {
+    includes(NetworkModule.json, NetworkModule.httpClient, NetworkModule.api)
+}

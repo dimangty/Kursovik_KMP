@@ -49,6 +49,12 @@ kotlin {
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.koin.core)
             api(libs.moko.resources)
+
+            //Datetime
+            implementation(libs.datetime)
+
+            //Logs
+            api(libs.napier)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
