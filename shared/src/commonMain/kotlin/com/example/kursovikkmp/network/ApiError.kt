@@ -1,5 +1,11 @@
-package com.example.kursovikkmp.network
+package info.javaway.spend_sense.network
+
 import kotlinx.serialization.Serializable
+
+@Serializable
+data class ApiErrorWrapper(
+    val error: ApiError?
+)
 
 @Serializable
 data class ApiError(

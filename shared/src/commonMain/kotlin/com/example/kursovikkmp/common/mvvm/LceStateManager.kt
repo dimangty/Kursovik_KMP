@@ -25,7 +25,7 @@ class LceStateManager {
         return lceState.value.isLoading
     }
 
-    fun showError(errorState: ErrorState.SheetError) {
+    fun showError(errorState: ErrorState.AllertError) {
         updateState { copy(errorState = errorState) }
     }
 

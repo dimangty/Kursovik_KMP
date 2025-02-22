@@ -25,6 +25,9 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> {
     protected val lceStateManager
             by KoinPlatformTools.defaultContext().get().inject<LceStateManager>()
 
+    abstract fun initToolbar()
+
+
     fun updateState(block: State.() -> State){
         _state.value = block(_state.value)
     }
@@ -34,9 +37,7 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> {
         onEvent(event)
     }
 
-    fun onEvent(event: Event){
-
-    }
+    abstract fun onEvent(event: Event)
 
     fun onDestroy(){
         viewModelScope.cancel()
@@ -52,7 +53,11 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> {
         lceStateManager.hideLoading()
     }
 
-    fun showError(errorState: ErrorState.SheetError) {
+    fun showError(error: String) {
+        showError(errorState = ErrorState.AllertError(title = error))
+    }
+
+    fun showError(errorState: ErrorState.AllertError) {
         lceStateManager.showError(errorState)
     }
 

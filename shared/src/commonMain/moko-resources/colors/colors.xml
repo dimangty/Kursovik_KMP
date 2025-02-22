@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- format: #RRGGBB[AA] or 0xRRGGBB[AA] or RRGGBB[AA] where [AA] - optional -->
-    <color name="primary">#6699FFFF</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000FF</color>
+
+    <color name="loader_screen_background">#00000080</color>
+    <color name="loader_opaque_screen_background">#FFFFFFFF</color>
+    <color name="loader_background">#FFFFFF33</color>
+    <color name="loader_opaque_background">#87878733</color>
+    <color name="loader">#FFFFFFFF</color>
+    <color name="loader_opaque">#878787FF</color>
 </resources>
