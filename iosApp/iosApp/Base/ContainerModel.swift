@@ -46,14 +46,10 @@ class ContainerModel:ObservableObject {
         contentService?.$hasError
             .receive(on: RunLoop.main)
             .sink { [weak self] val in
-                self?.errorText = contentService?.errorText ?? ""
+                self?.errorText = self?.contentService?.errorText ?? ""
                 self?.hasError = val
             }.store(in: &cancellable)
         
-    }
-    
-    private func lceStateUpdated(_ lceState: LceState) {
-        contentService?.showFullscreenLoader(lceState.isLoading, animated: true)
     }
 
 }

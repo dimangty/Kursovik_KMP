@@ -22,42 +22,54 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
     
     init() {
         mViewModel = inject()
-        let model = mViewModel as! shared.BaseViewModel<shared.UiEvent, S>
+        let model = mViewModel as! shared.BaseViewModel<S, shared.BaseEvent>
         state = model.state
-        observe(model: model)
-        model.onDefaultUiEvent(event: .OnScreenCreated())
+        //observe(model: model)
+        //model.onDefaultUiEvent(event: .OnScreenCreated())
     }
     
     init(param: Any?) {
         mViewModel = inject(param: param)
-        let model = mViewModel as! shared.BaseViewModel<shared.UiEvent, S>
-        state = model.state
+        let model = mViewModel as! shared.BaseViewModel<S, shared.BaseEvent>
+        state = model.state 
         observe(model: model)
-        model.onDefaultUiEvent(event: .OnScreenCreated())
+        //model.onDefaultUiEvent(event: .OnScreenCreated())
     }
     
     init(parameters: [Any?]) {
         mViewModel = inject(parameters: parameters)
-        let model = mViewModel as! shared.BaseViewModel<shared.UiEvent, S>
+        let model = mViewModel as! shared.BaseViewModel<S, shared.BaseEvent>
         state = model.state
+        
         observe(model: model)
-        model.onDefaultUiEvent(event: .OnScreenCreated())
+        //model.onDefaultUiEvent(event: .OnScreenCreated())
     }
 
-    init(mViewModel: T) {
-        self.mViewModel = mViewModel
-        let model = mViewModel as! shared.BaseViewModel<shared.UiEvent, S>
-        state = model.state
-        observe(model: model)
-        model.onDefaultUiEvent(event: .OnScreenCreated())
-    }
 
     deinit {
-        let model = mViewModel as! shared.BaseViewModel<shared.UiEvent, S>
-        model.onDefaultUiEvent(event: .OnScreenDestroyed())
+        let model = mViewModel as! shared.BaseViewModel<S, shared.BaseEvent>
+        //model.onDefaultUiEvent(event: .OnScreenDestroyed())
         
         mViewModel = nil
         lceState = nil
+        
+    }
+    
+    func observe(model: shared.BaseViewModel<S, shared.BaseEvent>) {
+        model.stateFlow.watch { [weak self] state in
+            guard let newState = state else { return }
+            self?.state = newState
+            if let base = newState as? BaseViewState {
+                self?.titleBar = base.titleBarState
+            }
+            self?.onChangeState(newState)
+        }
+        
+        model.lceFlow.watch { [weak self] lceState in
+            self?.lceState = lceState
+            self?.updateView()
+        }
+        
         
     }
 
@@ -65,9 +77,9 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
 
     }
 
-    func onChangeNavigation(_ action: NavigationAction) {
-
-    }
+//    func onChangeNavigation(_ action: NavigationAction) {
+//
+//    }
     
     func onDefaultEffect(_ effect: Any) {
         
@@ -77,44 +89,19 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
         
     }
 
-    final func sendViewAppearedEvent() {
-        let model = mViewModel as? shared.BaseViewModel<shared.UiEvent, S>
-        model?.onDefaultUiEvent(event: .OnScreenResumed())
-    }
-
-    func observe(model: shared.BaseViewModel<shared.UiEvent, S>) {
-        model.defaultEffectFlow.watch(block: { [weak self] value in
-            self?.errorService?.showError(by: value)
-            self?.onDefaultEffect(value)
-        })
-        
-        model.effectFlow.watch(block: { [weak self] value in
-            self?.onEffect(value)
-        })
-        
-        model.stateFlow.watch { [weak self] state in
-            guard let newState = state, let state = newState.state else { return }
-            self?.state = state
-            self?.lceState = newState.lceState
-            self?.titleBar = newState.titleBarState
-            self?.updateView()
-            self?.onChangeState(state)
-        }
-
-        model.navigationEffectFlow.watch { [weak self] action in
-            guard let action = action else { return }
-            print("BASE \(self.debugDescription) --- \(action)")
-            self?.onChangeNavigation(action)
-        }
-    }
+    
     
     private func updateView() {
-        contentService?.showFullscreenLoader(lceState?.isLoading ?? false, animated: true)
-
-        if let error = lceState?.errorState as? FullScreenError {
-            contentService?.showFullStateError(error: error)
+        if let isLoading = lceState?.isLoading {
+            contentService?.showLoader()
         } else {
-            contentService?.hideFullStateError()
+            contentService?.hideLoader()
         }
+//        
+//        if let error = lceState?.errorState as? FullScreenError {
+//            contentService?.showFullStateError(error: error)
+//        } else {
+//            contentService?.hideFullStateError()
+//        }
     }
 }

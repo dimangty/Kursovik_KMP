@@ -2,6 +2,7 @@ package com.example.kursovikkmp.base
 
 import com.example.kursovikkmp.common.mvvm.ErrorState
 import com.example.kursovikkmp.common.mvvm.LceStateManager
+import com.example.kursovikkmp.shared.common.extension.asCommonFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
@@ -11,25 +12,35 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.koin.mp.KoinPlatformTools
+import kotlin.experimental.ExperimentalObjCName
+import kotlin.native.HiddenFromObjC
+import kotlin.native.ObjCName
 
 abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> {
 
     val viewModelScope = CoroutineScope(SupervisorJob())
 
-    private val _state = MutableStateFlow(initialState())
-    val state = _state.asStateFlow()
+    val stateFlow = MutableStateFlow(initialState())
+    val state: State get() = stateFlow.value
+
+
+    @OptIn(ExperimentalObjCName::class)
+    @ObjCName("stateFlow")
+    val commonStateFlow get() = stateFlow.asCommonFlow()
 
     private val _events = Channel<Event>()
     val events = _events.receiveAsFlow()
 
-    protected val lceStateManager
+    val lceStateManager
             by KoinPlatformTools.defaultContext().get().inject<LceStateManager>()
+
+    val lceFlow get() = lceStateManager.lceState.asCommonFlow()
 
     abstract fun initToolbar()
 
 
     fun updateState(block: State.() -> State){
-        _state.value = block(_state.value)
+        stateFlow.value = block(stateFlow.value)
     }
 
     fun pushEvent(event: Event){

@@ -19,7 +19,7 @@ const val DEFAULT_DISPATCHER_NAME = "defaultDispatcher"
 
 val sharedModule: Module
     get() = module {
-        includes(commonModule + NetworkCompositeModule)
+        includes(commonModule + NetworkCompositeModule + platformModule)
     }
 
 internal val commonModule = module {
@@ -34,3 +34,5 @@ internal val commonModule = module {
 internal val NetworkCompositeModule: Module = module {
     includes(NetworkModule.json, NetworkModule.httpClient, NetworkModule.api)
 }
+
+internal expect val platformModule: Module
