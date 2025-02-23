@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import shared
 
-final class NewsListViewModel: BaseViewModel<AnyObject, AnyObject> {
+final class NewsListViewModel: BaseViewModel<NewsListViewModel, NewsListState> {
 
     required override init() {
         super.init()
@@ -27,6 +27,10 @@ final class NewsListViewModel: BaseViewModel<AnyObject, AnyObject> {
             //mViewModel?.onUiEvent(event: )
             break
         }
+    }
+    
+    override func onChangeState(_ state: NewsListState) {
+        print("News = \(state.newsItems.count)")
     }
 
 }

@@ -1,6 +1,9 @@
+@file:OptIn(BetaInteropApi::class)
+
 package com.example.kursovikkmp
 
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
+import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
 import org.koin.core.Koin

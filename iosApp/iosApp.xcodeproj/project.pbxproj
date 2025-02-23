@@ -25,8 +25,6 @@
 		8B6BBAC12D6A246000408370 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBABB2D6A246000408370 /* Configurator.swift */; };
 		8B6BBAC42D6A252A00408370 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBAC22D6A252A00408370 /* ActivityIndicator.swift */; };
 		8B6BBAC62D6A259B00408370 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBAC52D6A259B00408370 /* LoaderView.swift */; };
-		8B6BBAC92D6A27AD00408370 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BBAC72D6A27A600408370 /* UIKit.framework */; };
-		8B6BBACA2D6A27AD00408370 /* UIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BBAC72D6A27A600408370 /* UIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6BBACC2D6A289700408370 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBACB2D6A288F00408370 /* ProgressView.swift */; };
 		8B6BBAEC2D6B24C300408370 /* FavoritesModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBAD32D6B24C300408370 /* FavoritesModuleInput.swift */; };
 		8B6BBAED2D6B24C300408370 /* NewsListViewActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBAE82D6B24C300408370 /* NewsListViewActions.swift */; };
@@ -47,20 +45,6 @@
 		8B6BBAFC2D6B24C300408370 /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBAE92D6B24C300408370 /* NewsListViewModel.swift */; };
 		8B6BBAFD2D6B24C300408370 /* FavoritesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBAD02D6B24C300408370 /* FavoritesHostingController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		7555FFB4242A642300829871 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8B6BBACA2D6A27AD00408370 /* UIKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B6BBAC92D6A27AD00408370 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +333,6 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF78242A565900829871 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
-				7555FFB4242A642300829871 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -2,7 +2,6 @@ package com.example.kursovikkmp
 
 import com.example.kursovikkmp.DI.NetworkModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
-import com.example.kursovikkmp.feature.auth.login.mvvm.AuthService
 import com.example.kursovikkmp.feature.news.list.model.NewsService
 import com.example.kursovikkmp.network.NetworkSettings
 import kotlinx.coroutines.Dispatchers
