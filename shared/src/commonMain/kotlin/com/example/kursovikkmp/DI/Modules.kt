@@ -1,5 +1,6 @@
 package com.example.kursovikkmp.DI
 
+import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import com.example.kursovikkmp.feature.news.list.model.NewsService
 import com.example.kursovikkmp.network.DateSerializer
 import com.example.kursovikkmp.network.DateTimeSerializer
@@ -55,4 +56,11 @@ object NetworkModule {
 
     val api = module { single { NewsService(get(), get()) } }
 
+}
+
+
+object ViewModelsModule {
+    val viewModels = module {
+        factory { NewsListViewModel(get()) }
+    }
 }
