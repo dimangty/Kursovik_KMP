@@ -34,7 +34,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+            implementation(libs.kotlin.coroutines)
             //Sqldelight
             implementation(libs.sqldelight.coroutines.extensions)
 
@@ -62,6 +62,11 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.koin.android)
+            implementation(libs.ktor.client.android)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.ios)
         }
     }
 }
