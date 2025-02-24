@@ -92,7 +92,8 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
     
     
     private func updateView() {
-        if let isLoading = lceState?.isLoading {
+        if let isLoading = lceState?.isLoading,
+           isLoading == true {
             contentService?.showLoader()
         } else {
             contentService?.hideLoader()

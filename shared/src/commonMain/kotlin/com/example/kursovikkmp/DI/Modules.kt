@@ -6,7 +6,6 @@ import com.example.kursovikkmp.feature.news.list.model.NewsService
 import com.example.kursovikkmp.network.DateSerializer
 import com.example.kursovikkmp.network.DateTimeSerializer
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.EMPTY
 import io.ktor.client.plugins.logging.LogLevel
@@ -41,7 +40,7 @@ object NetworkModule {
 
     val httpClient = module {
         single {
-            HttpClient(CIO) {
+            HttpClient {
                 expectSuccess = false
                 install(ContentNegotiation) {
                     json(get())

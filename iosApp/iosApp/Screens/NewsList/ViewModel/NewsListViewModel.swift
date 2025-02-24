@@ -30,7 +30,7 @@ final class NewsListViewModel: BaseViewModel<shared.NewsListViewModel, NewsListS
     }
     
     override func onChangeState(_ state: NewsListState) {
-        print("News = \(state.newsItems.count)")
+        print("\nNews = \(state.newsItems.count)")
     }
 
 }
