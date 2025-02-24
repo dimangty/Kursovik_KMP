@@ -1,6 +1,7 @@
 package com.example.kursovikkmp
 
 import com.example.kursovikkmp.DI.NetworkModule
+import com.example.kursovikkmp.DI.ViewModelsModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
 import com.example.kursovikkmp.feature.news.list.model.NewsService
 import com.example.kursovikkmp.network.NetworkSettings

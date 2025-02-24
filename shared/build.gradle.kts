@@ -34,7 +34,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
-            implementation(libs.kotlin.coroutines)
+            //implementation(libs.kotlin.coroutines)
             //Sqldelight
             implementation(libs.sqldelight.coroutines.extensions)
 

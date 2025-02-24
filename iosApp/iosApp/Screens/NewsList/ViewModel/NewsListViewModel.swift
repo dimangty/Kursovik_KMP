@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import shared
 
-final class NewsListViewModel: BaseViewModel<NewsListViewModel, NewsListState> {
+final class NewsListViewModel: BaseViewModel<shared.NewsListViewModel, NewsListState> {
 
     required override init() {
         super.init()

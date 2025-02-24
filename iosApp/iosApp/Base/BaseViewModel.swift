@@ -24,7 +24,7 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
         mViewModel = inject()
         let model = mViewModel as! shared.BaseViewModel<S, shared.BaseEvent>
         state = model.state
-        //observe(model: model)
+        observe(model: model)
         //model.onDefaultUiEvent(event: .OnScreenCreated())
     }
     

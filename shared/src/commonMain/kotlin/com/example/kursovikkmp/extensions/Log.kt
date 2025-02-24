@@ -1,4 +1,4 @@
-package info.javaway.spend_sense.extensions
+package com.example.kursovikkmp.extensions
 
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier

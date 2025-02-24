@@ -3,10 +3,10 @@ package com.example.kursovikkmp.feature.news.list
 import com.example.kursovikkmp.base.BaseViewModel
 import com.example.kursovikkmp.common.view.TitleBarState
 import com.example.kursovikkmp.common.view.updateValue
+import com.example.kursovikkmp.extensions.appLog
 import com.example.kursovikkmp.feature.news.list.model.Article
 import com.example.kursovikkmp.feature.news.list.model.NewsList
 import com.example.kursovikkmp.feature.news.list.model.NewsService
-import info.javaway.spend_sense.extensions.appLog
 import info.javaway.spend_sense.network.ApiErrorWrapper
 import io.ktor.client.call.body
 import io.ktor.client.statement.bodyAsText
@@ -46,6 +46,7 @@ class NewsListViewModel(private val newsService: NewsService): BaseViewModel<New
 
 
     suspend fun loadNews() {
+        appLog("loadNews")
             lceStateManager.showLoading()
             val response = newsService.getNews()
             lceStateManager.hideLoading()
