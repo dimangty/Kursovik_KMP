@@ -51,6 +51,9 @@ kotlin {
             implementation(libs.koin.core)
             api(libs.moko.resources)
 
+            //
+            implementation(libs.androidx.lifecycle.viewmodel)
+
             //Datetime
             implementation(libs.datetime)
 

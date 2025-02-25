@@ -1,5 +1,6 @@
 package com.example.kursovikkmp.base
 
+import androidx.lifecycle.ViewModel
 import com.example.kursovikkmp.common.mvvm.ErrorState
 import com.example.kursovikkmp.common.mvvm.LceStateManager
 import com.example.kursovikkmp.shared.common.extension.asCommonFlow
@@ -16,7 +17,7 @@ import kotlin.experimental.ExperimentalObjCName
 import kotlin.native.HiddenFromObjC
 import kotlin.native.ObjCName
 
-abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> {
+abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel() {
 
     val viewModelScope = CoroutineScope(SupervisorJob())
 
