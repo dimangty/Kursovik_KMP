@@ -13,7 +13,23 @@ struct NewsListView: View {
     @StateObject private var viewModel = NewsListViewModel()
 
     var body: some View {
-        Text("Hello world!")
+        ZStack {
+            Rectangle()
+                .fill(viewModel.state.backGroundColor.uiColor.toColor())
+                .edgesIgnoringSafeArea(.all)
+            ScrollView {
+                LazyVStack {
+                    ForEach(0 ..< viewModel.state.newsItems.count, id: \.self) { index in
+                        let state = viewModel.state.newsItems[index]
+                        NewsListItemView(state: state)
+                            .padding(.top, 8)
+                    }
+                }
+            }.padding(.horizontal, 16)
+        }
+
+         
+
     }
 
 }

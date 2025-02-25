@@ -55,8 +55,6 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
         viewModelScope.cancel()
     }
 
-    open fun onCleared(){ }
-
     fun showLoader() {
         lceStateManager.showLoading()
     }

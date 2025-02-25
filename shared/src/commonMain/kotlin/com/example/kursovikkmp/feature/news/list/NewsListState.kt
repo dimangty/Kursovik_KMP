@@ -6,12 +6,15 @@ import com.example.kursovikkmp.common.view.ButtonData
 import com.example.kursovikkmp.common.view.ButtonState
 import com.example.kursovikkmp.common.view.TextState
 import com.example.kursovikkmp.common.view.TitleBarState
+import com.example.kursovikkmp.common.view.getMock
 import com.example.kursovikkmp.common.view.updateValue
+import dev.icerock.moko.resources.ColorResource
 import dev.icerock.moko.resources.ImageResource
 
 data class NewsListState(
     val newsItems: List<NewsUiState> = listOf(),
     override val titleBarState: TitleBarState = TitleBarState.getMock(),
+    val backGroundColor: ColorResource = MR.colors.grey,
 ) : BaseViewState
 
 data class NewsUiState(
@@ -22,8 +25,19 @@ data class NewsUiState(
     val imageUrl: String? = "",
     val favorite: Boolean = false,
     val favoriteButton: ButtonState = ButtonState.image(image = MR.images.favorite_off_icon),
+    val cellBackground: ColorResource = MR.colors.white,
 ) {
     val titleState: TextState = TextState.latoSemibold(17, MR.colors.black).updateValue(title)
     val textState: TextState = TextState.latoRegular(13, MR.colors.black).updateValue(text)
     val dateState: TextState = TextState.latoRegular(13, MR.colors.black).updateValue(date)
+
+    companion object {
+        fun getMock() = NewsUiState().run {
+            copy(
+                title = "title",
+                text = "text",
+                date = "date",
+            )
+        }
+    }
 }
