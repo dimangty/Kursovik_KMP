@@ -15,7 +15,15 @@ data class NewsListState(
     val newsItems: List<NewsUiState> = listOf(),
     override val titleBarState: TitleBarState = TitleBarState.getMock(),
     val backGroundColor: ColorResource = MR.colors.grey,
-) : BaseViewState
+) : BaseViewState {
+    companion object {
+        fun getMock() = NewsListState().run {
+            copy(
+                newsItems = listOf(NewsUiState.getMock(), NewsUiState.getMock(), NewsUiState.getMock(),)
+            )
+        }
+    }
+}
 
 data class NewsUiState(
     val id: String = "",
@@ -37,6 +45,7 @@ data class NewsUiState(
                 title = "title",
                 text = "text",
                 date = "date",
+                imageUrl = "https://cdnstatic.rg.ru/uploads/images/2025/02/25/zagruzhennoe_f42.jpg",
             )
         }
     }

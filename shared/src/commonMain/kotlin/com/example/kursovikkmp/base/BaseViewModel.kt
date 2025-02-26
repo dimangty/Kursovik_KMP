@@ -23,7 +23,7 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
 
     val stateFlow = MutableStateFlow(initialState())
     val state: State get() = stateFlow.value
-
+    val flowState = stateFlow.asStateFlow()
 
     @OptIn(ExperimentalObjCName::class)
     @ObjCName("stateFlow")
