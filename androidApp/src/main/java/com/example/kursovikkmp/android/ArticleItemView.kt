@@ -36,8 +36,9 @@ fun ArticleItemView(article: NewsUiState) {
                     model = imageUrl,
                     contentDescription = null,
                     modifier = Modifier
+                        .fillMaxWidth()
                         .clip(AppShapes.primaryTop)
-                        .size(54.dp),
+                        .height(132.dp),
                 )
             }
             Text(text = article.title, style = MaterialTheme.typography.titleMedium)

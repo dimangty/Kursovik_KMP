@@ -56,7 +56,7 @@ fun BottomNavigationBar() {
             startDestination = Screens.Home.route,
             modifier = Modifier.padding(paddingValues = paddingValues)) {
             composable(Screens.Home.route) {
-                HomeScreen(
+                NewsScreen(
                     navController
                 )
             }
