@@ -29,12 +29,12 @@ fun HomeScreen(navController: NavController) {
             ) {
                 Box(
                     modifier = Modifier.fillMaxWidth()
-                        .height(200.dp)
+                        .height(300.dp)
                         .padding(horizontal = 15.dp, vertical = 10.dp)
                         .clip(MaterialTheme.shapes.large)
                 ) {
                     Image(
-                        painter = painterResource(MR.images.favorite_on_icon.drawableResId),
+                        painter = painterResource(MR.images.favorite_off_icon.drawableResId),
                         contentDescription = "home_screen_bg",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.fillMaxSize()
@@ -64,7 +64,7 @@ fun ProfileScreen(navController: NavController) {
             )  {
                 Box(
                     modifier = Modifier.fillMaxWidth()
-                        .height(200.dp)
+                        .height(300.dp)
                         .padding(horizontal = 15.dp, vertical = 10.dp)
                         .clip(MaterialTheme.shapes.large)
                 ) {
