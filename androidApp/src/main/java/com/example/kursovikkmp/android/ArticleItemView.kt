@@ -22,8 +22,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.eps.pakistan.theme.AppShapes
 import com.example.kursovikkmp.android.Common.Extensions.COMPOSE_PREVIEW_BACKGROUND_COLOR
+import com.example.kursovikkmp.android.Common.theme.AppShapes
 import com.example.kursovikkmp.feature.news.list.NewsUiState
 
 @Composable
