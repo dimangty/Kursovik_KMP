@@ -30,8 +30,10 @@ import com.example.kursovikkmp.android.feature.view.VSpacer
 import com.example.kursovikkmp.feature.news.list.NewsUiState
 
 @Composable
-fun ArticleItemView(article: NewsUiState) {
-    Card(modifier = Modifier.fillMaxWidth()
+fun ArticleItemView(article: NewsUiState, onClicked: (String) -> Unit) {
+    Card(modifier = Modifier
+        .fillMaxWidth()
+        .clickable { onClicked(article.id) }
         ) {
         Column (modifier = Modifier.padding(16.dp).clip(AppShapes.rounded).background(Color.White)) {
             article.imageUrl?.let { imageUrl ->
@@ -62,6 +64,6 @@ fun ArticleItemView(article: NewsUiState) {
 @Composable
 private fun PreviewArticleItemView() {
     MyApplicationTheme {
-        ArticleItemView(NewsUiState.getMock())
+        ArticleItemView(article = NewsUiState.getMock(), onClicked = {})
     }
 }

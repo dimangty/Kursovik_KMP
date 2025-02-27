@@ -32,17 +32,20 @@ fun NewsScreen(navController: NavController, viewModel: NewsListViewModel = koin
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            NewsScreenView(state)
+            NewsScreenView(state, navController)
         }
     }
 }
 
 @Composable
-fun NewsScreenView(state: NewsListState) {
+fun NewsScreenView(state: NewsListState, navController: NavController?) {
     LazyColumn(modifier = Modifier) {
         item { VSpacer(8.dp) }
         items(state.newsItems) { item ->
-            ArticleItemView(article = item)
+            ArticleItemView(article = item,
+                            onClicked = {
+                    navController?.navigate(Screens.Profile.route)
+            })
         }
     }
 }
@@ -51,6 +54,7 @@ fun NewsScreenView(state: NewsListState) {
 @Composable
 private fun PreviewNewsScreenView() {
     MyApplicationTheme {
-        NewsScreenView(NewsListState.getMock())
+        NewsScreenView(state = NewsListState.getMock(),
+                       navController = null)
     }
 }
