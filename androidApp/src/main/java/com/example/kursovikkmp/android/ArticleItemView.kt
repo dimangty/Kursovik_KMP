@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.kursovikkmp.android.Common.Extensions.COMPOSE_PREVIEW_BACKGROUND_COLOR
 import com.example.kursovikkmp.android.Common.theme.AppShapes
+import com.example.kursovikkmp.android.feature.view.VSpacer
 import com.example.kursovikkmp.feature.news.list.NewsUiState
 
 @Composable
@@ -44,11 +45,15 @@ fun ArticleItemView(article: NewsUiState) {
                     contentScale = ContentScale.FillWidth
                 )
             }
-            Text(text = article.title, style = MaterialTheme.typography.titleMedium)
-            Text(
-                text = article.text ?: "No description",
-                style = MaterialTheme.typography.bodySmall
-            )
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(text = article.title, style = MaterialTheme.typography.titleMedium)
+                VSpacer(8.dp)
+                Text(
+                    text = article.text ?: "No description",
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
+
         }
     }
 }
