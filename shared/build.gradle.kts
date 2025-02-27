@@ -66,6 +66,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.koin.android)
             implementation(libs.ktor.client.android)
+            implementation(libs.androidx.navigation.compose)
         }
 
         iosMain.dependencies {
