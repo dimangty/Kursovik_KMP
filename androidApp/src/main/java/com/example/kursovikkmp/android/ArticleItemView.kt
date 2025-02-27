@@ -18,6 +18,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,15 +32,16 @@ import com.example.kursovikkmp.feature.news.list.NewsUiState
 fun ArticleItemView(article: NewsUiState) {
     Card(modifier = Modifier.fillMaxWidth()
         ) {
-        Column (modifier = Modifier.padding(16.dp)) {
+        Column (modifier = Modifier.padding(16.dp).clip(AppShapes.rounded).background(Color.White)) {
             article.imageUrl?.let { imageUrl ->
                 AsyncImage(
                     model = imageUrl,
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(AppShapes.primaryTop)
+//                        .clip(AppShapes.primaryTop)
                         .height(132.dp),
+                    contentScale = ContentScale.FillWidth
                 )
             }
             Text(text = article.title, style = MaterialTheme.typography.titleMedium)
