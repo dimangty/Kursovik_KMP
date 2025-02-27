@@ -27,7 +27,7 @@ fun BottomNavigationBar() {
             NavigationBar {
                 BottomNavigationItem().bottomNavigationItems().forEachIndexed { _, navigationItem ->
                     NavigationBarItem(
-                        selected = navigationItem.route == currentDestination?.route,
+                        selected = navigationItem.isSelected(currentDestination?.route),
                         label = {
                             Text(navigationItem.label)
                         },
@@ -67,6 +67,12 @@ fun BottomNavigationBar() {
             }
             composable(Screens.Profile.route) {
                 ProfileScreen(
+                    navController
+                )
+            }
+
+            composable(Screens.Details.route) {
+                NewsDetailsScreen(
                     navController
                 )
             }

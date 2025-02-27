@@ -118,3 +118,37 @@ fun SearchScreen(navController: NavController) {
         }
     }
 }
+
+@Composable
+fun NewsDetailsScreen(navController: NavController) {
+    MyApplicationTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize().padding(15.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            )  {
+                Box(
+                    modifier = Modifier.fillMaxWidth()
+                        .height(300.dp)
+                        .padding(horizontal = 15.dp, vertical = 10.dp)
+                        .clip(MaterialTheme.shapes.large)
+                ) {
+                    Image(
+                        painter = painterResource(MR.images.favorite_on_icon.drawableResId),
+                        contentDescription = "details_screen_bg",
+                        contentScale = ContentScale.Crop
+                    )
+                }
+                Text(
+                    "Details Screen",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(vertical = 20.dp)
+                )
+            }
+        }
+    }
+}

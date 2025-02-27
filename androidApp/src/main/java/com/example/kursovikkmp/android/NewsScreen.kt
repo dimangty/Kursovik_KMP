@@ -44,7 +44,7 @@ fun NewsScreenView(state: NewsListState, navController: NavController?) {
         items(state.newsItems) { item ->
             ArticleItemView(article = item,
                             onClicked = {
-                    navController?.navigate(Screens.Profile.route)
+                    navController?.navigate(Screens.Details.route)
             })
         }
     }

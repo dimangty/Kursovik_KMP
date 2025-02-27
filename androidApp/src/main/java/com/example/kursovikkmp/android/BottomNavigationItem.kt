@@ -9,14 +9,28 @@ import androidx.compose.ui.graphics.vector.ImageVector
 data class BottomNavigationItem(
     val label : String = "",
     val icon : ImageVector = Icons.Filled.Home,
-    val route : String = ""
+    val route : String = "",
+    val screens: List<String> = listOf()
 ) {
+    fun isSelected(destination : String?) : Boolean {
+        if (screens.contains(destination)) {
+            return true
+        }
+
+        if (destination == route) {
+            return true
+        }
+
+        return false
+    }
+
     fun bottomNavigationItems() : List<BottomNavigationItem> {
         return listOf(
             BottomNavigationItem(
-                label = "Home",
+                label = "News",
                 icon = Icons.Filled.Home,
-                route = Screens.Home.route
+                route = Screens.Home.route,
+                screens = listOf(Screens.Home.route, Screens.Details.route)
             ),
             BottomNavigationItem(
                 label = "Search",
