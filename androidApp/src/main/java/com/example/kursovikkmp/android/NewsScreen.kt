@@ -20,12 +20,25 @@ import org.koin.androidx.compose.koinViewModel
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kursovikkmp.android.Common.Extensions.COMPOSE_PREVIEW_BACKGROUND_COLOR
+import com.example.kursovikkmp.android.feature.view.BaseScreen
 import com.example.kursovikkmp.android.feature.view.VSpacer
 import com.example.kursovikkmp.feature.news.list.NewsListState
 
 @Composable
-fun NewsScreen(navController: NavController, viewModel: NewsListViewModel = koinViewModel(),) {
+fun NewsScreen(navController: NavController) {
+    val viewModel: NewsListViewModel = koinViewModel()
     val state by viewModel.flowState.collectAsState()
+    val lceState by viewModel.lceState.collectAsState()
+
+    BaseScreen(lceState = lceState) {
+        NewsScreenView(navController = navController,
+                        state = state)
+    }
+}
+
+@Composable
+fun NewsScreenView(navController: NavController, state: NewsListState) {
+
 
     MyApplicationTheme {
         Surface(

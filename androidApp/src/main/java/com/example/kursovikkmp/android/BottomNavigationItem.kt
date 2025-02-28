@@ -2,6 +2,7 @@ package com.example.kursovikkmp.android
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -33,15 +34,10 @@ data class BottomNavigationItem(
                 screens = listOf(Screens.Home.route, Screens.Details.route)
             ),
             BottomNavigationItem(
-                label = "Search",
-                icon = Icons.Filled.Search,
+                label = "Favorites",
+                icon = Icons.Filled.Favorite,
                 route = Screens.Search.route
-            ),
-            BottomNavigationItem(
-                label = "Profile",
-                icon = Icons.Filled.AccountCircle,
-                route = Screens.Profile.route
-            ),
+            )
         )
     }
 }

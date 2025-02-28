@@ -36,6 +36,7 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
             by KoinPlatformTools.defaultContext().get().inject<LceStateManager>()
 
     val lceFlow get() = lceStateManager.lceState.asCommonFlow()
+    val lceState get() = lceStateManager.lceState
 
     abstract fun initToolbar()
 
