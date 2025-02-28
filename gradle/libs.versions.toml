@@ -16,8 +16,8 @@ kotlin-coroutines = "1.10.1"
 lifecycle = "2.8.2"
 navigationCompose = "2.8.7"
 coil = "2.7.0"
-androidxRoom = "2.7.0-alpha01"
-sqlite = "2.5.0-alpha01"
+androidxRoom = "2.7.0-rc01"
+sqlite = "2.5.0-rc01"
 ksp = "1.9.23-1.0.19"
 
 [libraries]
