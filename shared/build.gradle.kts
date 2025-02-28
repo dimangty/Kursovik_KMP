@@ -4,7 +4,9 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.room)
     id("dev.icerock.mobile.multiplatform-resources")
+    id("com.google.devtools.ksp")
 }
 
 kotlin {
@@ -59,6 +61,11 @@ kotlin {
 
             //Logs
             api(libs.napier)
+
+            //Room
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
+            implementation(libs.sqlite)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -89,4 +96,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+//dependencies {
+//    add("kspAndroid", libs.androidx.room.compiler)
+//    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+//    add("kspIosX64", libs.androidx.room.compiler)
+//    add("kspIosArm64", libs.androidx.room.compiler)
+//}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }

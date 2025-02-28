@@ -1,6 +1,6 @@
 [versions]
 agp = "8.7.1"
-kotlin = "2.0.20"
+kotlin = "2.1.0"
 compose = "1.5.4"
 compose-material = "1.6.1"
 compose-material3 = "1.1.2"
@@ -16,6 +16,9 @@ kotlin-coroutines = "1.10.1"
 lifecycle = "2.8.2"
 navigationCompose = "2.8.7"
 coil = "2.7.0"
+androidxRoom = "2.7.0-alpha01"
+sqlite = "2.5.0-alpha01"
+ksp = "1.9.23-1.0.19"
 
 [libraries]
 kotlin-coroutines = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines"}
@@ -59,7 +62,10 @@ ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
-
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+sqlite = { module = "androidx.sqlite:sqlite", version.ref = "sqlite" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -70,3 +76,5 @@ kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight"}
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+room = { id = "androidx.room", version.ref = "androidxRoom" }
