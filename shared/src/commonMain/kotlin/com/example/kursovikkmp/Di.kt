@@ -3,6 +3,7 @@ package com.example.kursovikkmp
 import com.example.kursovikkmp.DI.NetworkModule
 import com.example.kursovikkmp.DI.ViewModelsModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
+import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
 import com.example.kursovikkmp.feature.news.list.model.NewsService
 import com.example.kursovikkmp.network.NetworkSettings
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +29,7 @@ internal val commonModule = module {
     single(named(MAIN_DISPATCHER_NAME)) { Dispatchers.Main }
     single(named(DEFAULT_DISPATCHER_NAME)) { Dispatchers.Default }
     singleOf(::NewsService)
+    singleOf(::FavoritesRepository)
     factoryOf(::LceStateManager)
     singleOf(::NetworkSettings)
 }

@@ -6,9 +6,9 @@ import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 
-@Database(entities = [TodoEntity::class], version = 1)
+@Database(entities = [ArticleEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun getDao(): TodoDao
+    abstract fun getDao(): ArticleDao
 }
 
 fun getRoomDatabase(
