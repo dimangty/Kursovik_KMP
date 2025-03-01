@@ -1,0 +1,24 @@
+
+CREATE TABLE ArticleDb (
+author TEXT,
+title TEXT,
+description TEXT,
+url TEXT,
+urlToImage TEXT,
+publishedAt TEXT
+);
+
+get:
+SELECT * FROM ArticleDb WHERE title = :title LIMIT 1;
+
+getAll:
+SELECT * FROM ArticleDb;
+
+insert:
+INSERT OR REPLACE INTO ArticleDb VALUES ?;
+
+delete:
+DELETE FROM ArticleDb WHERE title = :title;
+
+clear:
+DELETE FROM ArticleDb;

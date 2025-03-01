@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.sqldelight)
     id("dev.icerock.mobile.multiplatform-resources")
 }
 
@@ -59,6 +60,8 @@ kotlin {
 
             //Logs
             api(libs.napier)
+
+            implementation(libs.touchLab)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -67,10 +70,12 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.ktor.client.android)
             implementation(libs.androidx.navigation.compose)
+            implementation(libs.sqldelight.android.driver)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)
+            implementation(libs.sqldelight.native.driver)
         }
     }
 }
@@ -89,4 +94,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.example.kursovikkmp")
+            generateAsync.set(true)
+        }
+    }
+    linkSqlite = true
 }

@@ -1,5 +1,6 @@
 package com.example.kursovikkmp
 
+import com.example.kursovikkmp.DB.ArticleDao
 import com.example.kursovikkmp.DI.NetworkModule
 import com.example.kursovikkmp.DI.ViewModelsModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
@@ -21,7 +22,7 @@ const val DEFAULT_SCOPE = "defaultScope"
 
 val sharedModule: Module
     get() = module {
-        includes(commonModule + NetworkCompositeModule + platformModule)
+        includes(commonModule + NetworkCompositeModule + platformModule + dbModule + storageModule)
     }
 
 internal val commonModule = module {
@@ -36,6 +37,16 @@ internal val commonModule = module {
 
 internal val NetworkCompositeModule: Module = module {
     includes(NetworkModule.json, NetworkModule.httpClient, NetworkModule.api)
+}
+
+val dbModule = module {
+    single {
+        Database(get())
+    }
+}
+
+val storageModule = module {
+    single { ArticleDao(get(), get()) }
 }
 
 internal expect val platformModule: Module
