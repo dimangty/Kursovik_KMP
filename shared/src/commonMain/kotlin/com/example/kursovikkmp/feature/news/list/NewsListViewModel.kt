@@ -4,6 +4,7 @@ import com.example.kursovikkmp.base.BaseViewModel
 import com.example.kursovikkmp.common.view.TitleBarState
 import com.example.kursovikkmp.common.view.updateValue
 import com.example.kursovikkmp.extensions.appLog
+import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
 import com.example.kursovikkmp.feature.news.list.model.Article
 import com.example.kursovikkmp.feature.news.list.model.NewsList
 import com.example.kursovikkmp.feature.news.list.model.NewsService
@@ -12,9 +13,14 @@ import io.ktor.client.call.body
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.isSuccess
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class NewsListViewModel(private val newsService: NewsService): BaseViewModel<NewsListState, NewsListEvents>() {
+class NewsListViewModel(private val newsService: NewsService,
+                        private val favoritesRepository: FavoritesRepository): BaseViewModel<NewsListState, NewsListEvents>() {
+
+    var favorites: MutableList<Article> = mutableListOf()
+    var news: MutableList<Article> = mutableListOf()
 
     init {
         initToolbar()
@@ -24,6 +30,7 @@ class NewsListViewModel(private val newsService: NewsService): BaseViewModel<New
                 //pushEvent(Event.Error(t.message.orEmpty()))
             }
         ) {
+            loadFavoriteNews()
             loadNews()
         }
     }
@@ -38,21 +45,29 @@ class NewsListViewModel(private val newsService: NewsService): BaseViewModel<New
     override fun initialState() = NewsListState()
 
     override fun onEvent(event: NewsListEvents) {
-//        when(event){
-//
-//        }
+        when(event){
+            is NewsListEvents.OnNewsClicked -> {
+                viewModelScope.launch {
+                    updateFavorite(event.title)
+                }
+            }
+        }
+    }
+
+    private fun loadFavoriteNews() {
+       favorites = favoritesRepository.getAllFlow().toMutableList()
     }
 
 
-
-    suspend fun loadNews() {
+    private suspend fun loadNews() {
         appLog("loadNews")
             lceStateManager.showLoading()
             val response = newsService.getNews()
             lceStateManager.hideLoading()
             if (response.status.isSuccess()) {
                 val regResponse = response.body<NewsList>()
-                updateState { copy(newsItems = regResponse.articles.mapToUiItems()) }
+                news = regResponse.articles.toMutableList()
+                updateState { copy(newsItems = news.mapToUiItems()) }
             } else {
                 val error = response.body<ApiErrorWrapper>().error
                 val message = error?.message ?: response.bodyAsText()
@@ -70,11 +85,33 @@ class NewsListViewModel(private val newsService: NewsService): BaseViewModel<New
                         title = item.title,
                         text = item.description,
                         imageUrl = item.urlToImage,
-                        date = item.publishedAt
+                        date = item.publishedAt,
+                        isFavorite = checkIsFavorite(item)
                     )
                 )
             }
         }
         return items
     }
+
+    private fun checkIsFavorite(article: Article): Boolean {
+        return favorites.any { it.title == article.title}
+    }
+
+    private suspend fun updateFavorite(title: String) {
+        val check = favoritesRepository.check(title)
+        if (!check) {
+            val item = news.find { it.title == title}
+            if (item != null) {
+                favoritesRepository.insert(item)
+            }
+        } else {
+            favoritesRepository.delete(title)
+        }
+
+        delay(100)
+        loadFavoriteNews()
+        updateState { copy(newsItems = news.mapToUiItems()) }
+    }
+
 }

@@ -1,6 +1,10 @@
 package com.example.kursovikkmp.DI
 
+import com.example.kursovikkmp.DB.ArticleDao
+import com.example.kursovikkmp.DB.DatabaseDriverFactory
+import com.example.kursovikkmp.Database
 import com.example.kursovikkmp.extensions.appLog
+import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import com.example.kursovikkmp.feature.news.list.model.NewsService
 import com.example.kursovikkmp.network.DateSerializer
@@ -18,6 +22,7 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 @OptIn(ExperimentalSerializationApi::class)
@@ -57,9 +62,18 @@ object NetworkModule {
 
 }
 
+object StorageModule {
+    val dbModule = module {
+        single<Database> {
+            Database(get<DatabaseDriverFactory>().create())
+        }
+    }
 
-object ViewModelsModule {
-    val viewModels = module {
-        factory { NewsListViewModel(get()) }
+    val daoModule = module {
+        single<ArticleDao> { ArticleDao(get<Database>(), get()) }
+    }
+
+    val repositoryModule = module {
+        single { FavoritesRepository(get<ArticleDao>())}
     }
 }

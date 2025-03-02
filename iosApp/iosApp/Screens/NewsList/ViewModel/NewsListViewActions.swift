@@ -8,8 +8,9 @@
 
 import Combine
 import Foundation
+import shared
 
 enum NewsListViewActions {
-   case empty
+    case articleTapped(_ item: String)
 }
 

@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.koin.mp.KoinPlatformTools
 import kotlin.experimental.ExperimentalObjCName
+import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.HiddenFromObjC
 import kotlin.native.ObjCName
 
@@ -50,6 +51,8 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
         onEvent(event)
     }
 
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
     abstract fun onEvent(event: Event)
 
     fun onDestroy(){

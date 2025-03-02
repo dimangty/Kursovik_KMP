@@ -48,6 +48,10 @@
 		8B6BBB012D6DEEFC00408370 /* TextWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBB002D6DEEFC00408370 /* TextWithState.swift */; };
 		8B6BBB052D6DF14C00408370 /* View+Corners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBB042D6DF14900408370 /* View+Corners.swift */; };
 		8B6BBB072D6DF2A700408370 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBB062D6DF29800408370 /* Colors.swift */; };
+		8B9E8BD62D73437500CCEBE8 /* ButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BD52D73436B00CCEBE8 /* ButtonWithState.swift */; };
+		8B9E8BD82D73443E00CCEBE8 /* FilledButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BD72D73443D00CCEBE8 /* FilledButtonWithState.swift */; };
+		8B9E8BDA2D7347C200CCEBE8 /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BD92D7347BF00CCEBE8 /* Blocks.swift */; };
+		8B9E8BDC2D73488D00CCEBE8 /* ImageButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BDB2D73488400CCEBE8 /* ImageButtonWithState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +99,10 @@
 		8B6BBB002D6DEEFC00408370 /* TextWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithState.swift; sourceTree = "<group>"; };
 		8B6BBB042D6DF14900408370 /* View+Corners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Corners.swift"; sourceTree = "<group>"; };
 		8B6BBB062D6DF29800408370 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		8B9E8BD52D73436B00CCEBE8 /* ButtonWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithState.swift; sourceTree = "<group>"; };
+		8B9E8BD72D73443D00CCEBE8 /* FilledButtonWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButtonWithState.swift; sourceTree = "<group>"; };
+		8B9E8BD92D7347BF00CCEBE8 /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
+		8B9E8BDB2D73488400CCEBE8 /* ImageButtonWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonWithState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +144,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				8B77E9142D741BDF007CB6C9 /* Kotlin */,
 				8B6BBB022D6DF12900408370 /* Common */,
 				8B6BBACD2D6B240A00408370 /* Screens */,
 				8B6BBAA72D6A1F6200408370 /* Base */,
@@ -201,6 +210,9 @@
 		8B6BBAC32D6A252A00408370 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8B9E8BDB2D73488400CCEBE8 /* ImageButtonWithState.swift */,
+				8B9E8BD72D73443D00CCEBE8 /* FilledButtonWithState.swift */,
+				8B9E8BD52D73436B00CCEBE8 /* ButtonWithState.swift */,
 				8B6BBB002D6DEEFC00408370 /* TextWithState.swift */,
 				8B6BBACB2D6A288F00408370 /* ProgressView.swift */,
 				8B6BBAC52D6A259B00408370 /* LoaderView.swift */,
@@ -334,6 +346,7 @@
 		8B6BBB022D6DF12900408370 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8B9E8BD92D7347BF00CCEBE8 /* Blocks.swift */,
 				8B6BBB032D6DF14000408370 /* Extensions */,
 				8B6BBABE2D6A246000408370 /* DI */,
 				8B6BBAB82D6A210100408370 /* Services */,
@@ -348,6 +361,13 @@
 				8B6BBB042D6DF14900408370 /* View+Corners.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8B77E9142D741BDF007CB6C9 /* Kotlin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Kotlin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,10 +490,14 @@
 				8B6BBAF32D6B24C300408370 /* NewsListAssembly.swift in Sources */,
 				8B6BBAF42D6B24C300408370 /* FavoritesViewActions.swift in Sources */,
 				8B6BBAF52D6B24C300408370 /* NewsDetailsViewModel.swift in Sources */,
+				8B9E8BDC2D73488D00CCEBE8 /* ImageButtonWithState.swift in Sources */,
 				8B6BBAF62D6B24C300408370 /* NewsListView.swift in Sources */,
 				8B6BBAF72D6B24C300408370 /* NewsDetailsViewActions.swift in Sources */,
 				8B6BBAF82D6B24C300408370 /* NewsDetailsModuleInput.swift in Sources */,
+				8B9E8BD82D73443E00CCEBE8 /* FilledButtonWithState.swift in Sources */,
+				8B9E8BDA2D7347C200CCEBE8 /* Blocks.swift in Sources */,
 				8B6BBAF92D6B24C300408370 /* FavoritesViewModel.swift in Sources */,
+				8B9E8BD62D73437500CCEBE8 /* ButtonWithState.swift in Sources */,
 				8B6BBAFA2D6B24C300408370 /* NewsDetailsHostingController.swift in Sources */,
 				8B6BBB072D6DF2A700408370 /* Colors.swift in Sources */,
 				8B6BBAFB2D6B24C300408370 /* FavoritesAssembly.swift in Sources */,

@@ -5,6 +5,7 @@ package com.example.kursovikkmp
 import app.cash.sqldelight.async.coroutines.synchronous
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
+import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
@@ -19,8 +20,7 @@ import org.koin.dsl.module
 import kotlin.reflect.KClass
 
 internal actual val platformModule: Module = module {
-    factoryOf(::NewsListViewModel)
-    single <SqlDriver>{ NativeSqliteDriver(Database.Schema.synchronous(), "Database") }
+    single<DatabaseDriverFactory> { DatabaseDriverFactory() }
 }
 
 fun initKoin(): KoinApplication {
@@ -45,4 +45,8 @@ fun Koin.get(objCClass: ObjCClass): Any {
 fun Koin.get(objCProtocol: ObjCProtocol): Any {
     val kClazz = kotlinx.cinterop.getOriginalKotlinClass(objCProtocol)!!
     return get(kClazz)
+}
+
+internal actual val vmModule: Module = module {
+    factoryOf(::NewsListViewModel)
 }

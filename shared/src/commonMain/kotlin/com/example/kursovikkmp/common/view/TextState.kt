@@ -14,7 +14,7 @@ data class TextState(
     val value: String = "",
     val iconStart: ImageResource? = null,
     val iconEnd: ImageResource? = null,
-    val overrideIconsTint: Boolean = true,
+    val overrideIconsTint: Boolean = false,
 ) {
     companion object {
         fun latoRegular(size: Int, color: ColorResource, lineHeight: Int = LINE_HEIGHT_SAME_AS_SIZE) = initState(

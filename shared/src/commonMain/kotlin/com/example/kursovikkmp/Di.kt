@@ -1,14 +1,14 @@
 package com.example.kursovikkmp
 
-import com.example.kursovikkmp.DB.ArticleDao
 import com.example.kursovikkmp.DI.NetworkModule
-import com.example.kursovikkmp.DI.ViewModelsModule
+import com.example.kursovikkmp.DI.StorageModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
 import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
 import com.example.kursovikkmp.feature.news.list.model.NewsService
 import com.example.kursovikkmp.network.NetworkSettings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.SupervisorJob
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
@@ -22,15 +22,12 @@ const val DEFAULT_SCOPE = "defaultScope"
 
 val sharedModule: Module
     get() = module {
-        includes(commonModule + NetworkCompositeModule + platformModule + dbModule + storageModule)
+        includes(platformModule + commonModule + NetworkCompositeModule + StorageCompositeModule + vmModule)
     }
 
 internal val commonModule = module {
-    single(named(IO_DISPATCHER_NAME)) { Dispatchers.IO }
-    single(named(MAIN_DISPATCHER_NAME)) { Dispatchers.Main }
-    single(named(DEFAULT_DISPATCHER_NAME)) { Dispatchers.Default }
+    factory { Dispatchers.Default + SupervisorJob() }
     singleOf(::NewsService)
-    singleOf(::FavoritesRepository)
     factoryOf(::LceStateManager)
     singleOf(::NetworkSettings)
 }
@@ -39,14 +36,10 @@ internal val NetworkCompositeModule: Module = module {
     includes(NetworkModule.json, NetworkModule.httpClient, NetworkModule.api)
 }
 
-val dbModule = module {
-    single {
-        Database(get())
-    }
+internal val StorageCompositeModule: Module = module {
+    includes(StorageModule.dbModule, StorageModule.daoModule, StorageModule.repositoryModule)
 }
 
-val storageModule = module {
-    single { ArticleDao(get(), get()) }
-}
 
 internal expect val platformModule: Module
+internal expect val vmModule: Module

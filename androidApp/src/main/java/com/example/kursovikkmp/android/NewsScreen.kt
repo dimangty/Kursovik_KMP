@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.example.kursovikkmp.android.Common.Extensions.COMPOSE_PREVIEW_BACKGROUND_COLOR
 import com.example.kursovikkmp.android.feature.view.BaseScreen
 import com.example.kursovikkmp.android.feature.view.VSpacer
+import com.example.kursovikkmp.feature.news.list.NewsListEvents
 import com.example.kursovikkmp.feature.news.list.NewsListState
 
 @Composable
@@ -32,33 +33,24 @@ fun NewsScreen(navController: NavController) {
 
     BaseScreen(lceState = lceState) {
         NewsScreenView(navController = navController,
-                        state = state)
+                        state = state,
+                        onUiEvent = viewModel::pushEvent)
     }
 }
 
-@Composable
-fun NewsScreenView(navController: NavController, state: NewsListState) {
-
-
-    MyApplicationTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            NewsScreenView(state, navController)
-        }
-    }
-}
 
 @Composable
-fun NewsScreenView(state: NewsListState, navController: NavController?) {
+fun NewsScreenView(state: NewsListState,
+                   onUiEvent: (NewsListEvents) -> Unit,
+                   navController: NavController?) {
     LazyColumn(modifier = Modifier) {
         item { VSpacer(8.dp) }
         items(state.newsItems) { item ->
             ArticleItemView(article = item,
                             onClicked = {
-                    navController?.navigate(Screens.Details.route)
-            })
+                                navController?.navigate(Screens.Details.route)
+                             },
+                             onFavorite = { title -> onUiEvent(NewsListEvents.OnNewsClicked(title))})
         }
     }
 }
@@ -68,6 +60,7 @@ fun NewsScreenView(state: NewsListState, navController: NavController?) {
 private fun PreviewNewsScreenView() {
     MyApplicationTheme {
         NewsScreenView(state = NewsListState.getMock(),
-                       navController = null)
+                       navController = null,
+                       onUiEvent = {})
     }
 }

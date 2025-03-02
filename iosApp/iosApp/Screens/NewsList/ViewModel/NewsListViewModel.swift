@@ -23,8 +23,8 @@ final class NewsListViewModel: BaseViewModel<shared.NewsListViewModel, NewsListS
 
     func onEvent(event: NewsListViewActions) {
     	switch event {
-        case .empty:
-            //mViewModel?.onUiEvent(event: )
+        case .articleTapped(let item):
+            mViewModel?.pushEvent(event: .OnNewsClicked(title: item))
             break
         }
     }

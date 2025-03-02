@@ -47,7 +47,7 @@ data class ButtonState(
             image: ImageResource? = null,
             background: ColorResource = MR.colors.white,
             coloredState: ButtonData.ColoredState = ButtonData.ColoredState.Colored,
-        ) = ButtonState(data = ButtonData.PrimaryButton(value, image, background, coloredState))
+        ) = ButtonState(data = ButtonData.ImageButton(value, background, image))
 
 
     }
@@ -94,6 +94,11 @@ sealed class ButtonData(open val text: String) {
 
         override val color: ColorResource
             get() = background
+
+        companion object {
+            fun getMock() = PrimaryButton("Button",
+                                          background = MR.colors.red)
+        }
     }
 
     enum class Alignment { Start, Center }
@@ -116,6 +121,12 @@ sealed class ButtonData(open val text: String) {
 
         fun updateImage(image: ImageResource): ButtonData {
             return this.copy(image = image)
+        }
+
+        companion object {
+            fun getMock() = ImageButton("Button",
+                                        image = MR.images.favorite_off_icon,
+                                        background = MR.colors.black)
         }
     }
 

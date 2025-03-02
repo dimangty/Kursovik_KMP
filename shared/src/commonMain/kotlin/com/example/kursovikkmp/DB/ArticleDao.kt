@@ -19,7 +19,6 @@ class ArticleDao(
             .map{ it.toEntity()}
 
     suspend fun insert(article: Article) = articleQueries.insert(article.toDb())
-
-
     suspend fun delete(title: String) = articleQueries.delete(title = title)
+    suspend fun check(title: String): Boolean = articleQueries.get(title = title).executeAsOneOrNull() != null
 }

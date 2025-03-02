@@ -1,5 +1,6 @@
 package com.example.kursovikkmp
 
+import com.example.kursovikkmp.common.view.ButtonData
 import com.example.kursovikkmp.common.view.TextFontState
 import com.example.kursovikkmp.common.view.TextState
 import com.example.kursovikkmp.common.view.getMock

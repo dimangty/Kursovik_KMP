@@ -11,6 +11,8 @@ import shared
 
 struct NewsListItemView: View {
     let state: NewsUiState
+    let favoriteTapped: VoidBlock?
+    
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
@@ -33,6 +35,9 @@ struct NewsListItemView: View {
                     HStack{
                         TextWithState(state.dateState)
                         Spacer()
+                        ButtonWithState(state.favoriteButton) {
+                            favoriteTapped?()
+                        }
                     }
                     HStack {
                         TextWithState(state.titleState)
@@ -54,5 +59,5 @@ struct NewsListItemView: View {
 }
 
 #Preview {
-    NewsListItemView(state: .companion.getMock())
+    NewsListItemView(state: .companion.getMock(), favoriteTapped: nil)
 }

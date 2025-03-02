@@ -21,8 +21,9 @@ struct NewsListView: View {
                 LazyVStack {
                     ForEach(0 ..< viewModel.state.newsItems.count, id: \.self) { index in
                         let state = viewModel.state.newsItems[index]
-                        NewsListItemView(state: state)
-                            .padding(.top, 8)
+                        NewsListItemView(state: state) {
+                            viewModel.onEvent(event: .articleTapped(state.title))
+                        }.padding(.top, 8)
                     }
                 }
             }.padding(.horizontal, 16)

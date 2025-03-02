@@ -31,13 +31,13 @@ data class NewsUiState(
     val text: String = "",
     val date: String = "",
     val imageUrl: String? = "",
-    val favorite: Boolean = false,
-    val favoriteButton: ButtonState = ButtonState.image(image = MR.images.favorite_off_icon),
+    val isFavorite: Boolean = false,
     val cellBackground: ColorResource = MR.colors.white,
 ) {
     val titleState: TextState = TextState.latoSemibold(17, MR.colors.black).updateValue(title)
     val textState: TextState = TextState.latoRegular(13, MR.colors.black).updateValue(text)
     val dateState: TextState = TextState.latoRegular(13, MR.colors.black).updateValue(date)
+    val favoriteButton: ButtonState = ButtonState.image(image = if(isFavorite)  MR.images.favorite_on_icon else MR.images.favorite_off_icon)
 
     companion object {
         fun getMock() = NewsUiState().run {
