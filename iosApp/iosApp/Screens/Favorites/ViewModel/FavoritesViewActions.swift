@@ -10,6 +10,6 @@ import Combine
 import Foundation
 
 enum FavoritesViewActions {
-   case empty
+    case articleTapped(_ item: String)
 }
 

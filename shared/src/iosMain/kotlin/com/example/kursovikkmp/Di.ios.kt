@@ -7,6 +7,7 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
+import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
@@ -49,4 +50,5 @@ fun Koin.get(objCProtocol: ObjCProtocol): Any {
 
 internal actual val vmModule: Module = module {
     factoryOf(::NewsListViewModel)
+    factoryOf(::FavoritesListViewModel)
 }

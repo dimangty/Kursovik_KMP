@@ -36,7 +36,7 @@ data class BottomNavigationItem(
             BottomNavigationItem(
                 label = "Favorites",
                 icon = Icons.Filled.Favorite,
-                route = Screens.Search.route
+                route = Screens.Favorites.route
             )
         )
     }

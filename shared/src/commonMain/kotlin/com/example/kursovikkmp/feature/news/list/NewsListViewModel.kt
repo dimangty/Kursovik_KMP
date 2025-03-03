@@ -8,6 +8,7 @@ import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
 import com.example.kursovikkmp.feature.news.list.model.Article
 import com.example.kursovikkmp.feature.news.list.model.NewsList
 import com.example.kursovikkmp.feature.news.list.model.NewsService
+import com.example.kursovikkmp.feature.news.list.model.toDateString
 import info.javaway.spend_sense.network.ApiErrorWrapper
 import io.ktor.client.call.body
 import io.ktor.client.statement.bodyAsText
@@ -85,7 +86,7 @@ class NewsListViewModel(private val newsService: NewsService,
                         title = item.title,
                         text = item.description,
                         imageUrl = item.urlToImage,
-                        date = item.publishedAt,
+                        date = item.publishedAt.toDateString(),
                         isFavorite = checkIsFavorite(item)
                     )
                 )

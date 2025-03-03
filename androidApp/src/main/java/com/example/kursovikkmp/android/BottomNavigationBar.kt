@@ -18,6 +18,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.kursovikkmp.android.feature.Favorites.FavoriteScreen
+import com.example.kursovikkmp.android.feature.News.NewsScreen
 
 @Composable
 fun BottomNavigationBar() {
@@ -66,8 +68,8 @@ fun BottomNavigationBar() {
                     navController
                 )
             }
-            composable(Screens.Search.route) {
-                SearchScreen(
+            composable(Screens.Favorites.route) {
+                FavoriteScreen(
                     navController
                 )
             }

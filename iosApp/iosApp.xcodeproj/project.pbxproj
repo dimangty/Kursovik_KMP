@@ -48,10 +48,12 @@
 		8B6BBB012D6DEEFC00408370 /* TextWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBB002D6DEEFC00408370 /* TextWithState.swift */; };
 		8B6BBB052D6DF14C00408370 /* View+Corners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBB042D6DF14900408370 /* View+Corners.swift */; };
 		8B6BBB072D6DF2A700408370 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBB062D6DF29800408370 /* Colors.swift */; };
+		8B90BAEF2D745D34002A035B /* FavoritesItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B90BAEE2D745D27002A035B /* FavoritesItemView.swift */; };
 		8B9E8BD62D73437500CCEBE8 /* ButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BD52D73436B00CCEBE8 /* ButtonWithState.swift */; };
 		8B9E8BD82D73443E00CCEBE8 /* FilledButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BD72D73443D00CCEBE8 /* FilledButtonWithState.swift */; };
 		8B9E8BDA2D7347C200CCEBE8 /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BD92D7347BF00CCEBE8 /* Blocks.swift */; };
 		8B9E8BDC2D73488D00CCEBE8 /* ImageButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BDB2D73488400CCEBE8 /* ImageButtonWithState.swift */; };
+		8BF8F7A12D7465CA0024E341 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF8F7A02D7465C30024E341 /* UIUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,10 +101,12 @@
 		8B6BBB002D6DEEFC00408370 /* TextWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithState.swift; sourceTree = "<group>"; };
 		8B6BBB042D6DF14900408370 /* View+Corners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Corners.swift"; sourceTree = "<group>"; };
 		8B6BBB062D6DF29800408370 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		8B90BAEE2D745D27002A035B /* FavoritesItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesItemView.swift; sourceTree = "<group>"; };
 		8B9E8BD52D73436B00CCEBE8 /* ButtonWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithState.swift; sourceTree = "<group>"; };
 		8B9E8BD72D73443D00CCEBE8 /* FilledButtonWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButtonWithState.swift; sourceTree = "<group>"; };
 		8B9E8BD92D7347BF00CCEBE8 /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
 		8B9E8BDB2D73488400CCEBE8 /* ImageButtonWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonWithState.swift; sourceTree = "<group>"; };
+		8BF8F7A02D7465C30024E341 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +248,7 @@
 			children = (
 				8B6BBAD02D6B24C300408370 /* FavoritesHostingController.swift */,
 				8B6BBAD12D6B24C300408370 /* FavoritesView.swift */,
+				8B90BAEE2D745D27002A035B /* FavoritesItemView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 		8B6BBB022D6DF12900408370 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8BF8F79F2D7465B80024E341 /* UIUtils */,
 				8B9E8BD92D7347BF00CCEBE8 /* Blocks.swift */,
 				8B6BBB032D6DF14000408370 /* Extensions */,
 				8B6BBABE2D6A246000408370 /* DI */,
@@ -368,6 +374,14 @@
 			children = (
 			);
 			path = Kotlin;
+			sourceTree = "<group>";
+		};
+		8BF8F79F2D7465B80024E341 /* UIUtils */ = {
+			isa = PBXGroup;
+			children = (
+				8BF8F7A02D7465C30024E341 /* UIUtils.swift */,
+			);
+			path = UIUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -472,9 +486,11 @@
 				8B6BBAB22D6A1F7E00408370 /* ContainerView.swift in Sources */,
 				8B6BBAB32D6A1F7E00408370 /* BaseViewModel.swift in Sources */,
 				8B6BBAB42D6A1F7E00408370 /* ContainerEmptyView.swift in Sources */,
+				8B90BAEF2D745D34002A035B /* FavoritesItemView.swift in Sources */,
 				8B6BBAB52D6A1F7E00408370 /* IModel.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				8B6BBAFF2D6DECA200408370 /* NewsListItemView.swift in Sources */,
+				8BF8F7A12D7465CA0024E341 /* UIUtils.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				8B6BBABF2D6A246000408370 /* ServiceLocator.swift in Sources */,
 				8B6BBAC62D6A259B00408370 /* LoaderView.swift in Sources */,
