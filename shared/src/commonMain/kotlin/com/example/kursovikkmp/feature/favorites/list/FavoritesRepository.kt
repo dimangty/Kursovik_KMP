@@ -1,8 +1,7 @@
 package com.example.kursovikkmp.feature.favorites.list
 
 import com.example.kursovikkmp.DB.ArticleDao
-import com.example.kursovikkmp.feature.news.list.model.Article
-import kotlinx.coroutines.flow.Flow
+import com.example.kursovikkmp.feature.news.model.Article
 
 class FavoritesRepository(
     private val dao: ArticleDao

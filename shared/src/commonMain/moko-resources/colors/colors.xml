@@ -3,6 +3,7 @@
     <!-- format: #RRGGBB[AA] or 0xRRGGBB[AA] or RRGGBB[AA] where [AA] - optional -->
     <color name="white">#FFFFFFFF</color>
     <color name="black">#000000FF</color>
+    <color name="primary">#6699FFFF</color>
 
     <color name="loader_screen_background">#00000080</color>
     <color name="loader_opaque_screen_background">#FFFFFFFF</color>

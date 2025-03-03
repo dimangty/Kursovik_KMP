@@ -3,15 +3,12 @@ package com.example.kursovikkmp.DI
 import com.example.kursovikkmp.DB.ArticleDao
 import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.Database
-import com.example.kursovikkmp.extensions.appLog
 import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
-import com.example.kursovikkmp.feature.news.list.NewsListViewModel
-import com.example.kursovikkmp.feature.news.list.model.NewsService
+import com.example.kursovikkmp.feature.news.NewsService
 import com.example.kursovikkmp.network.DateSerializer
 import com.example.kursovikkmp.network.DateTimeSerializer
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.logging.EMPTY
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
@@ -22,7 +19,6 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
-import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 @OptIn(ExperimentalSerializationApi::class)

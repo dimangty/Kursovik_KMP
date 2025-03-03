@@ -5,7 +5,8 @@ title TEXT,
 description TEXT,
 url TEXT,
 urlToImage TEXT,
-publishedAt TEXT
+publishedAt TEXT,
+content TEXT
 );
 
 get:

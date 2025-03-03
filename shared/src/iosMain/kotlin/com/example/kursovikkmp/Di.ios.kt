@@ -2,12 +2,12 @@
 
 package com.example.kursovikkmp
 
-import app.cash.sqldelight.async.coroutines.synchronous
-import app.cash.sqldelight.db.SqlDriver
-import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import com.example.kursovikkmp.DB.DatabaseDriverFactory
+import com.example.kursovikkmp.feature.device.DeviceService
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
+import com.example.kursovikkmp.feature.news.details.NewsDetailsViewModel
+import com.example.kursovikkmp.navigation.NavigationService
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
@@ -16,13 +16,10 @@ import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 import kotlin.reflect.KClass
-
-internal actual val platformModule: Module = module {
-    single<DatabaseDriverFactory> { DatabaseDriverFactory() }
-}
 
 fun initKoin(): KoinApplication {
     return startKoin {
@@ -49,6 +46,13 @@ fun Koin.get(objCProtocol: ObjCProtocol): Any {
 }
 
 internal actual val vmModule: Module = module {
+    factoryOf(::NewsDetailsViewModel)
     factoryOf(::NewsListViewModel)
     factoryOf(::FavoritesListViewModel)
+}
+
+internal actual val platformModule: Module = module {
+    singleOf(::DeviceService)
+    singleOf(::NavigationService)
+    single<DatabaseDriverFactory> { DatabaseDriverFactory() }
 }

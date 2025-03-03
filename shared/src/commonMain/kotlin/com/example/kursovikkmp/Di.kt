@@ -3,16 +3,14 @@ package com.example.kursovikkmp
 import com.example.kursovikkmp.DI.NetworkModule
 import com.example.kursovikkmp.DI.StorageModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
-import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
-import com.example.kursovikkmp.feature.news.list.model.NewsService
+import com.example.kursovikkmp.feature.news.NewsService
+import com.example.kursovikkmp.navigation.NavigationService
 import com.example.kursovikkmp.network.NetworkSettings
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.SupervisorJob
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 const val IO_DISPATCHER_NAME = "ioDispatcher"

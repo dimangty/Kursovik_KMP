@@ -1,4 +1,4 @@
-package com.example.kursovikkmp.feature.news.list.model
+package com.example.kursovikkmp.feature.news.model
 
 import kotlinx.serialization.Serializable
 

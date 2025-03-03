@@ -24,14 +24,14 @@ import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun NewsScreen(navController: NavController) {
+fun NewsScreen() {
     val viewModel: NewsListViewModel = koinViewModel()
     val state by viewModel.flowState.collectAsState()
     val lceState by viewModel.lceState.collectAsState()
 
     BaseScreen(lceState = lceState,
                onDefaultUiEvent = viewModel::onDefaultUiEvent) {
-        NewsScreenView(navController = navController,
+        NewsScreenView(
             state = state,
             onUiEvent = viewModel::pushEvent)
     }
@@ -40,17 +40,16 @@ fun NewsScreen(navController: NavController) {
 
 @Composable
 fun NewsScreenView(state: NewsListState,
-                   onUiEvent: (NewsListEvents) -> Unit,
-                   navController: NavController?) {
+                   onUiEvent: (NewsListEvents) -> Unit) {
     Column(modifier = Modifier.background(color = state.backGroundColor.color())) {
         LazyColumn(modifier = Modifier.padding(horizontal = 8.dp)) {
             item { VSpacer(8.dp) }
             items(state.newsItems) { item ->
                 ArticleItemView(article = item,
                     onClicked = {
-                        navController?.navigate(Screens.Details.route)
+                        onUiEvent(NewsListEvents.OnItemClicked(item.title))
                     },
-                    onFavorite = { title -> onUiEvent(NewsListEvents.OnNewsClicked(title))})
+                    onFavorite = { title -> onUiEvent(NewsListEvents.OnFavoriteClicked(title))})
                 VSpacer(8.dp)
             }
         }
@@ -63,7 +62,6 @@ fun NewsScreenView(state: NewsListState,
 private fun PreviewNewsScreenView() {
     MyApplicationTheme {
         NewsScreenView(state = NewsListState.getMock(),
-            navController = null,
-            onUiEvent = {})
+                       onUiEvent = {})
     }
 }

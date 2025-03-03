@@ -3,6 +3,8 @@ package com.example.kursovikkmp.base
 import androidx.lifecycle.ViewModel
 import com.example.kursovikkmp.common.mvvm.ErrorState
 import com.example.kursovikkmp.common.mvvm.LceStateManager
+import com.example.kursovikkmp.feature.device.DeviceService
+import com.example.kursovikkmp.navigation.NavigationService
 import com.example.kursovikkmp.shared.common.extension.asCommonFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -13,6 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.koin.mp.KoinPlatform.getKoin
 import org.koin.mp.KoinPlatformTools
 import kotlin.experimental.ExperimentalObjCName
 import kotlin.experimental.ExperimentalObjCRefinement
@@ -22,6 +25,8 @@ import kotlin.native.ObjCName
 abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel() {
 
     val viewModelScope = CoroutineScope(SupervisorJob())
+    val navigationService by getKoin().inject<NavigationService>()
+    val deviceService by getKoin().inject<DeviceService>()
 
     val stateFlow = MutableStateFlow(initialState())
     val state: State get() = stateFlow.value

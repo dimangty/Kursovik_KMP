@@ -5,10 +5,11 @@ import com.example.kursovikkmp.common.view.TitleBarState
 import com.example.kursovikkmp.common.view.updateValue
 import com.example.kursovikkmp.extensions.appLog
 import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
-import com.example.kursovikkmp.feature.news.list.model.Article
-import com.example.kursovikkmp.feature.news.list.model.NewsList
-import com.example.kursovikkmp.feature.news.list.model.NewsService
-import com.example.kursovikkmp.feature.news.list.model.toDateString
+import com.example.kursovikkmp.feature.news.model.Article
+import com.example.kursovikkmp.feature.news.model.NewsList
+import com.example.kursovikkmp.feature.news.NewsService
+import com.example.kursovikkmp.feature.news.model.toDateString
+import com.example.kursovikkmp.navigation.NavigationAction
 import info.javaway.spend_sense.network.ApiErrorWrapper
 import io.ktor.client.call.body
 import io.ktor.client.statement.bodyAsText
@@ -51,10 +52,13 @@ class NewsListViewModel(private val newsService: NewsService,
 
     override fun onEvent(event: NewsListEvents) {
         when(event){
-            is NewsListEvents.OnNewsClicked -> {
+            is NewsListEvents.OnFavoriteClicked -> {
                 viewModelScope.launch {
                     updateFavorite(event.title)
                 }
+            }
+            is NewsListEvents.OnItemClicked -> {
+                navigationService.navigate(NavigationAction.NavigateToNewsDetails(event.title))
             }
         }
     }
@@ -72,6 +76,7 @@ class NewsListViewModel(private val newsService: NewsService,
             if (response.status.isSuccess()) {
                 val regResponse = response.body<NewsList>()
                 news = regResponse.articles.toMutableList()
+                newsService.news = news
                 updateState { copy(newsItems = news.mapToUiItems()) }
             } else {
                 val error = response.body<ApiErrorWrapper>().error

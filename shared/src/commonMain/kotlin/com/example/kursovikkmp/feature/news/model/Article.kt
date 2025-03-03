@@ -1,7 +1,6 @@
-package com.example.kursovikkmp.feature.news.list.model
+package com.example.kursovikkmp.feature.news.model
 
 import com.example.kursovikkmp.database.ArticleDb
-import com.example.kursovikkmp.network.DateTimeSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
 
@@ -13,6 +12,7 @@ data class Article(
     val url: String?,
     val urlToImage: String?,
     val publishedAt: String?,
+    val content: String?
 )
 
 fun ArticleDb.toEntity() = Article(author,
@@ -20,7 +20,8 @@ fun ArticleDb.toEntity() = Article(author,
                                    description,
                                    url,
                                    urlToImage,
-                                   publishedAt)
+                                   publishedAt,
+                                   content)
 
 
 
@@ -29,7 +30,8 @@ fun Article.toDb() = ArticleDb(author,
                                description,
                                url,
                                urlToImage,
-                               publishedAt)
+                               publishedAt,
+                               content)
 
 fun String?.toDateString() : String {
 //2025-03-01T13:36:41Z

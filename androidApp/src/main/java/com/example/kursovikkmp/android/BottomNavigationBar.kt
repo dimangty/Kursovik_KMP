@@ -18,8 +18,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.example.kursovikkmp.android.feature.Favorites.FavoriteScreen
+import com.example.kursovikkmp.android.feature.News.NewsDetailsScreen
 import com.example.kursovikkmp.android.feature.News.NewsScreen
+import com.example.kursovikkmp.navigation.NavigationAction
+import com.example.kursovikkmp.navigation.NavigationService
+import org.koin.android.ext.android.inject
+import org.koin.java.KoinJavaComponent.inject
 
 @Composable
 fun BottomNavigationBar() {
@@ -27,11 +33,13 @@ fun BottomNavigationBar() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
     var selectedItem by remember { mutableIntStateOf(0) }
+    val navigationService: NavigationService by inject(NavigationService::class.java)
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             NavigationBar {
+                navigationService.setNavController(navController)
                 BottomNavigationItem().bottomNavigationItems().forEachIndexed { index, navigationItem ->
                     NavigationBarItem(
                         selected = index == selectedItem,
@@ -64,24 +72,16 @@ fun BottomNavigationBar() {
             startDestination = Screens.Home.route,
             modifier = Modifier.padding(paddingValues = paddingValues)) {
             composable(Screens.Home.route) {
-                NewsScreen(
-                    navController
-                )
+                NewsScreen()
             }
             composable(Screens.Favorites.route) {
-                FavoriteScreen(
-                    navController
-                )
-            }
-            composable(Screens.Profile.route) {
-                ProfileScreen(
-                    navController
-                )
+                FavoriteScreen()
             }
 
-            composable(Screens.Details.route) {
+            composable<NavigationAction.NavigateToNewsDetails> {
+                val args = it.toRoute<NavigationAction.NavigateToNewsDetails>()
                 NewsDetailsScreen(
-                    navController
+                    args.title
                 )
             }
         }

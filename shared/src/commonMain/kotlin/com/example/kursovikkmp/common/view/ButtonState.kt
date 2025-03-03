@@ -38,7 +38,7 @@ data class ButtonState(
         fun primary(
             value: String = "",
             image: ImageResource? = null,
-            background: ColorResource = MR.colors.white,
+            background: ColorResource = MR.colors.primary,
             coloredState: ButtonData.ColoredState = ButtonData.ColoredState.Colored,
         ) = ButtonState(data = ButtonData.PrimaryButton(value, image, background, coloredState))
 
@@ -70,7 +70,7 @@ fun ButtonState.updateImage(image: ImageResource) = when (this.data) {
 sealed class ButtonData(open val text: String) {
 
     open val textState: TextState = TextState.latoMedium(14, MR.colors.white)
-    open val color: ColorResource = MR.colors.white
+    open val color: ColorResource = MR.colors.primary
 
     enum class ColoredState { Colored, Transparent }
 

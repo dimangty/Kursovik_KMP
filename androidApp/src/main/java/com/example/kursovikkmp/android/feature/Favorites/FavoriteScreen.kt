@@ -30,17 +30,15 @@ import com.example.kursovikkmp.feature.news.list.NewsListState
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun FavoriteScreen(navController: NavController) {
+fun FavoriteScreen() {
     val viewModel: FavoritesListViewModel = koinViewModel()
     val state by viewModel.flowState.collectAsState()
     val lceState by viewModel.lceState.collectAsState()
 
     BaseScreen(lceState = lceState,
                onDefaultUiEvent = viewModel::onDefaultUiEvent) {
-        FavoriteScreenView(
-            navController = navController,
-            state = state,
-            onUiEvent = viewModel::pushEvent
+        FavoriteScreenView(state = state,
+                           onUiEvent = viewModel::pushEvent
         )
     }
 }
@@ -49,9 +47,7 @@ fun FavoriteScreen(navController: NavController) {
 @Composable
 fun FavoriteScreenView(
     state: FavoritesListState,
-    onUiEvent: (FavoritesListEvents) -> Unit,
-    navController: NavController?
-) {
+    onUiEvent: (FavoritesListEvents) -> Unit) {
     Column(
         modifier = Modifier.fillMaxHeight().background(state.backGroundColor.color()),
         verticalArrangement = Arrangement.SpaceBetween) {
@@ -87,7 +83,6 @@ fun FavoriteScreenView(
 private fun PreviewNewsScreenView() {
     MyApplicationTheme {
         FavoriteScreenView(state = FavoritesListState.getMock(),
-            navController = null,
-            onUiEvent = {})
+                           onUiEvent = {})
     }
 }

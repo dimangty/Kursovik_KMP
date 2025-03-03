@@ -34,7 +34,7 @@ fun ArticleItemView(article: NewsUiState,
     Card(modifier = Modifier
         .fillMaxWidth()
         .clip(AppShapes.rounded)
-        .clickable { onClicked(article.id) },
+        .clickable { onClicked(article.title) },
         colors = CardDefaults.cardColors(
             containerColor = article.cellBackground.color(), //Card background color
             contentColor = Color.Gray  //Card content color,e.g.text

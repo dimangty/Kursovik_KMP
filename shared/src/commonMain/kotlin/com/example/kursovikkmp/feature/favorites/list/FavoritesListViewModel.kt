@@ -3,8 +3,8 @@ package com.example.kursovikkmp.feature.favorites.list
 import com.example.kursovikkmp.base.BaseViewModel
 import com.example.kursovikkmp.common.view.TitleBarState
 import com.example.kursovikkmp.common.view.updateValue
-import com.example.kursovikkmp.feature.news.list.model.Article
-import com.example.kursovikkmp.feature.news.list.model.toDateString
+import com.example.kursovikkmp.feature.news.model.Article
+import com.example.kursovikkmp.feature.news.model.toDateString
 import kotlinx.coroutines.launch
 
 class FavoritesListViewModel(private val favoritesRepository: FavoritesRepository) :
