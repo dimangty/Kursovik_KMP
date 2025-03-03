@@ -35,7 +35,8 @@ fun FavoriteScreen(navController: NavController) {
     val state by viewModel.flowState.collectAsState()
     val lceState by viewModel.lceState.collectAsState()
 
-    BaseScreen(lceState = lceState) {
+    BaseScreen(lceState = lceState,
+               onDefaultUiEvent = viewModel::onDefaultUiEvent) {
         FavoriteScreenView(
             navController = navController,
             state = state,

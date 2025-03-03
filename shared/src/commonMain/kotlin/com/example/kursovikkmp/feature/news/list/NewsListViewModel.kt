@@ -23,8 +23,7 @@ class NewsListViewModel(private val newsService: NewsService,
     var favorites: MutableList<Article> = mutableListOf()
     var news: MutableList<Article> = mutableListOf()
 
-    init {
-        initToolbar()
+    override fun initScreenData() {
         viewModelScope.launch(
             CoroutineExceptionHandler { _, t ->
                 appLog(t.stackTraceToString())
@@ -34,6 +33,11 @@ class NewsListViewModel(private val newsService: NewsService,
             loadFavoriteNews()
             loadNews()
         }
+    }
+
+    override fun onScreenResumed() {
+        loadFavoriteNews()
+        updateState { copy(newsItems = news.mapToUiItems()) }
     }
 
     override fun initToolbar() {

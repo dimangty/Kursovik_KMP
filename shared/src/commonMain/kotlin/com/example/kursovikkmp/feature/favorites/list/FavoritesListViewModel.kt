@@ -11,8 +11,11 @@ class FavoritesListViewModel(private val favoritesRepository: FavoritesRepositor
     BaseViewModel<FavoritesListState, FavoritesListEvents>() {
     var favorites: MutableList<Article> = mutableListOf()
 
-    init {
-        initToolbar()
+    override fun initScreenData() {
+        loadFavoriteNews()
+    }
+
+    override fun onScreenResumed() {
         loadFavoriteNews()
     }
 

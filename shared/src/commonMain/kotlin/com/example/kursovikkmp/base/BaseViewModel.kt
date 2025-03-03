@@ -11,6 +11,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.mp.KoinPlatformTools
 import kotlin.experimental.ExperimentalObjCName
@@ -39,8 +40,22 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
     val lceFlow get() = lceStateManager.lceState.asCommonFlow()
     val lceState get() = lceStateManager.lceState
 
-    abstract fun initToolbar()
+    private var isScreenDataInitialized = false
 
+    abstract fun initToolbar()
+    abstract fun initScreenData()
+
+    open fun onScreenResumed() {
+
+    }
+
+    open fun onScreenCreated() {
+
+    }
+
+    open fun onScreenDestroyed() {
+
+    }
 
     fun updateState(block: State.() -> State){
         stateFlow.value = block(stateFlow.value)
@@ -73,6 +88,29 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
 
     fun showError(errorState: ErrorState.AllertError) {
         lceStateManager.showError(errorState)
+    }
+
+    fun onDefaultUiEvent(event: DefaultUiEvent) {
+
+        when (event) {
+            DefaultUiEvent.OnScreenCreated -> {
+                if (!isScreenDataInitialized) {
+                    isScreenDataInitialized = true
+                    initializeScreenData()
+                }
+                onScreenCreated()
+            }
+
+            DefaultUiEvent.OnScreenResumed -> onScreenResumed()
+            DefaultUiEvent.OnScreenDestroyed -> {
+                onScreenDestroyed()
+            }
+        }
+    }
+
+    private fun initializeScreenData() {
+        initToolbar()
+        initScreenData()
     }
 
     abstract fun initialState(): State
