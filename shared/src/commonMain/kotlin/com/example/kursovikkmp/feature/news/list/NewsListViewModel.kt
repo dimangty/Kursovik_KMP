@@ -42,7 +42,7 @@ class NewsListViewModel(private val newsService: NewsService,
     }
 
     override fun initToolbar() {
-        var titleBar = TitleBarState.getMock()
+        var titleBar = state.titleBarState.copy()
         titleBar = titleBar.copy(title = titleBar.title.updateValue("News"),
                                  isNavigateBackVisible = false)
         updateState { copy(titleBarState = titleBar) }

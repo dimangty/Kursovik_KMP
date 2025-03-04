@@ -8,7 +8,6 @@ import com.example.kursovikkmp.common.view.updateValue
 import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
 import com.example.kursovikkmp.feature.news.NewsService
 import com.example.kursovikkmp.feature.news.model.Article
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class NewsDetailsViewModel(private val title: String,
@@ -21,7 +20,8 @@ class NewsDetailsViewModel(private val title: String,
         var titleBar = TitleBarState.getMock()
         titleBar = titleBar.copy(
             title = titleBar.title.updateValue("News"),
-            isNavigateBackVisible = false
+            isNavigateBackVisible = true,
+            onDefaultUiEvent = ::onDefaultUiEvent
         )
         updateState { copy(titleBarState = titleBar) }
     }

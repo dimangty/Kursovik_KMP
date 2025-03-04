@@ -118,6 +118,10 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
             DefaultUiEvent.OnScreenDestroyed -> {
                 onScreenDestroyed()
             }
+
+            DefaultUiEvent.OnBackClicked -> {
+                navigateBack()
+            }
         }
     }
 

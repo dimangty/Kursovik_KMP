@@ -17,6 +17,7 @@ import com.example.kursovikkmp.android.Common.Extensions.color
 import com.example.kursovikkmp.android.MyApplicationTheme
 import com.example.kursovikkmp.android.Screens
 import com.example.kursovikkmp.android.feature.view.BaseScreen
+import com.example.kursovikkmp.android.feature.view.Toolbar
 import com.example.kursovikkmp.android.feature.view.VSpacer
 import com.example.kursovikkmp.feature.news.list.NewsListEvents
 import com.example.kursovikkmp.feature.news.list.NewsListState
@@ -42,6 +43,7 @@ fun NewsScreen() {
 fun NewsScreenView(state: NewsListState,
                    onUiEvent: (NewsListEvents) -> Unit) {
     Column(modifier = Modifier.background(color = state.backGroundColor.color())) {
+        Toolbar(toolbarState = state.titleBarState)
         LazyColumn(modifier = Modifier.padding(horizontal = 8.dp)) {
             item { VSpacer(8.dp) }
             items(state.newsItems) { item ->

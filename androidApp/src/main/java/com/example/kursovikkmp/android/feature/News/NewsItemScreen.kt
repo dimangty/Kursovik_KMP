@@ -23,6 +23,7 @@ import com.example.kursovikkmp.android.MyApplicationTheme
 import com.example.kursovikkmp.android.feature.view.BaseScreen
 import com.example.kursovikkmp.android.feature.view.MyButton
 import com.example.kursovikkmp.android.feature.view.MyText
+import com.example.kursovikkmp.android.feature.view.Toolbar
 import com.example.kursovikkmp.android.feature.view.VSpacer
 import com.example.kursovikkmp.feature.news.details.NewsDetailsEvents
 import com.example.kursovikkmp.feature.news.details.NewsDetailsState
@@ -38,55 +39,70 @@ fun NewsDetailsScreen(title: String) {
     val state by viewModel.flowState.collectAsState()
     val lceState by viewModel.lceState.collectAsState()
 
-    BaseScreen(lceState = lceState,
-               onDefaultUiEvent = viewModel::onDefaultUiEvent) {
-        NewsDetailsView(state = state,
-                        onUiEvent = viewModel::pushEvent)
+    BaseScreen(
+        lceState = lceState,
+        onDefaultUiEvent = viewModel::onDefaultUiEvent
+    ) {
+        NewsDetailsView(
+            state = state,
+            onUiEvent = viewModel::pushEvent
+        )
     }
 }
 
 @Composable
-fun NewsDetailsView(state: NewsDetailsState,
-                    onUiEvent: (NewsDetailsEvents) -> Unit) {
-    Column(modifier = Modifier.fillMaxWidth()
-        .fillMaxHeight().padding(16.dp),
-           verticalArrangement = Arrangement.SpaceBetween) {
-        Column() {
-            state.imageUrl?.let { imageUrl ->
-                Column(modifier = Modifier.clip(AppShapes.rounded)) {
-                    AsyncImage(
-                        model = imageUrl,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(240.dp),
-                        contentScale = ContentScale.Crop
-                    )
+fun NewsDetailsView(
+    state: NewsDetailsState,
+    onUiEvent: (NewsDetailsEvents) -> Unit
+) {
+    Column {
+        Toolbar(toolbarState = state.titleBarState)
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column() {
+                state.imageUrl?.let { imageUrl ->
+                    Column(modifier = Modifier.clip(AppShapes.rounded)) {
+                        AsyncImage(
+                            model = imageUrl,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(240.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
                 }
-            }
-            VSpacer(16.dp)
-            Column(modifier = Modifier.fillMaxWidth(),
-                   verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Row(
+                VSpacer(16.dp)
+                Column(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    MyText(state = state.dateState)
-                    MyButton(
-                        modifier = Modifier,
-                        onClick = { onUiEvent(NewsDetailsEvents.OnFavoriteClicked) },
-                        state = state.favoriteButton
-                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        MyText(state = state.dateState)
+                        MyButton(
+                            modifier = Modifier,
+                            onClick = { onUiEvent(NewsDetailsEvents.OnFavoriteClicked) },
+                            state = state.favoriteButton
+                        )
+                    }
+
+                    MyText(state = state.titleState, maxLines = 3)
+                    MyText(state = state.textState, maxLines = 10)
                 }
 
-                MyText(state = state.titleState, maxLines = 3)
-                MyText(state = state.textState, maxLines = 10)
             }
 
-        }
-
-        MyButton(state = state.openButton) {
-            onUiEvent(NewsDetailsEvents.OnOpenClicked)
+            MyButton(state = state.openButton) {
+                onUiEvent(NewsDetailsEvents.OnOpenClicked)
+            }
         }
     }
 }
