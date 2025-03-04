@@ -2,6 +2,7 @@ package com.example.kursovikkmp
 
 import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.feature.device.DeviceService
+import com.example.kursovikkmp.feature.favorites.details.FavoriteDetailsViewModel
 
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
@@ -23,4 +24,5 @@ internal actual val vmModule: Module = module {
     viewModelOf(::FavoritesListViewModel)
     viewModelOf(::NewsDetailsViewModel)
     viewModelOf(::HomeViewModel)
+    viewModelOf(::FavoriteDetailsViewModel)
 }

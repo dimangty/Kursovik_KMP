@@ -19,6 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.kursovikkmp.android.feature.Favorites.FavoriteDetailsScreen
 import com.example.kursovikkmp.android.feature.Favorites.FavoriteScreen
 import com.example.kursovikkmp.android.feature.News.NewsDetailsScreen
 import com.example.kursovikkmp.android.feature.News.NewsScreen
@@ -81,6 +82,13 @@ fun BottomNavigationBar() {
             composable<NavigationAction.NavigateToNewsDetails> {
                 val args = it.toRoute<NavigationAction.NavigateToNewsDetails>()
                 NewsDetailsScreen(
+                    args.title
+                )
+            }
+
+            composable<NavigationAction.NavigateToFavoritesDetails> {
+                val args = it.toRoute<NavigationAction.NavigateToFavoritesDetails>()
+                FavoriteDetailsScreen(
                     args.title
                 )
             }

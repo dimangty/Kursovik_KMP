@@ -62,7 +62,13 @@ fun FavoriteScreenView(
             items(state.favoritesItems.size) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     FavoriteItemView(article = state.favoritesItems[it],
-                        onClicked = {},
+                        onClicked = { title ->
+                            onUiEvent(
+                                FavoritesListEvents.OnItemClicked(
+                                    title
+                                )
+                            )
+                        },
                         onFavorite = { title ->
                             onUiEvent(
                                 FavoritesListEvents.OnFavoriteClicked(

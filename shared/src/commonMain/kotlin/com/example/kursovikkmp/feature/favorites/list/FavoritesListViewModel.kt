@@ -6,6 +6,7 @@ import com.example.kursovikkmp.common.view.TitleBarState
 import com.example.kursovikkmp.common.view.updateValue
 import com.example.kursovikkmp.feature.news.model.Article
 import com.example.kursovikkmp.feature.news.model.toDateString
+import com.example.kursovikkmp.navigation.NavigationAction
 import kotlinx.coroutines.launch
 
 class FavoritesListViewModel(private val favoritesRepository: FavoritesRepository) :
@@ -37,6 +38,10 @@ class FavoritesListViewModel(private val favoritesRepository: FavoritesRepositor
                 viewModelScope.launch {
                     updateFavorite(event.title)
                 }
+            }
+
+            is FavoritesListEvents.OnItemClicked -> {
+                navigate(NavigationAction.NavigateToFavoritesDetails(event.title))
             }
         }
     }
