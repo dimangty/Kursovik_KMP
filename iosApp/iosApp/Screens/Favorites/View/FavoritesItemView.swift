@@ -26,14 +26,15 @@ struct FavoritesItemView: View {
                         .resizable()
                         .frame(width: widht, height: 132)
                 } placeholder: {
-                    EmptyView()
+                    Rectangle()
+                        .frame(width: widht, height: 132)
                 }
                 .cornerRadius(22, corners: [.topLeft, .topRight])
                 
                 content.frame(width: widht)
                 
             }
-        }
+        }.fixedSize(horizontal: false, vertical: true)
     }
     
     var content: some View {
@@ -46,7 +47,7 @@ struct FavoritesItemView: View {
                 }
             }
             HStack {
-                TextWithState(state.titleState)
+                TextWithState(state.titleState, maxLines: 2)
                 Spacer()
             }.padding(.vertical, 2)
         }.padding(.bottom, 8)

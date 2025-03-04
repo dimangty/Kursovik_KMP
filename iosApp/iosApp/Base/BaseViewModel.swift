@@ -25,7 +25,7 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
         let model = mViewModel as! shared.BaseViewModel<S, shared.BaseEvent>
         state = model.state
         observe(model: model)
-        //model.onDefaultUiEvent(event: .OnScreenCreated())
+        model.onDefaultUiEvent(event: .OnScreenCreated())
     }
     
     init(param: Any?) {
@@ -33,7 +33,7 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
         let model = mViewModel as! shared.BaseViewModel<S, shared.BaseEvent>
         state = model.state 
         observe(model: model)
-        //model.onDefaultUiEvent(event: .OnScreenCreated())
+        model.onDefaultUiEvent(event: .OnScreenCreated())
     }
     
     init(parameters: [Any?]) {
@@ -42,7 +42,7 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
         state = model.state
         
         observe(model: model)
-        //model.onDefaultUiEvent(event: .OnScreenCreated())
+        model.onDefaultUiEvent(event: .OnScreenCreated())
     }
 
 
@@ -70,6 +70,10 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
             self?.updateView()
         }
         
+        model.navigationEffectFlow.watch { [weak self] action in
+            guard let action = action else { return }
+            self?.onChangeNavigation(action)
+        }
         
     }
 
@@ -77,9 +81,9 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
 
     }
 
-//    func onChangeNavigation(_ action: NavigationAction) {
-//
-//    }
+    func onChangeNavigation(_ action: NavigationAction) {
+
+    }
     
     func onDefaultEffect(_ effect: Any) {
         

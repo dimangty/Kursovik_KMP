@@ -28,7 +28,7 @@ private class KoinQualifier: Koin_coreQualifier {
 }
 
 func inject<T : AnyObject>() -> T {
-    return KoinApplication.shared.koin.get(objCClass: T.self) as! T
+    return try KoinApplication.shared.koin.get(objCClass: T.self) as! T
 }
 
 func inject<T : AnyObject>(param: Any?) -> T {

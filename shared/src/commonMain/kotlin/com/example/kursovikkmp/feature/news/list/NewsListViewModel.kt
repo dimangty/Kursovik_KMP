@@ -58,7 +58,7 @@ class NewsListViewModel(private val newsService: NewsService,
                 }
             }
             is NewsListEvents.OnItemClicked -> {
-                navigationService.navigate(NavigationAction.NavigateToNewsDetails(event.title))
+                navigate(NavigationAction.NavigateToNewsDetails(event.title))
             }
         }
     }

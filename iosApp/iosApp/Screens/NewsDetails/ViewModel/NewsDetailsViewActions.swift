@@ -10,6 +10,7 @@ import Combine
 import Foundation
 
 enum NewsDetailsViewActions {
-   case empty
+    case favoriteTapped
+    case openTapped
 }
 

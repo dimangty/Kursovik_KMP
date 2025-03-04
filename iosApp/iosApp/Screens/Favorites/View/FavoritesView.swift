@@ -31,13 +31,13 @@ struct FavoritesView: View {
                     }.padding(.horizontal, 16)
                 }
             }
-        }
+        }.background(viewModel.state.backGroundColor.uiColor.toColor())
         
     }
     
     func getWidht(maxWidht: CGFloat, columns: Int) -> CGFloat {
         var result = maxWidht
-        result -= 32
+        result -= 48
         
         if columns > 1 {
             result = result / CGFloat(columns)

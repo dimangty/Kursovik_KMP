@@ -10,10 +10,10 @@ import Combine
 import Foundation
 import shared
 
-final class NewsDetailsViewModel: BaseViewModel<AnyObject, AnyObject> {
+final class NewsDetailsViewModel: BaseViewModel<shared.NewsDetailsViewModel, NewsDetailsState> {
 
-    required override init() {
-        super.init()
+    init(title: String) {
+        super.init(param: title)
     }
 
     // MARK: - NewsDetailsViewOutput methods
@@ -22,10 +22,11 @@ final class NewsDetailsViewModel: BaseViewModel<AnyObject, AnyObject> {
     }
 
     func onEvent(event: NewsDetailsViewActions) {
-    	switch event {
-        case .empty:
-            //mViewModel?.onUiEvent(event: )
-            break
+        switch event {
+        case .favoriteTapped:
+            mViewModel?.pushEvent(event: .OnFavoriteClicked())
+        case .openTapped:
+            mViewModel?.pushEvent(event: .OnOpenClicked())
         }
     }
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -53,6 +53,13 @@
 		8B9E8BD82D73443E00CCEBE8 /* FilledButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BD72D73443D00CCEBE8 /* FilledButtonWithState.swift */; };
 		8B9E8BDA2D7347C200CCEBE8 /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BD92D7347BF00CCEBE8 /* Blocks.swift */; };
 		8B9E8BDC2D73488D00CCEBE8 /* ImageButtonWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9E8BDB2D73488400CCEBE8 /* ImageButtonWithState.swift */; };
+		8BC84B5C2D768FEE00392913 /* HomeRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC84B592D768FEE00392913 /* HomeRootViewModel.swift */; };
+		8BC84B5D2D768FEE00392913 /* HomeRootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC84B522D768FEE00392913 /* HomeRootAssembly.swift */; };
+		8BC84B5E2D768FEE00392913 /* HomeRootViewActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC84B582D768FEE00392913 /* HomeRootViewActions.swift */; };
+		8BC84B5F2D768FEE00392913 /* HomeRootHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC84B542D768FEE00392913 /* HomeRootHostingController.swift */; };
+		8BC84B602D768FEE00392913 /* HomeRootModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC84B572D768FEE00392913 /* HomeRootModuleInput.swift */; };
+		8BC84B612D768FEE00392913 /* HomeRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC84B552D768FEE00392913 /* HomeRootView.swift */; };
+		8BC84B642D76963900392913 /* SUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC84B632D76963900392913 /* SUINavigation */; };
 		8BF8F7A12D7465CA0024E341 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF8F7A02D7465C30024E341 /* UIUtils.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +113,12 @@
 		8B9E8BD72D73443D00CCEBE8 /* FilledButtonWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButtonWithState.swift; sourceTree = "<group>"; };
 		8B9E8BD92D7347BF00CCEBE8 /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
 		8B9E8BDB2D73488400CCEBE8 /* ImageButtonWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonWithState.swift; sourceTree = "<group>"; };
+		8BC84B522D768FEE00392913 /* HomeRootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRootAssembly.swift; sourceTree = "<group>"; };
+		8BC84B542D768FEE00392913 /* HomeRootHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRootHostingController.swift; sourceTree = "<group>"; };
+		8BC84B552D768FEE00392913 /* HomeRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRootView.swift; sourceTree = "<group>"; };
+		8BC84B572D768FEE00392913 /* HomeRootModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRootModuleInput.swift; sourceTree = "<group>"; };
+		8BC84B582D768FEE00392913 /* HomeRootViewActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRootViewActions.swift; sourceTree = "<group>"; };
+		8BC84B592D768FEE00392913 /* HomeRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRootViewModel.swift; sourceTree = "<group>"; };
 		8BF8F7A02D7465C30024E341 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BC84B642D76963900392913 /* SUINavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +242,7 @@
 		8B6BBACD2D6B240A00408370 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8BC84B5B2D768FEE00392913 /* HomeRoot */,
 				8B6BBAD72D6B24C300408370 /* Favorites */,
 				8B6BBAE12D6B24C300408370 /* NewsDetails */,
 				8B6BBAEB2D6B24C300408370 /* NewsList */,
@@ -376,6 +391,43 @@
 			path = Kotlin;
 			sourceTree = "<group>";
 		};
+		8BC84B532D768FEE00392913 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				8BC84B522D768FEE00392913 /* HomeRootAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		8BC84B562D768FEE00392913 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8BC84B542D768FEE00392913 /* HomeRootHostingController.swift */,
+				8BC84B552D768FEE00392913 /* HomeRootView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8BC84B5A2D768FEE00392913 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8BC84B572D768FEE00392913 /* HomeRootModuleInput.swift */,
+				8BC84B582D768FEE00392913 /* HomeRootViewActions.swift */,
+				8BC84B592D768FEE00392913 /* HomeRootViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8BC84B5B2D768FEE00392913 /* HomeRoot */ = {
+			isa = PBXGroup;
+			children = (
+				8BC84B532D768FEE00392913 /* Assembly */,
+				8BC84B562D768FEE00392913 /* View */,
+				8BC84B5A2D768FEE00392913 /* ViewModel */,
+			);
+			path = HomeRoot;
+			sourceTree = "<group>";
+		};
 		8BF8F79F2D7465B80024E341 /* UIUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +481,9 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				8BC84B622D76963900392913 /* XCRemoteSwiftPackageReference "SUINavigation" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -482,6 +537,12 @@
 				8B6BBAAF2D6A1F7E00408370 /* ContainerModel.swift in Sources */,
 				8B6BBAB02D6A1F7E00408370 /* IModelView.swift in Sources */,
 				8B6BBAB12D6A1F7E00408370 /* LazyView.swift in Sources */,
+				8BC84B5C2D768FEE00392913 /* HomeRootViewModel.swift in Sources */,
+				8BC84B5D2D768FEE00392913 /* HomeRootAssembly.swift in Sources */,
+				8BC84B5E2D768FEE00392913 /* HomeRootViewActions.swift in Sources */,
+				8BC84B5F2D768FEE00392913 /* HomeRootHostingController.swift in Sources */,
+				8BC84B602D768FEE00392913 /* HomeRootModuleInput.swift in Sources */,
+				8BC84B612D768FEE00392913 /* HomeRootView.swift in Sources */,
 				8B6BBACC2D6A289700408370 /* ProgressView.swift in Sources */,
 				8B6BBAB22D6A1F7E00408370 /* ContainerView.swift in Sources */,
 				8B6BBAB32D6A1F7E00408370 /* BaseViewModel.swift in Sources */,
@@ -654,7 +715,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -683,7 +744,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -722,6 +783,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8BC84B622D76963900392913 /* XCRemoteSwiftPackageReference "SUINavigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ozontech/SUINavigation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8BC84B632D76963900392913 /* SUINavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BC84B622D76963900392913 /* XCRemoteSwiftPackageReference "SUINavigation" */;
+			productName = SUINavigation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

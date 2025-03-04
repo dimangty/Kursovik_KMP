@@ -11,7 +11,8 @@ import shared
 struct TextWithState: View {
 
     private let state: TextState
-
+    private let maxLines: Int
+    
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
             if let iconStart = state.iconStart?.uiImage {
@@ -19,6 +20,7 @@ struct TextWithState: View {
             }
             if !state.value.isEmpty {
                 Text(state.value)
+                    .lineLimit(maxLines)
             }
             if let iconEnd = state.iconEnd?.uiImage {
                 getImage(with: iconEnd)
@@ -28,8 +30,9 @@ struct TextWithState: View {
         .foregroundStyle(state.color.uiColor.toColor())
     }
 
-    init(_ state: TextState) {
+    init(_ state: TextState, maxLines: Int = 99) {
         self.state = state
+        self.maxLines = maxLines
     }
 
     func getImage(with uiImage: UIImage) -> Image? {

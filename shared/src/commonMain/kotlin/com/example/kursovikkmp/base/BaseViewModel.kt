@@ -1,15 +1,18 @@
 package com.example.kursovikkmp.base
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.kursovikkmp.common.mvvm.ErrorState
 import com.example.kursovikkmp.common.mvvm.LceStateManager
 import com.example.kursovikkmp.feature.device.DeviceService
+import com.example.kursovikkmp.navigation.NavigationAction
 import com.example.kursovikkmp.navigation.NavigationService
 import com.example.kursovikkmp.shared.common.extension.asCommonFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -25,7 +28,7 @@ import kotlin.native.ObjCName
 abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel() {
 
     val viewModelScope = CoroutineScope(SupervisorJob())
-    val navigationService by getKoin().inject<NavigationService>()
+    private val navigationService by getKoin().inject<NavigationService>()
     val deviceService by getKoin().inject<DeviceService>()
 
     val stateFlow = MutableStateFlow(initialState())
@@ -35,6 +38,11 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
     @OptIn(ExperimentalObjCName::class)
     @ObjCName("stateFlow")
     val commonStateFlow get() = stateFlow.asCommonFlow()
+
+    // For iOS
+    private val _navigationEffect = MutableSharedFlow<NavigationAction>()
+    val navigationEffectFlow = _navigationEffect.asCommonFlow()
+
 
     private val _events = Channel<Event>()
     val events = _events.receiveAsFlow()
@@ -116,6 +124,26 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
     private fun initializeScreenData() {
         initToolbar()
         initScreenData()
+    }
+
+    protected fun navigate(navigationAction: NavigationAction) {
+        navigationService.navigate(navigationAction)
+
+        if (deviceService.isIOS()) {
+            viewModelScope.launch {
+                _navigationEffect.emit(navigationAction)
+            }
+        }
+    }
+
+    protected open fun navigateBack() {
+        navigationService.navigateBack()
+
+        if (deviceService.isIOS()) {
+            viewModelScope.launch {
+                _navigationEffect.emit(NavigationAction.NavigateBack)
+            }
+        }
     }
 
     abstract fun initialState(): State

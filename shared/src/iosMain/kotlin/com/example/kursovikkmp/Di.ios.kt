@@ -7,6 +7,7 @@ import com.example.kursovikkmp.feature.device.DeviceService
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
 import com.example.kursovikkmp.feature.news.details.NewsDetailsViewModel
+import com.example.kursovikkmp.feature.home.HomeViewModel
 import com.example.kursovikkmp.navigation.NavigationService
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
@@ -46,13 +47,18 @@ fun Koin.get(objCProtocol: ObjCProtocol): Any {
 }
 
 internal actual val vmModule: Module = module {
+
     factoryOf(::NewsDetailsViewModel)
     factoryOf(::NewsListViewModel)
     factoryOf(::FavoritesListViewModel)
+    factoryOf(::HomeViewModel)
 }
 
 internal actual val platformModule: Module = module {
     singleOf(::DeviceService)
     singleOf(::NavigationService)
+    single {
+        NavigationService()
+    }
     single<DatabaseDriverFactory> { DatabaseDriverFactory() }
 }

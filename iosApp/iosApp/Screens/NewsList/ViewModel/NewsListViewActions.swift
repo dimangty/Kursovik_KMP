@@ -11,6 +11,7 @@ import Foundation
 import shared
 
 enum NewsListViewActions {
-    case articleTapped(_ item: String)
+    case articleTapped(_ title: String)
+    case favoriteTapped(_ title: String)
 }
 

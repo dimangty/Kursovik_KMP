@@ -6,7 +6,7 @@ struct ContentView: View {
 
 	var body: some View {
         ZStack {
-            FavoritesView()
+            HomeRootView()
             ContainerView(content: ContainerEmptyView())
         }
 	}
