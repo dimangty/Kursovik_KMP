@@ -48,7 +48,7 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
 
     deinit {
         let model = mViewModel as! shared.BaseViewModel<S, shared.BaseEvent>
-        //model.onDefaultUiEvent(event: .OnScreenDestroyed())
+        model.onDefaultUiEvent(event: .OnScreenDestroyed())
         
         mViewModel = nil
         lceState = nil
@@ -102,11 +102,11 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
         } else {
             contentService?.hideLoader()
         }
-//        
-//        if let error = lceState?.errorState as? FullScreenError {
-//            contentService?.showFullStateError(error: error)
-//        } else {
-//            contentService?.hideFullStateError()
-//        }
+//
+        if let error = lceState?.errorState as? ErrorState.ApiAlertError {
+            contentService?.showError(text: error.title)
+        } else if let alert = lceState?.errorState as? ErrorState.AlertError {
+            contentService?.showAlert(alert: alert)
+        }
     }
 }

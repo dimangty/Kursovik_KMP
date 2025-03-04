@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import shared
 
 class ContentService {
 
@@ -21,6 +22,9 @@ class ContentService {
     
     @Published var hasLoader = false
     @Published var hasError = false
+    @Published var hasAlert = false
+    
+    var alert: ErrorState.AlertError?
     var errorText = ""
 
     private var timer: Timer?
@@ -33,6 +37,25 @@ class ContentService {
         hasLoader = false
     }
     
+    func showError(text: String) {
+        hasError = true
+        errorText = text
+    }
+    
+    func hideError() {
+        hasError = false
+        errorText = ""
+    }
+    
+    func showAlert(alert: ErrorState.AlertError) {
+        hasAlert = true
+        self.alert = alert
+    }
+    
+    func hideAlert() {
+        hasAlert = false
+        alert = nil
+    }
     
 
     func showOpaqueLoader(_ show: Bool, animated: Bool) {

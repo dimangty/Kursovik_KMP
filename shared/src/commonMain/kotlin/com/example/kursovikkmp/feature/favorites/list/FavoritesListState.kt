@@ -15,7 +15,7 @@ data class FavoritesListState(val favoritesItems: List<FavoriteUiState> = listOf
     companion object {
         fun getMock() = FavoritesListState().run {
             copy(
-                favoritesItems = listOf(FavoriteUiState.getMock(), FavoriteUiState.getMock(), FavoriteUiState.getMock(),)
+                favoritesItems = listOf()
             )
         }
     }

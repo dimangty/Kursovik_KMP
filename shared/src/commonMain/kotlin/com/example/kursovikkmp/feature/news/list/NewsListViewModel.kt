@@ -71,6 +71,7 @@ class NewsListViewModel(private val newsService: NewsService,
     private suspend fun loadNews() {
         appLog("loadNews")
             lceStateManager.showLoading()
+        try {
             val response = newsService.getNews()
             lceStateManager.hideLoading()
             if (response.status.isSuccess()) {
@@ -83,6 +84,11 @@ class NewsListViewModel(private val newsService: NewsService,
                 val message = error?.message ?: response.bodyAsText()
                 showError(message)
             }
+        } catch (t: Throwable) {
+            lceStateManager.hideLoading()
+            showError(t.message ?: "Error")
+        }
+
     }
 
     private fun List<Article>.mapToUiItems(): List<NewsUiState> {

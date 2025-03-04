@@ -1,6 +1,7 @@
 package com.example.kursovikkmp.feature.favorites.list
 
 import com.example.kursovikkmp.base.BaseViewModel
+import com.example.kursovikkmp.common.mvvm.ErrorState
 import com.example.kursovikkmp.common.view.TitleBarState
 import com.example.kursovikkmp.common.view.updateValue
 import com.example.kursovikkmp.feature.news.model.Article
@@ -67,9 +68,22 @@ class FavoritesListViewModel(private val favoritesRepository: FavoritesRepositor
         val index = favorites.indexOfFirst { it.title == title }
 
         if (index != -1) {
-            favorites.removeAt(index)
-            favoritesRepository.delete(title)
-            updateState { copy(favoritesItems = favorites.mapToUiItems()) }
+            showAlert(
+                ErrorState.AlertError(
+                    title = "Warning",
+                    message = "Do you want to delete this news?",
+                    positiveButtonText = "Yes",
+                    positiveAction = { viewModelScope.launch { deleteFavorite(index, title) } },
+                    negativeButtonText = "No"
+                ))
         }
+    }
+
+
+    private suspend fun deleteFavorite(index: Int, title: String) {
+        favorites.removeAt(index)
+        favoritesRepository.delete(title)
+        updateState { copy(favoritesItems = favorites.mapToUiItems()) }
+        hideError()
     }
 }

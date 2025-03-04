@@ -96,11 +96,21 @@ abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel
     }
 
     fun showError(error: String) {
-        showError(errorState = ErrorState.AllertError(title = error))
+        showError(errorState = ErrorState.ApiAlertError(title = error, positiveAction = {
+            hideError()
+        }))
     }
 
-    fun showError(errorState: ErrorState.AllertError) {
+    private fun showError(errorState: ErrorState.ApiAlertError) {
         lceStateManager.showError(errorState)
+    }
+
+    fun showAlert(alert: ErrorState.AlertError) {
+        lceStateManager.showAlert(alert)
+    }
+
+    fun hideError() {
+        lceStateManager.hideError()
     }
 
     fun onDefaultUiEvent(event: DefaultUiEvent) {

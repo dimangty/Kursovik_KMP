@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
@@ -49,7 +50,7 @@ fun FavoriteScreenView(
     state: FavoritesListState,
     onUiEvent: (FavoritesListEvents) -> Unit) {
     Column(
-        modifier = Modifier.fillMaxHeight().background(state.backGroundColor.color()),
+        modifier = Modifier.fillMaxSize().background(state.backGroundColor.color()),
         verticalArrangement = Arrangement.SpaceBetween) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),

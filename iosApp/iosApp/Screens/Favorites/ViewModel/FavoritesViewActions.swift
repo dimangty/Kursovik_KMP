@@ -11,5 +11,6 @@ import Foundation
 
 enum FavoritesViewActions {
     case articleTapped(_ item: String)
+    case favoriteTapped(_ item: String)
 }
 

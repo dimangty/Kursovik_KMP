@@ -10,26 +10,22 @@ import SwiftUI
 
 
 struct FavoritesView: View {
-
+    
     @StateObject private var viewModel = FavoritesViewModel()
-
+    
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading, spacing: 16) {
-                ForEach(0 ..< viewModel.rows.count, id: \.self) { index in
-                   let row = self.viewModel.rows[index]
-                    HStack(alignment: .top, spacing: 16) {
-                        ForEach(0 ..< row.items.count, id: \.self) { index in
-                            let item = row.items[index]
-                            let column = getWidht(maxWidht: geometry.size.width,
-                                                  columns: row.items.count)
-                            
-                            FavoritesItemView(state: item,
-                                              favoriteTapped: {},
-                                              widht: column)
-                        }
-                    }.padding(.horizontal, 16)
-                }
+                
+                LazyVGrid(columns: Array(repeating: GridItem(), count: 2)) {
+                    ForEach(0 ..< viewModel.state.favoritesItems.count, id: \.self) { index in
+                        let item = viewModel.state.favoritesItems[index]
+                        FavoritesItemView(state: item,
+                                          favoriteTapped: {viewModel.onEvent(event: .favoriteTapped(item.title))},
+                                          widht: getWidht(maxWidht: geometry.size.width,
+                                                          columns: 2))
+                    }
+                }.padding(.horizontal, 16)
             }
         }.background(viewModel.state.backGroundColor.uiColor.toColor())
         
@@ -45,7 +41,7 @@ struct FavoritesView: View {
         
         return result
     }
-
+    
 }
 
 #Preview {

@@ -25,7 +25,11 @@ class LceStateManager {
         return lceState.value.isLoading
     }
 
-    fun showError(errorState: ErrorState.AllertError) {
+    fun showError(errorState: ErrorState.ApiAlertError) {
+        updateState { copy(errorState = errorState) }
+    }
+
+    fun showAlert(errorState: ErrorState.AlertError) {
         updateState { copy(errorState = errorState) }
     }
 

@@ -16,9 +16,10 @@ class ContainerModel:ObservableObject {
     @Published var isLoading: Bool = false
     @Published var hasOpaqueLoader = false
     @Published var animateOpaqueLoaderAppear = false
-    @Published var hasFullscreenLoader = false
     @Published var hasError: Bool = false
     @Published var errorText: String = ""
+    @Published var hasAlert: Bool = false
+    @Published var alert: ErrorState.AlertError?
     
     @Injected private var contentService: ContentService?
     
@@ -48,6 +49,13 @@ class ContainerModel:ObservableObject {
             .sink { [weak self] val in
                 self?.errorText = self?.contentService?.errorText ?? ""
                 self?.hasError = val
+            }.store(in: &cancellable)
+        
+        contentService?.$hasAlert
+            .receive(on: RunLoop.main)
+            .sink { [weak self] val in
+                self?.alert = self?.contentService?.alert
+                self?.hasAlert = val
             }.store(in: &cancellable)
         
     }

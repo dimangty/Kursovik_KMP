@@ -16,8 +16,7 @@ struct FavoritesRow: Identifiable {
 }
 
 final class FavoritesViewModel: BaseViewModel<FavoritesListViewModel, FavoritesListState> {
-    @Published var rows: [FavoritesRow] = []
-    
+
     required override init() {
         super.init()
     }
@@ -31,26 +30,13 @@ final class FavoritesViewModel: BaseViewModel<FavoritesListViewModel, FavoritesL
     	switch event {
         case .articleTapped(let title):
             break
+        case .favoriteTapped(let title):
+            mViewModel?.pushEvent(event: .OnFavoriteClicked(title: title))
         }
     }
     
     override func onChangeState(_ state: FavoritesListState) {
-        var result: [FavoritesRow] = []
-        
-        for (index, element) in state.favoritesItems.enumerated() {
-            if index % 2 == 1 { continue }
-            
-            if index + 1 >= state.favoritesItems.count {
-                let favoriteRow: FavoritesRow = FavoritesRow(items: [element])
-                result.append(favoriteRow)
-            } else {
-                let items: [FavoriteUiState] = [state.favoritesItems[index], state.favoritesItems[index + 1]]
-                let favoriteRow: FavoritesRow = FavoritesRow(items: items)
-                result.append(favoriteRow)
-            }
-        }
-        
-        rows = result
+
     }
 
 }
