@@ -10,13 +10,10 @@ import Combine
 import Foundation
 import shared
 
-struct FavoritesRow: Identifiable {
-        let id = UUID()
-        var items = [FavoriteUiState]()
-}
-
 final class FavoritesViewModel: BaseViewModel<FavoritesListViewModel, FavoritesListState> {
-
+    @Published var isShowingDetails: Bool = false
+    var selectedItem: String = ""
+    
     required override init() {
         super.init()
     }
@@ -29,14 +26,18 @@ final class FavoritesViewModel: BaseViewModel<FavoritesListViewModel, FavoritesL
     func onEvent(event: FavoritesViewActions) {
     	switch event {
         case .articleTapped(let title):
+            mViewModel?.pushEvent(event: .OnItemClicked(title: title))
             break
         case .favoriteTapped(let title):
             mViewModel?.pushEvent(event: .OnFavoriteClicked(title: title))
         }
     }
     
-    override func onChangeState(_ state: FavoritesListState) {
-
+    override func onChangeNavigation(_ action: NavigationAction) {
+        if let action = action as? NavigationAction.NavigateToFavoritesDetails {
+            selectedItem = action.title
+            isShowingDetails = true
+        }
     }
 
 }

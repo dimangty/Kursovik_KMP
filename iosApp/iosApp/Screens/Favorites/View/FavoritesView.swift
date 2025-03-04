@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+import SUINavigation
 
 struct FavoritesView: View {
     
@@ -23,11 +23,17 @@ struct FavoritesView: View {
                         FavoritesItemView(state: item,
                                           favoriteTapped: {viewModel.onEvent(event: .favoriteTapped(item.title))},
                                           widht: getWidht(maxWidht: geometry.size.width,
-                                                          columns: 2))
+                                                          columns: 2)).onTapGesture {
+                            viewModel.onEvent(event: .articleTapped(item.title))
+                        }
                     }
                 }.padding(.horizontal, 16)
             }
         }.background(viewModel.state.backGroundColor.uiColor.toColor())
+         .navigation(isActive: $viewModel.isShowingDetails,
+                     id: FavoriteDetailsView.navigationID) {
+             FavoriteDetailsView(title: viewModel.selectedItem)
+         }
         
     }
     
