@@ -17,19 +17,23 @@ struct NewsListView: View {
             Rectangle()
                 .fill(viewModel.state.backGroundColor.uiColor.toColor())
                 .edgesIgnoringSafeArea(.all)
-            ScrollView {
-                LazyVStack {
-                    ForEach(0 ..< viewModel.state.newsItems.count, id: \.self) { index in
-                        let state = viewModel.state.newsItems[index]
-                        NewsListItemView(state: state) {
-                            viewModel.onEvent(event: .favoriteTapped(state.title))
-                        }.padding(.top, 8)
-                         .onTapGesture {
-                            viewModel.onEvent(event: .articleTapped(state.title))
-                         }
+            VStack {
+                CustomNavigationStateView(titleBar: viewModel.state.titleBarState)
+                ScrollView {
+                    LazyVStack {
+                        ForEach(0 ..< viewModel.state.newsItems.count, id: \.self) { index in
+                            let state = viewModel.state.newsItems[index]
+                            NewsListItemView(state: state) {
+                                viewModel.onEvent(event: .favoriteTapped(state.title))
+                            }.padding(.top, 8)
+                             .onTapGesture {
+                                viewModel.onEvent(event: .articleTapped(state.title))
+                             }
+                        }
                     }
-                }
-            }.padding(.horizontal, 16)
+                }.padding(.horizontal, 16)
+            }
+            
         }.navigation(isActive: $viewModel.isShowingDetails,
                      id: NewsDetailsView.navigationID) {
             NewsDetailsView(title: viewModel.selectedItem)
