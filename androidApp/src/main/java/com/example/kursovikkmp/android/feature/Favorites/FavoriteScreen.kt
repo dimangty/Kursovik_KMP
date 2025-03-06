@@ -23,6 +23,7 @@ import com.example.kursovikkmp.android.Common.Extensions.color
 import com.example.kursovikkmp.android.MyApplicationTheme
 import com.example.kursovikkmp.android.feature.News.NewsScreenView
 import com.example.kursovikkmp.android.feature.view.BaseScreen
+import com.example.kursovikkmp.android.feature.view.Toolbar
 import com.example.kursovikkmp.android.feature.view.VSpacer
 import com.example.kursovikkmp.feature.favorites.list.FavoritesListEvents
 import com.example.kursovikkmp.feature.favorites.list.FavoritesListState
@@ -49,40 +50,41 @@ fun FavoriteScreen() {
 fun FavoriteScreenView(
     state: FavoritesListState,
     onUiEvent: (FavoritesListEvents) -> Unit) {
-    Column(
-        modifier = Modifier.fillMaxSize().background(state.backGroundColor.color()),
-        verticalArrangement = Arrangement.SpaceBetween) {
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            contentPadding = PaddingValues(12.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier
-        ) {
-            items(state.favoritesItems.size) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    FavoriteItemView(article = state.favoritesItems[it],
-                        onClicked = { title ->
-                            onUiEvent(
-                                FavoritesListEvents.OnItemClicked(
-                                    title
+    Column(modifier = Modifier.fillMaxSize().background(state.backGroundColor.color()),) {
+        Toolbar(toolbarState = state.titleBarState)
+        Column(
+            verticalArrangement = Arrangement.SpaceBetween) {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                contentPadding = PaddingValues(12.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = Modifier
+            ) {
+                items(state.favoritesItems.size) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        FavoriteItemView(article = state.favoritesItems[it],
+                            onClicked = { title ->
+                                onUiEvent(
+                                    FavoritesListEvents.OnItemClicked(
+                                        title
+                                    )
                                 )
-                            )
-                        },
-                        onFavorite = { title ->
-                            onUiEvent(
-                                FavoritesListEvents.OnFavoriteClicked(
-                                    title
+                            },
+                            onFavorite = { title ->
+                                onUiEvent(
+                                    FavoritesListEvents.OnFavoriteClicked(
+                                        title
+                                    )
                                 )
-                            )
-                        })
+                            })
+                    }
                 }
             }
+
+            VSpacer(10.dp)
         }
-
-        VSpacer(10.dp)
     }
-
 }
 
 @Preview(showBackground = true, backgroundColor = COMPOSE_PREVIEW_BACKGROUND_COLOR)

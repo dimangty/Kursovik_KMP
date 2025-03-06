@@ -25,7 +25,6 @@ import com.example.kursovikkmp.android.feature.News.NewsDetailsScreen
 import com.example.kursovikkmp.android.feature.News.NewsScreen
 import com.example.kursovikkmp.navigation.NavigationAction
 import com.example.kursovikkmp.navigation.NavigationService
-import org.koin.android.ext.android.inject
 import org.koin.java.KoinJavaComponent.inject
 
 @Composable

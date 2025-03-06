@@ -79,7 +79,8 @@ class FavoritesListViewModel(private val favoritesRepository: FavoritesRepositor
                     message = "Do you want to delete this news?",
                     positiveButtonText = "Yes",
                     positiveAction = { viewModelScope.launch { deleteFavorite(index, title) } },
-                    negativeButtonText = "No"
+                    negativeButtonText = "No",
+                    negativeAction = { hideError() }
                 ))
         }
     }
