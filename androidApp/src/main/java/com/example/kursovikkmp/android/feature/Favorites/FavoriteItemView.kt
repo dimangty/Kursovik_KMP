@@ -43,7 +43,6 @@ fun FavoriteItemView(
         )
     ) {
         Column(modifier = Modifier
-            .padding(1.dp)
             .clip(AppShapes.rounded)) {
 
             AsyncImage(
@@ -52,7 +51,7 @@ fun FavoriteItemView(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(132.dp),
-                contentScale = ContentScale.FillWidth
+                contentScale = ContentScale.FillBounds
             )
 
             Column(modifier = Modifier

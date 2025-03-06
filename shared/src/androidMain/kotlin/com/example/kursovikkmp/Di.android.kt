@@ -19,6 +19,7 @@ internal actual val platformModule: Module = module {
     singleOf(::NavigationService)
     singleOf(::DeviceService)
 }
+
 internal actual val vmModule: Module = module {
     viewModelOf(::NewsListViewModel)
     viewModelOf(::FavoritesListViewModel)

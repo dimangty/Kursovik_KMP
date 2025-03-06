@@ -19,7 +19,7 @@ class FavoriteDetailsViewModel(
     override fun initToolbar() {
         var titleBar = TitleBarState.getMock()
         titleBar = titleBar.copy(
-            title = titleBar.title.updateValue("News"),
+            title = titleBar.title.updateValue("Favorites"),
             isNavigateBackVisible = true,
             onDefaultUiEvent = ::onDefaultUiEvent
         )
