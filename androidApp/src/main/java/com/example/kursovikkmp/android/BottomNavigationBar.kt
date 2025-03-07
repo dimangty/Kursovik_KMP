@@ -19,10 +19,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.example.kursovikkmp.android.feature.Favorites.FavoriteDetailsScreen
-import com.example.kursovikkmp.android.feature.Favorites.FavoriteScreen
-import com.example.kursovikkmp.android.feature.News.NewsDetailsScreen
-import com.example.kursovikkmp.android.feature.News.NewsScreen
+import com.example.feature_favorites.FavoriteDetailsScreen
+import com.example.feature_favorites.FavoriteScreen
+import com.example.feature_news.NewsDetailsScreen
+import com.example.feature_news.NewsScreen
 import com.example.kursovikkmp.navigation.NavigationAction
 import com.example.kursovikkmp.navigation.NavigationService
 import org.koin.java.KoinJavaComponent.inject

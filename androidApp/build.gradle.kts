@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "com.example.kursovikkmp.android"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         applicationId = "com.example.kursovikkmp.android"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation(projects.shared)
+    implementation(projects.androidApp.featureNews)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
@@ -47,5 +48,6 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.android.compose)
+    implementation(project(":androidApp:feature_favorites"))
     debugImplementation(libs.compose.ui.tooling)
 }
