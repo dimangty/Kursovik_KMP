@@ -13,18 +13,6 @@ data class BottomNavigationItem(
     val route : String = "",
     val screens: List<String> = listOf()
 ) {
-    fun isSelected(destination : String?) : Boolean {
-        if (screens.contains(destination)) {
-            return true
-        }
-
-        if (destination == route) {
-            return true
-        }
-
-        return false
-    }
-
     fun bottomNavigationItems() : List<BottomNavigationItem> {
         return listOf(
             BottomNavigationItem(
