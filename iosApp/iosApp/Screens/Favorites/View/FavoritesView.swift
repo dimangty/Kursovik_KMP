@@ -15,21 +15,28 @@ struct FavoritesView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 16) {
-                
-                LazyVGrid(columns: Array(repeating: GridItem(), count: 2)) {
-                    ForEach(0 ..< viewModel.state.favoritesItems.count, id: \.self) { index in
-                        let item = viewModel.state.favoritesItems[index]
-                        FavoritesItemView(state: item,
-                                          favoriteTapped: {viewModel.onEvent(event: .favoriteTapped(item.title))},
-                                          widht: getWidht(maxWidht: geometry.size.width,
-                                                          columns: 2)).onTapGesture {
-                            viewModel.onEvent(event: .articleTapped(item.title))
-                        }
+            ZStack(alignment: .top) {
+                Rectangle()
+                    .fill(viewModel.state.backGroundColor.uiColor.toColor())
+                    .edgesIgnoringSafeArea(.top)
+                VStack {
+                    CustomNavigationStateView(titleBar: viewModel.state.titleBarState)
+                    VStack(alignment: .leading, spacing: 16) {
+                        LazyVGrid(columns: Array(repeating: GridItem(), count: 2)) {
+                            ForEach(0 ..< viewModel.state.favoritesItems.count, id: \.self) { index in
+                                let item = viewModel.state.favoritesItems[index]
+                                FavoritesItemView(state: item,
+                                                  favoriteTapped: {viewModel.onEvent(event: .favoriteTapped(item.title))},
+                                                  widht: getWidht(maxWidht: geometry.size.width,
+                                                                  columns: 2)).onTapGesture {
+                                    viewModel.onEvent(event: .articleTapped(item.title))
+                                }
+                            }
+                        }.padding(.horizontal, 16)
                     }
-                }.padding(.horizontal, 16)
+                }
             }
-        }.background(viewModel.state.backGroundColor.uiColor.toColor())
+        }
          .navigation(isActive: $viewModel.isShowingDetails,
                      id: FavoriteDetailsView.navigationID) {
              FavoriteDetailsView(title: viewModel.selectedItem)

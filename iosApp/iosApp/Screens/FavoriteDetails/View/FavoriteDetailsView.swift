@@ -10,7 +10,7 @@ import SwiftUI
 import SUINavigation
 
 struct FavoriteDetailsView: View {
-    
+
     @StateObject private var viewModel: FavoriteDetailsViewModel
     @OptionalEnvironmentObject private var navigationStorage: NavigationStorage?
     
@@ -41,10 +41,17 @@ struct FavoriteDetailsView: View {
     
     var details: some View {
         VStack(alignment: .leading) {
-            TextWithState(viewModel.state.dateState)
-            TextWithState(viewModel.state.titleState).padding(.vertical, 16)
-            TextWithState(viewModel.state.textState)
-                .lineLimit(2)
+            HStack{
+                TextWithState(viewModel.state.dateState)
+            }
+            HStack {
+                TextWithState(viewModel.state.titleState)
+            }.padding(.vertical, 16)
+            
+            HStack {
+                TextWithState(viewModel.state.textState)
+                    .lineLimit(2)
+            }
             
             Spacer()
             ButtonWithState(viewModel.state.openButton) {
@@ -58,6 +65,7 @@ struct FavoriteDetailsView: View {
     }
 
 }
+
 
 
 #Preview {
