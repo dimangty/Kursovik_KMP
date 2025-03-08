@@ -28,7 +28,7 @@ struct HomeRootView: View {
                 Image(systemName: "list.bullet")
                 Text(viewModel.tabArray[1])
             }.tag(1)
-        }
+        }.edgesIgnoringSafeArea(.top)
     }
 
 }

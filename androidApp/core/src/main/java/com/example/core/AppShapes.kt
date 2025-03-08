@@ -9,6 +9,5 @@ object AppShapes {
     val primaryBottom =
         RoundedCornerShape(topStart = 0.dp, topEnd = 0.dp, bottomStart = 8.dp, bottomEnd = 8.dp)
     val primary = RoundedCornerShape(8.dp)
-    val rounded =
-        RoundedCornerShape(topStart = 22.dp, topEnd = 22.dp, bottomStart = 22.dp, bottomEnd = 22.dp)
+    val rounded = RoundedCornerShape(22.dp)
 }

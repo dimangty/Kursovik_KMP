@@ -18,7 +18,7 @@ struct FavoriteDetailsView: View {
         VStack {
             CustomNavigationStateView(titleBar: viewModel.state.titleBarState) {
                 navigationStorage?.pop()
-            }
+            }.padding(.bottom, 20)
             
             VStack(spacing: 8) {
                 AsyncImage(url: URL(string: viewModel.state.imageUrl ?? "")) { image in
@@ -32,7 +32,6 @@ struct FavoriteDetailsView: View {
                 .cornerRadius(22)
                 
                 details
-                
             }.padding(.horizontal, 16)
             
         }.navigationBarHidden(true)

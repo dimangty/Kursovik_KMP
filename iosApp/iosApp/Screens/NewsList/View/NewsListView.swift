@@ -32,7 +32,7 @@ struct NewsListView: View {
                         }
                     }
                 }.padding(.horizontal, 16)
-            }
+            }.navigationBarHidden(true)
             
         }.navigation(isActive: $viewModel.isShowingDetails,
                      id: NewsDetailsView.navigationID) {
