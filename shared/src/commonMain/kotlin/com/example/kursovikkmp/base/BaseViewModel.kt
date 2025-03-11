@@ -27,7 +27,6 @@ import kotlin.native.ObjCName
 
 abstract class BaseViewModel<State: BaseViewState, Event: BaseEvent> : ViewModel() {
 
-    val viewModelScope = CoroutineScope(SupervisorJob())
     private val navigationService by getKoin().inject<NavigationService>()
     val deviceService by getKoin().inject<DeviceService>()
 

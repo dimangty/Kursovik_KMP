@@ -1,5 +1,6 @@
 package com.example.kursovikkmp.feature.news.details
 
+import androidx.lifecycle.viewModelScope
 import com.example.kursovikkmp.MR
 import com.example.kursovikkmp.base.BaseViewModel
 import com.example.kursovikkmp.common.view.TitleBarState

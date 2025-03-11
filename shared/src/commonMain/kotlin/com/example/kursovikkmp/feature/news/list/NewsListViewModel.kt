@@ -1,5 +1,6 @@
 package com.example.kursovikkmp.feature.news.list
 
+import androidx.lifecycle.viewModelScope
 import com.example.kursovikkmp.base.BaseViewModel
 import com.example.kursovikkmp.common.view.TitleBarState
 import com.example.kursovikkmp.common.view.updateValue
@@ -38,7 +39,15 @@ class NewsListViewModel(private val newsService: NewsService,
 
     override fun onScreenResumed() {
         loadFavoriteNews()
-        updateState { copy(newsItems = news.mapToUiItems()) }
+
+        if (news.isEmpty()) {
+            viewModelScope.launch {
+                loadNews()
+            }
+        } else {
+            updateState { copy(newsItems = news.mapToUiItems()) }
+        }
+
     }
 
     override fun initToolbar() {
