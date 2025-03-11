@@ -46,7 +46,6 @@ fun ArticleItemView(article: NewsUiState,
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
-//                        .clip(AppShapes.primaryTop)
                         .height(132.dp),
                     contentScale = ContentScale.FillWidth
                 )
