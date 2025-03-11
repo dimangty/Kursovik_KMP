@@ -70,7 +70,7 @@ class NewsListViewModel(private val newsService: NewsService,
 
     private suspend fun loadNews() {
         appLog("loadNews")
-            lceStateManager.showLoading()
+        lceStateManager.showLoading()
         try {
             val response = newsService.getNews()
             lceStateManager.hideLoading()
@@ -92,22 +92,20 @@ class NewsListViewModel(private val newsService: NewsService,
     }
 
     private fun List<Article>.mapToUiItems(): List<NewsUiState> {
-        var items = mutableListOf<NewsUiState>()
-        for (item in this) {
+        return mapNotNull { item ->
             if (item.title != null && item.description != null) {
-                items.add(
-                    NewsUiState(
-                        id = items.count().toString(),
-                        title = item.title,
-                        text = item.description,
-                        imageUrl = item.urlToImage,
-                        date = item.publishedAt.toDateString(),
-                        isFavorite = checkIsFavorite(item)
-                    )
+                NewsUiState(
+                    id = count().toString(),
+                    title = item.title,
+                    text = item.description,
+                    imageUrl = item.urlToImage,
+                    date = item.publishedAt.toDateString(),
+                    isFavorite = checkIsFavorite(item)
                 )
+            } else {
+                null
             }
         }
-        return items
     }
 
     private fun checkIsFavorite(article: Article): Boolean {

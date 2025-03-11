@@ -52,21 +52,16 @@ class FavoritesListViewModel(private val favoritesRepository: FavoritesRepositor
     }
 
     private fun List<Article>.mapToUiItems(): List<FavoriteUiState> {
-        var items = mutableListOf<FavoriteUiState>()
-        for (item in this) {
-            if (item.title != null && item.description != null) {
-                items.add(
-                    FavoriteUiState(
-                        id = items.count().toString(),
-                        title = item.title,
-                        text = item.description,
-                        imageUrl = item.urlToImage,
-                        date = item.publishedAt.toDateString()
-                    )
+        return this.filter { it.title != null && it.description != null }
+            .mapIndexed { index, item ->
+                FavoriteUiState(
+                    id = index.toString(),
+                    title = item.title ?: "",
+                    text = item.description ?: "",
+                    imageUrl = item.urlToImage,
+                    date = item.publishedAt.toDateString()
                 )
             }
-        }
-        return items
     }
 
     private suspend fun updateFavorite(title: String) {
