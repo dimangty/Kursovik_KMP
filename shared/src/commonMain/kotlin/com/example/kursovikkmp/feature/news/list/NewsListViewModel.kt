@@ -1,6 +1,7 @@
 package com.example.kursovikkmp.feature.news.list
 
 import androidx.lifecycle.viewModelScope
+import com.example.kursovikkmp.MR
 import com.example.kursovikkmp.base.BaseViewModel
 import com.example.kursovikkmp.common.view.TitleBarState
 import com.example.kursovikkmp.common.view.updateValue
@@ -52,7 +53,7 @@ class NewsListViewModel(private val newsService: NewsService,
 
     override fun initToolbar() {
         var titleBar = state.titleBarState.copy()
-        titleBar = titleBar.copy(title = titleBar.title.updateValue("News"),
+        titleBar = titleBar.copy(title = titleBar.title.updateValue(getString(MR.strings.scr_news_screen_title)),
                                  isNavigateBackVisible = false)
         updateState { copy(titleBarState = titleBar) }
     }

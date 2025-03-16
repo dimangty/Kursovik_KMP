@@ -4,6 +4,7 @@ package com.example.kursovikkmp
 
 import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.feature.device.DeviceService
+import com.example.kursovikkmp.feature.device.ResourceService
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
 import com.example.kursovikkmp.feature.news.details.NewsDetailsViewModel
@@ -58,8 +59,6 @@ internal actual val vmModule: Module = module {
 internal actual val platformModule: Module = module {
     singleOf(::DeviceService)
     singleOf(::NavigationService)
-    single {
-        NavigationService()
-    }
+    singleOf(::ResourceService)
     single<DatabaseDriverFactory> { DatabaseDriverFactory() }
 }

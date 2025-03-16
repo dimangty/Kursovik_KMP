@@ -1,6 +1,7 @@
 package com.example.kursovikkmp.feature.favorites.details
 
 import androidx.lifecycle.viewModelScope
+import com.example.kursovikkmp.MR
 import com.example.kursovikkmp.base.BaseViewModel
 import com.example.kursovikkmp.common.view.TitleBarState
 import com.example.kursovikkmp.common.view.updateValue
@@ -20,7 +21,7 @@ class FavoriteDetailsViewModel(
     override fun initToolbar() {
         var titleBar = TitleBarState.getMock()
         titleBar = titleBar.copy(
-            title = titleBar.title.updateValue("Favorites"),
+            title = titleBar.title.updateValue(getString(MR.strings.scr_favorite_screen_title)),
             isNavigateBackVisible = true,
             onDefaultUiEvent = ::onDefaultUiEvent
         )

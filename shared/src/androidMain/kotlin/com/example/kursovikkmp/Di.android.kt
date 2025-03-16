@@ -2,6 +2,7 @@ package com.example.kursovikkmp
 
 import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.feature.device.DeviceService
+import com.example.kursovikkmp.feature.device.ResourceService
 import com.example.kursovikkmp.feature.favorites.details.FavoriteDetailsViewModel
 
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
@@ -18,6 +19,7 @@ internal actual val platformModule: Module = module {
     single<DatabaseDriverFactory> { DatabaseDriverFactory(get()) }
     singleOf(::NavigationService)
     singleOf(::DeviceService)
+    singleOf(::ResourceService)
 }
 
 internal actual val vmModule: Module = module {

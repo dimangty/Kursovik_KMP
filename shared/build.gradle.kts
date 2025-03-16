@@ -86,7 +86,7 @@ multiplatformResources {
 
 android {
     namespace = "com.example.kursovikkmp"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 28
     }

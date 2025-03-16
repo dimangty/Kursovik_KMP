@@ -1,3 +1,7 @@
 <resources>
-    <string name="scr_any_error">Error</string>
+    <string name="scr_news_tab_title">News</string>
+    <string name="scr_favorite_tab_title">Favorites</string>
+    <string name="scr_news_screen_title">News</string>
+    <string name="scr_favorite_screen_title">Favorites</string>
+    <string name="scr_details_open_button">Open</string>
 </resources>

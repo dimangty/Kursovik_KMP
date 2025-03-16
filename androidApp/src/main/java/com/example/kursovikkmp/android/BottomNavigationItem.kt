@@ -6,6 +6,9 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.kursovikkmp.feature.home.HomeViewModel
+import com.example.kursovikkmp.navigation.NavigationService
+import org.koin.mp.KoinPlatform.getKoin
 
 data class BottomNavigationItem(
     val label : String = "",
@@ -14,15 +17,17 @@ data class BottomNavigationItem(
     val screens: List<String> = listOf()
 ) {
     fun bottomNavigationItems() : List<BottomNavigationItem> {
+        val homeViewModel by getKoin().inject<HomeViewModel>()
+        val tabs = homeViewModel.state.tabs
         return listOf(
             BottomNavigationItem(
-                label = "News",
+                label = tabs[0],
                 icon = Icons.Filled.Home,
                 route = Screens.Home.route,
                 screens = listOf(Screens.Home.route, Screens.Details.route)
             ),
             BottomNavigationItem(
-                label = "Favorites",
+                label = tabs[1],
                 icon = Icons.Filled.Favorite,
                 route = Screens.Favorites.route
             )

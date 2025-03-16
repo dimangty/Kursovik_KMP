@@ -20,7 +20,7 @@ class NewsDetailsViewModel(private val title: String,
     override fun initToolbar() {
         var titleBar = TitleBarState.getMock()
         titleBar = titleBar.copy(
-            title = titleBar.title.updateValue("News"),
+            title = titleBar.title.updateValue(getString(MR.strings.scr_news_screen_title)),
             isNavigateBackVisible = true,
             onDefaultUiEvent = ::onDefaultUiEvent
         )

@@ -1,6 +1,7 @@
 package com.example.kursovikkmp.feature.favorites.list
 
 import androidx.lifecycle.viewModelScope
+import com.example.kursovikkmp.MR
 import com.example.kursovikkmp.base.BaseViewModel
 import com.example.kursovikkmp.common.mvvm.ErrorState
 import com.example.kursovikkmp.common.view.TitleBarState
@@ -25,7 +26,7 @@ class FavoritesListViewModel(private val favoritesRepository: FavoritesRepositor
     override fun initToolbar() {
         var titleBar = TitleBarState.getMock()
         titleBar = titleBar.copy(
-            title = titleBar.title.updateValue("Favorites"),
+            title = titleBar.title.updateValue(getString(MR.strings.scr_favorite_screen_title)),
             isNavigateBackVisible = false
         )
         updateState { copy(titleBarState = titleBar) }
