@@ -41,6 +41,9 @@ struct FavoritesView: View {
                      id: FavoriteDetailsView.navigationID) {
              FavoriteDetailsView(title: viewModel.selectedItem)
          }
+         .onAppear {
+             viewModel.sendViewAppearedEvent()
+         }
         
     }
     

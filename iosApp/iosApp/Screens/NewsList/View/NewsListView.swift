@@ -38,7 +38,9 @@ struct NewsListView: View {
                      id: NewsDetailsView.navigationID) {
             NewsDetailsView(title: viewModel.selectedItem)
          }
-        
+         .onAppear {
+             viewModel.sendViewAppearedEvent()
+         }
         
         
     }

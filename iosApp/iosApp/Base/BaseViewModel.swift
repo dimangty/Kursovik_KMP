@@ -55,6 +55,11 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
         
     }
     
+    final func sendViewAppearedEvent() {
+        let model = mViewModel as? shared.BaseViewModel<shared.UiEvent, S>
+        model?.onDefaultUiEvent(event: .OnScreenResumed())
+    }
+    
     func observe(model: shared.BaseViewModel<S, shared.BaseEvent>) {
         model.stateFlow.watch { [weak self] state in
             guard let newState = state else { return }
