@@ -1,6 +1,6 @@
 Агрегатор Новостей.
 
-Стек: KMP, KTOR, Koin, Moko-Resources
+Стек: KMP, KTOR, Koin, Moko-Resources\n
 Jetpack Compose / SwiftUI
 
 <img src="https://github.com/dimangty/Kursovik_KMP/blob/master/misc/1.png"/>
