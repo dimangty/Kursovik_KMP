@@ -8,6 +8,7 @@ import com.example.kursovikkmp.feature.news.NewsService
 import com.example.kursovikkmp.network.DateSerializer
 import com.example.kursovikkmp.network.DateTimeSerializer
 import io.ktor.client.HttpClient
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -45,6 +46,11 @@ object NetworkModule {
                 expectSuccess = false
                 install(ContentNegotiation) {
                     json(get())
+                }
+                install(HttpTimeout) {
+                    requestTimeoutMillis = 5_000 // 15 seconds
+                    connectTimeoutMillis = 5_000 // 15 seconds
+                    socketTimeoutMillis = 5_000 // 15 seconds
                 }
                 install(Logging) {
                     logger =  Logger.SIMPLE

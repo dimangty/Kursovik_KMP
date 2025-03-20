@@ -40,21 +40,20 @@ struct ContainerView<Content>: IContainer, View where Content: View&IModelView {
                     .transition(.opacity.animation(.easeInOut(duration: 0)))
             }
             
-        }.alert(isPresented: $containerModel.hasError){
-            Alert(title: Text(""),
-                  message: Text(containerModel.errorText),
-                  dismissButton: .default(Text("OK")){
-                
-            })
-        }.alert(isPresented: $containerModel.hasAlert) {
+        }
+        .alert("Error", isPresented: $containerModel.hasError) {
+                    } message: {
+            Text(containerModel.errorText)
+        }
+        .alert(isPresented: $containerModel.hasAlert) {
             Alert(title: Text(containerModel.alert?.title ?? ""),
                   message: Text(containerModel.alert?.message ?? ""),
                   primaryButton: .default (Text(containerModel.alert?.positiveButtonText ?? "")) {
-                    containerModel.alert?.positiveAction()
-                  },
+                containerModel.alert?.positiveAction()
+            },
                   secondaryButton: .default (Text(containerModel.alert?.negativeButtonText ?? "")) {
-                        containerModel.alert?.negativeAction()
-                  })
+                containerModel.alert?.negativeAction()
+            })
         }
         
     }

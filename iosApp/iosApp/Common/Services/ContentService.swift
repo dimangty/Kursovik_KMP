@@ -38,8 +38,8 @@ class ContentService {
     }
     
     func showError(text: String) {
-        hasError = true
         errorText = text
+        hasError = true
     }
     
     func hideError() {

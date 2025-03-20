@@ -17,7 +17,7 @@ class ContainerModel:ObservableObject {
     @Published var hasOpaqueLoader = false
     @Published var animateOpaqueLoaderAppear = false
     @Published var hasError: Bool = false
-    @Published var errorText: String = ""
+    var errorText: String = ""
     @Published var hasAlert: Bool = false
     @Published var alert: ErrorState.AlertError?
     
