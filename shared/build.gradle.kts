@@ -27,8 +27,8 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
             isStatic = false
-            export("dev.icerock.moko:resources:0.24.3")
-            export("dev.icerock.moko:graphics:0.9.0")
+            export("dev.icerock.moko:resources:0.25.0")
+            export("dev.icerock.moko:graphics:0.10.0")
         }
     }
 
