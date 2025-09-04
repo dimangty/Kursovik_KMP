@@ -1,9 +1,10 @@
 [versions]
 agp = "8.7.1"
-kotlin = "2.0.20"
+kotlin = "2.1.21"
 compose = "1.5.4"
 compose-material = "1.6.1"
 compose-material3 = "1.1.2"
+compose-multiplatform = "1.8.2"
 androidx-activityCompose = "1.8.0"
 koin = "4.0.0"
 moko-resources = "0.25.0"
@@ -75,6 +76,11 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
 
+compose-multiplatform-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-multiplatform" }
+compose-multiplatform-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-multiplatform" }
+compose-multiplatform-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-multiplatform" }
+compose-multiplatform-material = { module = "org.jetbrains.compose.material:material", version.ref = "compose-multiplatform" }
+compose-multiplatform-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-multiplatform" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -83,5 +89,6 @@ kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight"}
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

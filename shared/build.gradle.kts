@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.serialization)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.compose.multiplatform)
+    alias(libs.plugins.compose.compiler)
     id("dev.icerock.mobile.multiplatform-resources")
 }
 
@@ -52,6 +54,13 @@ kotlin {
             implementation(libs.koin.core)
             api(libs.moko.resources)
 
+            //Compose Multiplatform
+            implementation(compose.ui)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.material3)
+            implementation(compose.runtime)
+            implementation(compose.components.uiToolingPreview)
             //
             implementation(libs.androidx.lifecycle.viewmodel)
 
