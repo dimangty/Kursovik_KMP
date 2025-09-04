@@ -5,6 +5,7 @@ import com.example.kursovikkmp.common.view.TextFontState
 import com.example.kursovikkmp.common.view.TextState
 import com.example.kursovikkmp.common.view.getMock
 import dev.icerock.moko.resources.ColorResource
+import dev.icerock.moko.resources.FontResource
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.getUIColor
 import dev.icerock.moko.resources.uiFont
