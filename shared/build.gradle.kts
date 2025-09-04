@@ -80,6 +80,7 @@ kotlin {
             implementation(libs.ktor.client.android)
             implementation(libs.androidx.navigation.compose)
             implementation(libs.sqldelight.android.driver)
+            implementation(libs.androidx.ui.tooling)
         }
 
         iosMain.dependencies {
