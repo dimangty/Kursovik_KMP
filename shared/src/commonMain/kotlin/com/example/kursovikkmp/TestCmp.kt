@@ -7,8 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.Image
 import androidx.compose.ui.Modifier
 import kursovikkmp.shared.generated.resources.Res
-import kursovikkmp.shared.generated.resources.logo_icon
-import kursovikkmp.shared.generated.resources.sample_image
+import kursovikkmp.shared.generated.resources.ic_example
 import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
@@ -22,8 +21,8 @@ fun Greeting(name: String) {
             style = MaterialTheme.typography.titleMedium
         )
 
-        Image(imageVector = vectorResource(Res.drawable.logo_icon),
-                contentDescription = "sample image",
+        Image(imageVector = vectorResource(Res.drawable.ic_example),
+                contentDescription = "ic_example",
                 modifier = Modifier
         )
     }
@@ -37,3 +36,4 @@ fun PreviewGreeting() {
         Greeting("Android Test")
     }
 }
+

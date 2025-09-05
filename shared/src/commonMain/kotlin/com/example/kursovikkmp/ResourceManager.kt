@@ -25,7 +25,7 @@ class ResourceManager {
         }
 
         fun getDrawableResource(): DrawableResource {
-            return Res.drawable.sample_image
+            return Res.drawable.ic_example
         }
 
         fun getStringResource(): StringResource {
