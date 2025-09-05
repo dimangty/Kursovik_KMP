@@ -20,7 +20,7 @@ fun DrawableResource.toUIImage(): UIImage? {
         kotlinx.coroutines.runBlocking {
             val resourceContent = getActualResourceContent()
             
-            println("Loading drawable resource with content: ${resourceContent.take(100)}...")
+            println("Loading  drawable resource with content: ${resourceContent.take(100)}...")
             
             // Parse the vector drawable content and render it to UIImage
             val result = renderVectorDrawableToUIImage(resourceContent)
