@@ -20,12 +20,13 @@ struct NewsListItemView: View {
                 .cornerRadius(22)
             
             Image(uiImage: ResourceManager.companion.getDrawableResource().uiImage)
+                .padding(14)
             
 //            Text("Wef")
 //                .font(Font(ResourceManager.companion.getFontResource().toUIFont(size: 12)))
             
             
-        }.fixedSize(horizontal: false, vertical: true)
+        }
     }
 }
 
