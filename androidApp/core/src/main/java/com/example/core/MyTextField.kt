@@ -29,8 +29,8 @@ fun MyTextField(
             value = state.value,
             onValueChange = onValueChange,
             modifier = Modifier.fillMaxWidth(),
-            label = state.label?.let { { Text(it.string()) } },
-            placeholder = { Text(state.placeholder.string()) },
+            label = state.label?.let { { Text(it) } },
+            placeholder = { Text(state.placeholder) },
             isError = state.error != null,
             enabled = state.isEnabled,
             keyboardOptions = KeyboardOptions(
@@ -63,7 +63,7 @@ private fun MyTextFieldPreview() {
             MyTextField(
                 state = TextFieldState(
                     value = "",
-                    placeholder = MR.strings.phone_number,
+                    placeholder = "Phone Number",
                     keyboardType = TextFieldState.KeyboardType.Phone
                 ),
                 onValueChange = {}
@@ -72,7 +72,7 @@ private fun MyTextFieldPreview() {
             MyTextField(
                 state = TextFieldState(
                     value = "test@email.com",
-                    placeholder = MR.strings.email,
+                    placeholder = "Email",
                     keyboardType = TextFieldState.KeyboardType.Email,
                     error = "Invalid email"
                 ),

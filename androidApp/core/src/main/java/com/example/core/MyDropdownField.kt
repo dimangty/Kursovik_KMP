@@ -44,8 +44,8 @@ fun MyDropdownField(
                 modifier = Modifier
                     .fillMaxWidth()
                     .menuAnchor(),
-                label = state.label?.let { { Text(it.string()) } },
-                placeholder = { Text(state.placeholder.string()) },
+                label = state.label?.let { { Text(it) } },
+                placeholder = { Text(state.placeholder) },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 enabled = state.isEnabled,
                 singleLine = true
@@ -78,7 +78,7 @@ private fun MyDropdownFieldPreview() {
             MyDropdownField(
                 state = DropdownFieldState(
                     value = "",
-                    placeholder = MR.strings.gender,
+                    placeholder = "Gender",
                     options = listOf("Male", "Female", "Other")
                 ),
                 onValueChange = {}

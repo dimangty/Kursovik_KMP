@@ -2,12 +2,11 @@ package com.example.kursovikkmp.common.view
 
 import com.example.kursovikkmp.MR
 import dev.icerock.moko.resources.ColorResource
-import dev.icerock.moko.resources.StringResource
 
 data class TextFieldState(
     val value: String = "",
-    val placeholder: StringResource,
-    val label: StringResource? = null,
+    val placeholder: String,
+    val label: String? = null,
     val error: String? = null,
     val isEnabled: Boolean = true,
     val keyboardType: KeyboardType = KeyboardType.Text,
@@ -30,8 +29,8 @@ fun TextFieldState.updateEnabled(enabled: Boolean) = this.copy(isEnabled = enabl
 
 data class DropdownFieldState(
     val value: String = "",
-    val placeholder: StringResource,
-    val label: StringResource? = null,
+    val placeholder: String,
+    val label: String? = null,
     val options: List<String> = emptyList(),
     val isEnabled: Boolean = true,
     val backgroundColor: ColorResource = MR.colors.white,

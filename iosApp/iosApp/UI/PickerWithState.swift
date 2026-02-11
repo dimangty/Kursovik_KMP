@@ -15,13 +15,13 @@ struct PickerWithState: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Picker(
-                state.placeholder.localized(),
+                state.placeholder,
                 selection: Binding(
                     get: { state.value },
                     set: onValueChange
                 )
             ) {
-                Text(state.placeholder.localized()).tag("")
+                Text(state.placeholder).tag("")
                 ForEach(state.options, id: \.self) { option in
                     Text(option).tag(option)
                 }

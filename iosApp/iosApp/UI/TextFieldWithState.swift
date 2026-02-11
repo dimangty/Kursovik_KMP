@@ -15,7 +15,7 @@ struct TextFieldWithState: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             TextField(
-                state.placeholder.localized(),
+                state.placeholder,
                 text: Binding(
                     get: { state.value },
                     set: onValueChange

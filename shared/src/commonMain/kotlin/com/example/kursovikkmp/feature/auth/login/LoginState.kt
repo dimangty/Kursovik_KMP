@@ -15,26 +15,18 @@ data class LoginState(
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
     val isPhoneValid: Boolean = false,
-    override val titleBarState: TitleBarState = TitleBarState.getMock()
-) : BaseViewState {
-
-    // UI Components configured from shared layer
+    // UI Components
     val phoneFieldState: TextFieldState = TextFieldState(
-        value = phone,
-        placeholder = MR.strings.phone_number,
-        keyboardType = TextFieldState.KeyboardType.Phone,
-        error = null
-    )
-
+        value = "",
+        placeholder = "",
+        keyboardType = TextFieldState.KeyboardType.Phone
+    ),
     val confirmButtonState: ButtonState = ButtonState.primary(
-        value = "Confirm", // Will be set by ViewModel with actual string
-        background = if (isPhoneValid) MR.colors.primary else MR.colors.grey
-    ).updateEnabled(isPhoneValid && !isLoading)
-
+        value = "",
+        background = MR.colors.grey
+    ),
     val signUpButtonState: TextState = TextState.latoMedium(14, MR.colors.primary)
-        .updateValue("Sign Up") // Will be set by ViewModel
-
-    val errorTextState: TextState? = errorMessage?.let {
-        TextState.latoRegular(12, MR.colors.red).updateValue(it)
-    }
-}
+        .updateValue(""),
+    val errorTextState: TextState? = null,
+    override val titleBarState: TitleBarState = TitleBarState.getMock()
+) : BaseViewState

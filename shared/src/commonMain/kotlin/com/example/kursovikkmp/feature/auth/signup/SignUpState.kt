@@ -21,77 +21,56 @@ data class SignUpState(
     val email: String = "",
     val phone: String = "",
     val isLoading: Boolean = false,
+    val isFormValid: Boolean = false,
     val errorMessage: String? = null,
-    override val titleBarState: TitleBarState = TitleBarState.getMock()
-) : BaseViewState {
-    val genderOptions = listOf("Male", "Female", "Other")
-    val countryOptions = listOf("USA", "UK", "Germany", "France")
-    val cityOptions = listOf("New York", "London", "Berlin", "Paris")
-
-    val isFormValid: Boolean
-        get() = firstName.length >= 2
-                && lastName.length >= 2
-                && gender.isNotEmpty()
-                && country.isNotEmpty()
-                && city.isNotEmpty()
-                && email.isNotEmpty()
-                && phone.isNotEmpty()
-
-    // UI Components configured from shared layer
+    val genderOptions: List<String> = listOf("Male", "Female", "Other"),
+    val countryOptions: List<String> = listOf("USA", "UK", "Germany", "France"),
+    val cityOptions: List<String> = listOf("New York", "London", "Berlin", "Paris"),
+    // UI Components
     val firstNameField: TextFieldState = TextFieldState(
-        value = firstName,
-        placeholder = MR.strings.first_name,
+        value = "",
+        placeholder = "",
         keyboardType = TextFieldState.KeyboardType.Text
-    )
-
+    ),
     val lastNameField: TextFieldState = TextFieldState(
-        value = lastName,
-        placeholder = MR.strings.last_name,
+        value = "",
+        placeholder = "",
         keyboardType = TextFieldState.KeyboardType.Text
-    )
-
+    ),
     val genderField: DropdownFieldState = DropdownFieldState(
-        value = gender,
-        placeholder = MR.strings.gender,
+        value = "",
+        placeholder = "",
         options = genderOptions
-    )
-
+    ),
     val birthDateField: TextFieldState = TextFieldState(
-        value = birthDate,
-        placeholder = MR.strings.birth_date,
+        value = "",
+        placeholder = "",
         keyboardType = TextFieldState.KeyboardType.Text
-    )
-
+    ),
     val countryField: DropdownFieldState = DropdownFieldState(
-        value = country,
-        placeholder = MR.strings.country,
+        value = "",
+        placeholder = "",
         options = countryOptions
-    )
-
+    ),
     val cityField: DropdownFieldState = DropdownFieldState(
-        value = city,
-        placeholder = MR.strings.city,
+        value = "",
+        placeholder = "",
         options = cityOptions
-    )
-
+    ),
     val emailField: TextFieldState = TextFieldState(
-        value = email,
-        placeholder = MR.strings.email,
+        value = "",
+        placeholder = "",
         keyboardType = TextFieldState.KeyboardType.Email
-    )
-
+    ),
     val phoneField: TextFieldState = TextFieldState(
-        value = phone,
-        placeholder = MR.strings.phone,
+        value = "",
+        placeholder = "",
         keyboardType = TextFieldState.KeyboardType.Phone
-    )
-
+    ),
     val createAccountButton: ButtonState = ButtonState.primary(
-        value = "Create Account", // Will be set by ViewModel
-        background = if (isFormValid) MR.colors.primary else MR.colors.grey
-    ).updateEnabled(isFormValid && !isLoading)
-
-    val errorTextState: TextState? = errorMessage?.let {
-        TextState.latoRegular(12, MR.colors.red).updateValue(it)
-    }
-}
+        value = "",
+        background = MR.colors.grey
+    ),
+    val errorTextState: TextState? = null,
+    override val titleBarState: TitleBarState = TitleBarState.getMock()
+) : BaseViewState
