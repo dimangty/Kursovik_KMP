@@ -68,7 +68,7 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.koin.android)
-            implementation(libs.ktor.client.android)
+            implementation(libs.ktor.client.okhttp)
             implementation(libs.androidx.navigation.compose)
             implementation(libs.sqldelight.android.driver)
         }
