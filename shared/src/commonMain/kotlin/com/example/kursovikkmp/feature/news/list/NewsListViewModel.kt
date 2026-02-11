@@ -58,6 +58,7 @@ class NewsListViewModel(private val newsService: NewsService,
         updateState { copy(titleBarState = titleBar) }
     }
 
+
     override fun initialState() = NewsListState()
 
     override fun onEvent(event: NewsListEvents) {
