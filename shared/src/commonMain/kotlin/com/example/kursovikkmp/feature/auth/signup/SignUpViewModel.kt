@@ -246,6 +246,7 @@ class SignUpViewModel(
                 phone = state.phone
             )
 
+
             authService.signUp(signUpData)
                 .onSuccess {
                     updateState { copy(isLoading = false) }
