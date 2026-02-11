@@ -1,6 +1,9 @@
 package com.example.kursovikkmp.android
 
 sealed class Screens(val route : String) {
+    object Login : Screens("login_screen")
+    object SignUp : Screens("signup_screen")
+    object Main : Screens("main_screen")
     object Home : Screens("home_screen")
     object Search : Screens("search_screen")
     object Profile : Screens("profile_screen")

@@ -7,17 +7,15 @@
 //
 
 import SwiftUI
-import SUINavigation
 
 struct NewsDetailsView: View {
 
     @StateObject private var viewModel: NewsDetailsViewModel
-    @OptionalEnvironmentObject private var navigationStorage: NavigationStorage?
-    
+
     var body: some View {
         VStack {
             CustomNavigationStateView(titleBar: viewModel.state.titleBarState) {
-                navigationStorage?.pop()
+                viewModel.navigationService?.navigateBack()
             }
             
             VStack(spacing: 8) {

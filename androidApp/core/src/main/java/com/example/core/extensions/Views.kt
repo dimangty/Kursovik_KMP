@@ -9,12 +9,18 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.sp
 import com.example.kursovikkmp.common.view.TextFontState
 import dev.icerock.moko.resources.ColorResource
+import dev.icerock.moko.resources.StringResource
 
 const val COMPOSE_PREVIEW_BACKGROUND_COLOR = 0xFFFFFFFF
 
 @Composable
 fun ColorResource.color(): Color {
     return Color(this.getColor(LocalContext.current))
+}
+
+@Composable
+fun StringResource.string(): String {
+    return this.getString(LocalContext.current)
 }
 
 fun TextFontState.textStyle(): TextStyle {

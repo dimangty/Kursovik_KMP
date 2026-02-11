@@ -17,8 +17,9 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
     @Published var titleBar: TitleBarState?
 
     private var cancellable = [AnyCancellable]()
-    
+
     @Injected private var contentService: ContentService?
+    @Injected var navigationService: NavigationService?
     
     init() {
         mViewModel = inject()
@@ -87,7 +88,7 @@ class BaseViewModel<T: AnyObject, S: AnyObject>: ObservableObject  {
     }
 
     func onChangeNavigation(_ action: NavigationAction) {
-
+        navigationService?.handle(action)
     }
     
     func onDefaultEffect(_ effect: Any) {

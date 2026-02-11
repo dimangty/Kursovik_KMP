@@ -59,12 +59,18 @@ actual class NavigationService {
                 when (action) {
                     is NavigationAction.NavigateToFavoritesDetails,
                     is NavigationAction.NavigateToNewsDetails,
+                    is NavigationAction.NavigateToSignUp,
+                    is NavigationAction.NavigateToMain
                         -> {
                         navigate(action)
                     }
 
                     NavigationAction.NavigateBack -> {
                         navigateBack()
+                    }
+
+                    NavigationAction.NavigateToLogin -> {
+                        // Not typically needed but could navigate to login
                     }
                 }
             }

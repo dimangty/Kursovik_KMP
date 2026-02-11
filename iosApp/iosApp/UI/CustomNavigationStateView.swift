@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SUINavigation
 import shared
 
 struct CustomNavigationStateView: View {

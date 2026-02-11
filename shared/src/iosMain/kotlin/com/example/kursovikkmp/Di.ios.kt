@@ -10,6 +10,8 @@ import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
 import com.example.kursovikkmp.feature.news.details.NewsDetailsViewModel
 import com.example.kursovikkmp.feature.favorites.details.FavoriteDetailsViewModel
 import com.example.kursovikkmp.feature.home.HomeViewModel
+import com.example.kursovikkmp.feature.auth.login.LoginViewModel
+import com.example.kursovikkmp.feature.auth.signup.SignUpViewModel
 import com.example.kursovikkmp.navigation.NavigationService
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
@@ -54,6 +56,8 @@ internal actual val vmModule: Module = module {
     factoryOf(::NewsListViewModel)
     factoryOf(::FavoritesListViewModel)
     factoryOf(::HomeViewModel)
+    factoryOf(::LoginViewModel)
+    factoryOf(::SignUpViewModel)
 }
 
 internal actual val platformModule: Module = module {

@@ -7,17 +7,15 @@
 //
 
 import SwiftUI
-import SUINavigation
 
 struct FavoriteDetailsView: View {
 
     @StateObject private var viewModel: FavoriteDetailsViewModel
-    @OptionalEnvironmentObject private var navigationStorage: NavigationStorage?
-    
+
     var body: some View {
         VStack {
             CustomNavigationStateView(titleBar: viewModel.state.titleBarState) {
-                navigationStorage?.pop()
+                viewModel.navigationService?.navigateBack()
             }.padding(.bottom, 20)
             
             VStack(spacing: 8) {

@@ -4,11 +4,12 @@ import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.feature.device.DeviceService
 import com.example.kursovikkmp.feature.device.ResourceService
 import com.example.kursovikkmp.feature.favorites.details.FavoriteDetailsViewModel
-
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
 import com.example.kursovikkmp.feature.news.details.NewsDetailsViewModel
 import com.example.kursovikkmp.feature.home.HomeViewModel
+import com.example.kursovikkmp.feature.auth.login.LoginViewModel
+import com.example.kursovikkmp.feature.auth.signup.SignUpViewModel
 import com.example.kursovikkmp.navigation.NavigationService
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -28,4 +29,6 @@ internal actual val vmModule: Module = module {
     viewModelOf(::NewsDetailsViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::FavoriteDetailsViewModel)
+    viewModelOf(::LoginViewModel)
+    viewModelOf(::SignUpViewModel)
 }

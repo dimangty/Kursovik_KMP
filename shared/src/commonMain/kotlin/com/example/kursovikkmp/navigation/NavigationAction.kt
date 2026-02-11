@@ -6,6 +6,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class NavigationAction {
     @Serializable
+    data object NavigateToLogin : NavigationAction()
+
+    @Serializable
+    data object NavigateToSignUp : NavigationAction()
+
+    @Serializable
+    data object NavigateToMain : NavigationAction()
+
+    @Serializable
     class NavigateToNewsDetails(val title: String) : NavigationAction()
 
     @Serializable

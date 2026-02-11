@@ -49,5 +49,6 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.android.compose)
     implementation(project(":androidApp:feature_favorites"))
+    implementation(project(":androidApp:feature_auth"))
     debugImplementation(libs.compose.ui.tooling)
 }

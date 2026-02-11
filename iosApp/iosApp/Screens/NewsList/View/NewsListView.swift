@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct NewsListView: View {
-    
+
     @StateObject private var viewModel = NewsListViewModel()
-    
+
     var body: some View {
         ZStack {
             Rectangle()
@@ -33,18 +33,13 @@ struct NewsListView: View {
                     }
                 }.padding(.horizontal, 16)
             }.navigationBarHidden(true)
-            
-        }.navigation(isActive: $viewModel.isShowingDetails,
-                     id: NewsDetailsView.navigationID) {
-            NewsDetailsView(title: viewModel.selectedItem)
-         }
-         .onAppear {
-             viewModel.sendViewAppearedEvent()
-         }
-        
-        
+
+        }
+        .onAppear {
+            viewModel.sendViewAppearedEvent()
+        }
     }
-    
+
 }
 
 #Preview {

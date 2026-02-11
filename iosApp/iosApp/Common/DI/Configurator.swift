@@ -19,6 +19,7 @@ class Configurator {
 
     private func registerServices() {
         serviceLocator.addService(service: ContentService())
+        serviceLocator.addService(service: NavigationService())
     }
 
 }

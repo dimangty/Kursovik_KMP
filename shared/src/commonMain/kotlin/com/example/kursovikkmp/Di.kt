@@ -42,6 +42,10 @@ internal val commonModule = module {
     singleOf(::NewsService)
     factoryOf(::LceStateManager)
     singleOf(::NetworkSettings)
+
+    // Auth services
+    single<com.example.kursovikkmp.feature.auth.AuthService> { com.example.kursovikkmp.feature.auth.AuthServiceImpl() }
+    single<com.example.kursovikkmp.feature.auth.ValidationService> { com.example.kursovikkmp.feature.auth.ValidationServiceImpl() }
 }
 
 internal val NetworkCompositeModule: Module = module {

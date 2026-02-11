@@ -11,16 +11,14 @@ import Foundation
 import shared
 
 final class FavoritesViewModel: BaseViewModel<FavoritesListViewModel, FavoritesListState> {
-    @Published var isShowingDetails: Bool = false
-    var selectedItem: String = ""
-    
+
     required override init() {
         super.init()
     }
 
     // MARK: - FavoritesViewOutput methods
     func didLoad() {
-        
+
     }
 
     func onEvent(event: FavoritesViewActions) {
@@ -30,13 +28,6 @@ final class FavoritesViewModel: BaseViewModel<FavoritesListViewModel, FavoritesL
             break
         case .favoriteTapped(let title):
             mViewModel?.pushEvent(event: .OnFavoriteClicked(title: title))
-        }
-    }
-    
-    override func onChangeNavigation(_ action: NavigationAction) {
-        if let action = action as? NavigationAction.NavigateToFavoritesDetails {
-            selectedItem = action.title
-            isShowingDetails = true
         }
     }
 

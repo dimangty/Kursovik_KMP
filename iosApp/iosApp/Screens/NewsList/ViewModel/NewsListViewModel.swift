@@ -11,16 +11,14 @@ import Foundation
 import shared
 
 final class NewsListViewModel: BaseViewModel<shared.NewsListViewModel, NewsListState> {
-    @Published var isShowingDetails: Bool = false
-    var selectedItem: String = ""
-    
+
     required override init() {
         super.init()
     }
 
     // MARK: - NewsListViewOutput methods
     func didLoad() {
-        
+
     }
 
     func onEvent(event: NewsListViewActions) {
@@ -32,16 +30,9 @@ final class NewsListViewModel: BaseViewModel<shared.NewsListViewModel, NewsListS
             mViewModel?.pushEvent(event: .OnFavoriteClicked(title: title))
         }
     }
-    
+
     override func onChangeState(_ state: NewsListState) {
         print("\nNews = \(state.newsItems.count)")
-    }
-    
-    override func onChangeNavigation(_ action: NavigationAction) {
-        if let action = action as? NavigationAction.NavigateToNewsDetails {
-            selectedItem = action.title
-            isShowingDetails = true
-        }
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.kursovikkmp.android
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -34,48 +35,70 @@ fun BottomNavigationBar() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
+    val currentRoute = currentDestination?.route
     var selectedItem by remember { mutableIntStateOf(0) }
     val navigationService: NavigationService by inject(NavigationService::class.java)
+
+    navigationService.setNavController(navController)
+
+    val showBottomBar = currentRoute == Screens.Home.route || currentRoute == Screens.Favorites.route
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-            NavigationBar {
-                navigationService.setNavController(navController)
-                BottomNavigationItem().bottomNavigationItems().forEachIndexed { index, navigationItem ->
-                    NavigationBarItem(
-                        selected = index == selectedItem,
-                        label = {
-                            Text(navigationItem.label)
-                        },
-                        icon = {
-                            Icon(
-                                navigationItem.icon,
-                                contentDescription = navigationItem.label
-                            )
-                        },
-                        onClick = {
-                            selectedItem = index
-                            navController.navigate(navigationItem.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+            if (showBottomBar) {
+                NavigationBar {
+                    BottomNavigationItem().bottomNavigationItems().forEachIndexed { index, navigationItem ->
+                        NavigationBarItem(
+                            selected = index == selectedItem,
+                            label = {
+                                Text(navigationItem.label)
+                            },
+                            icon = {
+                                Icon(
+                                    navigationItem.icon,
+                                    contentDescription = navigationItem.label
+                                )
+                            },
+                            onClick = {
+                                selectedItem = index
+                                navController.navigate(navigationItem.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
                             }
-                        }
-                    )
+                        )
+                    }
                 }
             }
         }
     ) {paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screens.Home.route,
-            modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())) {
+            startDestination = Screens.Login.route,
+            modifier = Modifier.padding(bottom = if (showBottomBar) paddingValues.calculateBottomPadding() else 0.dp)) {
+
+            composable(Screens.Login.route) {
+                com.example.feature_auth.LoginScreen()
+            }
+
+            composable(Screens.SignUp.route) {
+                com.example.feature_auth.SignUpScreen()
+            }
+
+            composable(Screens.Main.route) {
+                navController.navigate(Screens.Home.route) {
+                    popUpTo(Screens.Login.route) { inclusive = true }
+                }
+            }
+
             composable(Screens.Home.route) {
                 NewsScreen()
             }
+
             composable(Screens.Favorites.route) {
                 FavoriteScreen()
             }
@@ -92,6 +115,16 @@ fun BottomNavigationBar() {
                 FavoriteDetailsScreen(
                     args.title
                 )
+            }
+
+            composable<NavigationAction.NavigateToSignUp> {
+                navController.navigate(Screens.SignUp.route)
+            }
+
+            composable<NavigationAction.NavigateToMain> {
+                navController.navigate(Screens.Home.route) {
+                    popUpTo(Screens.Login.route) { inclusive = true }
+                }
             }
         }
     }

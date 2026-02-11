@@ -7,12 +7,11 @@
 //
 
 import SwiftUI
-import SUINavigation
 
 struct FavoritesView: View {
-    
+
     @StateObject private var viewModel = FavoritesViewModel()
-    
+
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
@@ -37,14 +36,9 @@ struct FavoritesView: View {
                 }
             }
         }
-         .navigation(isActive: $viewModel.isShowingDetails,
-                     id: FavoriteDetailsView.navigationID) {
-             FavoriteDetailsView(title: viewModel.selectedItem)
-         }
-         .onAppear {
-             viewModel.sendViewAppearedEvent()
-         }
-        
+        .onAppear {
+            viewModel.sendViewAppearedEvent()
+        }
     }
     
     func getWidht(maxWidht: CGFloat, columns: Int) -> CGFloat {
