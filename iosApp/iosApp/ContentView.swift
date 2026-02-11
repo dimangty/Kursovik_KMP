@@ -17,6 +17,8 @@ struct ContentView: View {
                         LoginView()
                     case .signUp:
                         SignUpView()
+                    case .pin:
+                        PinView()
                     case .main:
                         HomeRootView()
                     case .newsDetails(let title):

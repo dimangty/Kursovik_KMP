@@ -60,6 +60,7 @@ actual class NavigationService {
                     is NavigationAction.NavigateToFavoritesDetails,
                     is NavigationAction.NavigateToNewsDetails,
                     is NavigationAction.NavigateToSignUp,
+                    is NavigationAction.NavigateToPin,
                     is NavigationAction.NavigateToMain
                         -> {
                         navigate(action)
@@ -70,7 +71,7 @@ actual class NavigationService {
                     }
 
                     NavigationAction.NavigateToLogin -> {
-                        // Not typically needed but could navigate to login
+                        navigate(action)
                     }
                 }
             }

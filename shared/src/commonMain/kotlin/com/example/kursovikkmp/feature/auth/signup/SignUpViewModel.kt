@@ -251,7 +251,7 @@ class SignUpViewModel(
                 .onSuccess {
                     updateState { copy(isLoading = false) }
                     validateForm()
-                    navigate(NavigationAction.NavigateToMain)
+                    navigate(NavigationAction.NavigateToPin)
                 }
                 .onFailure { error ->
                     val errorMsg = getString(MR.strings.sign_up_failed)

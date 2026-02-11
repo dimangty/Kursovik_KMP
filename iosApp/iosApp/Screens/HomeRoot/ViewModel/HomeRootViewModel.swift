@@ -12,7 +12,7 @@ import shared
 
 final class HomeRootViewModel: BaseViewModel<HomeViewModel, HomeState> {
     @Published var tabSelection: Int = 0
-    @Published var tabArray = ["News", "Favorite"]
+    @Published var tabArray = ["News", "Favorite", "Profile"]
     
     required override init() {
         super.init()

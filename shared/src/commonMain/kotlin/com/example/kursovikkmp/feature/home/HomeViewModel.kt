@@ -16,7 +16,8 @@ class HomeViewModel(): BaseViewModel<HomeState, HomeEvents>() {
 
     override fun initScreenData() {
         updateState { copy(tabs = listOf(getString(MR.strings.scr_news_tab_title),
-                                        getString(MR.strings.scr_favorite_tab_title)))}
+                                        getString(MR.strings.scr_favorite_tab_title),
+                                        getString(MR.strings.scr_profile_tab_title)))}
     }
 
     override fun initialState(): HomeState = HomeState.getMock()

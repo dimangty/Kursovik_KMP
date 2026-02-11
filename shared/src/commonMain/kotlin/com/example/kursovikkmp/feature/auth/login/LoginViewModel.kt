@@ -100,7 +100,7 @@ class LoginViewModel(
                             ).updateEnabled(isPhoneValid)
                         )
                     }
-                    navigate(NavigationAction.NavigateToMain)
+                    navigate(NavigationAction.NavigateToPin)
                 }
                 .onFailure { error ->
                     val errorMsg = "Invalid phone number"

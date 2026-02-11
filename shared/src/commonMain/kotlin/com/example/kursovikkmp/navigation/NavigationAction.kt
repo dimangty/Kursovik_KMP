@@ -12,6 +12,9 @@ sealed class NavigationAction {
     data object NavigateToSignUp : NavigationAction()
 
     @Serializable
+    data object NavigateToPin : NavigationAction()
+
+    @Serializable
     data object NavigateToMain : NavigationAction()
 
     @Serializable

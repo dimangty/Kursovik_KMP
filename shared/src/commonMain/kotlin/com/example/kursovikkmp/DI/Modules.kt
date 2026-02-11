@@ -2,9 +2,11 @@ package com.example.kursovikkmp.DI
 
 import com.example.kursovikkmp.DB.ArticleDao
 import com.example.kursovikkmp.DB.DatabaseDriverFactory
+import com.example.kursovikkmp.DB.ProfileDao
 import com.example.kursovikkmp.Database
 import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
 import com.example.kursovikkmp.feature.news.NewsService
+import com.example.kursovikkmp.feature.profile.ProfileRepository
 import com.example.kursovikkmp.network.DateSerializer
 import com.example.kursovikkmp.network.DateTimeSerializer
 import io.ktor.client.HttpClient
@@ -73,9 +75,11 @@ object StorageModule {
 
     val daoModule = module {
         single<ArticleDao> { ArticleDao(get<Database>(), get()) }
+        single<ProfileDao> { ProfileDao(get<Database>()) }
     }
 
     val repositoryModule = module {
         single { FavoritesRepository(get<ArticleDao>())}
+        single { ProfileRepository(get<ProfileDao>()) }
     }
 }

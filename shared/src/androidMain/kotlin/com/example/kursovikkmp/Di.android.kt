@@ -9,7 +9,9 @@ import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
 import com.example.kursovikkmp.feature.news.details.NewsDetailsViewModel
 import com.example.kursovikkmp.feature.home.HomeViewModel
 import com.example.kursovikkmp.feature.auth.login.LoginViewModel
+import com.example.kursovikkmp.feature.auth.pin.PinViewModel
 import com.example.kursovikkmp.feature.auth.signup.SignUpViewModel
+import com.example.kursovikkmp.feature.profile.ProfileViewModel
 import com.example.kursovikkmp.navigation.NavigationService
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -30,5 +32,7 @@ internal actual val vmModule: Module = module {
     viewModelOf(::HomeViewModel)
     viewModelOf(::FavoriteDetailsViewModel)
     viewModelOf(::LoginViewModel)
+    viewModelOf(::PinViewModel)
     viewModelOf(::SignUpViewModel)
+    viewModelOf(::ProfileViewModel)
 }

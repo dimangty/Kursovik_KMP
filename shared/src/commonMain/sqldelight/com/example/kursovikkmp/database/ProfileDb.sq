@@ -1,0 +1,49 @@
+CREATE TABLE ProfileDb (
+id INTEGER NOT NULL PRIMARY KEY,
+firstName TEXT NOT NULL,
+lastName TEXT NOT NULL,
+gender TEXT NOT NULL,
+birthDate TEXT NOT NULL,
+country TEXT NOT NULL,
+city TEXT NOT NULL,
+email TEXT NOT NULL,
+phone TEXT NOT NULL,
+photoPath TEXT NOT NULL
+);
+
+get:
+SELECT * FROM ProfileDb WHERE id = 0 LIMIT 1;
+
+insert:
+INSERT OR REPLACE INTO ProfileDb(
+    id,
+    firstName,
+    lastName,
+    gender,
+    birthDate,
+    country,
+    city,
+    email,
+    phone,
+    photoPath
+)
+VALUES (
+    0,
+    :firstName,
+    :lastName,
+    :gender,
+    :birthDate,
+    :country,
+    :city,
+    :email,
+    :phone,
+    :photoPath
+);
+
+updatePhoto:
+UPDATE ProfileDb
+SET photoPath = :photoPath
+WHERE id = 0;
+
+clear:
+DELETE FROM ProfileDb;

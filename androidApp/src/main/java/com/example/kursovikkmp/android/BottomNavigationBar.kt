@@ -26,6 +26,7 @@ import com.example.feature_favorites.FavoriteDetailsScreen
 import com.example.feature_favorites.FavoriteScreen
 import com.example.feature_news.NewsDetailsScreen
 import com.example.feature_news.NewsScreen
+import com.example.feature_auth.PinScreen
 import com.example.kursovikkmp.navigation.NavigationAction
 import com.example.kursovikkmp.navigation.NavigationService
 import org.koin.java.KoinJavaComponent.inject
@@ -41,7 +42,9 @@ fun BottomNavigationBar() {
 
     navigationService.setNavController(navController)
 
-    val showBottomBar = currentRoute == Screens.Home.route || currentRoute == Screens.Favorites.route
+    val showBottomBar = currentRoute == Screens.Home.route
+            || currentRoute == Screens.Favorites.route
+            || currentRoute == Screens.Profile.route
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -89,6 +92,10 @@ fun BottomNavigationBar() {
                 com.example.feature_auth.SignUpScreen()
             }
 
+            composable(Screens.Pin.route) {
+                PinScreen()
+            }
+
             composable(Screens.Main.route) {
                 navController.navigate(Screens.Home.route) {
                     popUpTo(Screens.Login.route) { inclusive = true }
@@ -101,6 +108,10 @@ fun BottomNavigationBar() {
 
             composable(Screens.Favorites.route) {
                 FavoriteScreen()
+            }
+
+            composable(Screens.Profile.route) {
+                ProfileScreen()
             }
 
             composable<NavigationAction.NavigateToNewsDetails> {
@@ -121,9 +132,20 @@ fun BottomNavigationBar() {
                 navController.navigate(Screens.SignUp.route)
             }
 
+            composable<NavigationAction.NavigateToPin> {
+                navController.navigate(Screens.Pin.route)
+            }
+
             composable<NavigationAction.NavigateToMain> {
                 navController.navigate(Screens.Home.route) {
                     popUpTo(Screens.Login.route) { inclusive = true }
+                }
+            }
+
+            composable<NavigationAction.NavigateToLogin> {
+                navController.navigate(Screens.Login.route) {
+                    popUpTo(navController.graph.findStartDestination().id) { inclusive = true }
+                    launchSingleTop = true
                 }
             }
         }

@@ -11,6 +11,7 @@ import shared
 enum NavigationDestination: Hashable {
     case login
     case signUp
+    case pin
     case main
     case newsDetails(title: String)
     case favoriteDetails(title: String)
@@ -48,6 +49,9 @@ class NavigationService: ObservableObject {
 
         case is NavigationAction.NavigateToSignUp:
             navigate(to: .signUp)
+
+        case is NavigationAction.NavigateToPin:
+            navigate(to: .pin)
 
         case is NavigationAction.NavigateToMain:
             replace(with: .main)

@@ -14,6 +14,7 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		8B026A1B2F3BCF250047635C /* NewsListModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B026A032F3BCF250047635C /* NewsListModuleInput.swift */; };
 		8B026A1C2F3BCF250047635C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0269F02F3BCF250047635C /* LoginViewModel.swift */; };
+		AA11BB22CC33DD4400EEFF04 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC33DD4400EEFF03 /* PinViewModel.swift */; };
 		8B026A1D2F3BCF250047635C /* HomeRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0269E72F3BCF250047635C /* HomeRootView.swift */; };
 		8B026A1E2F3BCF250047635C /* CustomNavigationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B026A122F3BCF250047635C /* CustomNavigationStateView.swift */; };
 		8B026A1F2F3BCF250047635C /* NewsDetailsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0269F82F3BCF250047635C /* NewsDetailsModuleInput.swift */; };
@@ -22,6 +23,7 @@
 		8B026A222F3BCF250047635C /* NewsListViewActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B026A042F3BCF250047635C /* NewsListViewActions.swift */; };
 		8B026A232F3BCF250047635C /* HomeRootHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0269E62F3BCF250047635C /* HomeRootHostingController.swift */; };
 		8B026A242F3BCF250047635C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0269EE2F3BCF250047635C /* LoginView.swift */; };
+		AA11BB22CC33DD4400EEFF02 /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC33DD4400EEFF01 /* PinView.swift */; };
 		8B026A252F3BCF250047635C /* NewsDetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0269F32F3BCF250047635C /* NewsDetailsAssembly.swift */; };
 		8B026A262F3BCF250047635C /* FavoriteDetailsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0269D42F3BCF250047635C /* FavoriteDetailsModuleInput.swift */; };
 		8B026A272F3BCF250047635C /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0269DD2F3BCF250047635C /* FavoritesView.swift */; };
@@ -108,6 +110,8 @@
 		8B0269EB2F3BCF250047635C /* HomeRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRootViewModel.swift; sourceTree = "<group>"; };
 		8B0269EE2F3BCF250047635C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8B0269F02F3BCF250047635C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		AA11BB22CC33DD4400EEFF01 /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		AA11BB22CC33DD4400EEFF03 /* PinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewModel.swift; sourceTree = "<group>"; };
 		8B0269F32F3BCF250047635C /* NewsDetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsAssembly.swift; sourceTree = "<group>"; };
 		8B0269F52F3BCF250047635C /* NewsDetailsHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsHostingController.swift; sourceTree = "<group>"; };
 		8B0269F62F3BCF250047635C /* NewsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsView.swift; sourceTree = "<group>"; };
@@ -335,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				8B0269EE2F3BCF250047635C /* LoginView.swift */,
+				AA11BB22CC33DD4400EEFF01 /* PinView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				8B0269F02F3BCF250047635C /* LoginViewModel.swift */,
+				AA11BB22CC33DD4400EEFF03 /* PinViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -705,6 +711,7 @@
 				8B9E8BDA2D7347C200CCEBE8 /* Blocks.swift in Sources */,
 				8B026A1B2F3BCF250047635C /* NewsListModuleInput.swift in Sources */,
 				8B026A1C2F3BCF250047635C /* LoginViewModel.swift in Sources */,
+				AA11BB22CC33DD4400EEFF04 /* PinViewModel.swift in Sources */,
 				8B026A1D2F3BCF250047635C /* HomeRootView.swift in Sources */,
 				8B026A1E2F3BCF250047635C /* CustomNavigationStateView.swift in Sources */,
 				8B026A1F2F3BCF250047635C /* NewsDetailsModuleInput.swift in Sources */,
@@ -713,6 +720,7 @@
 				8B026A222F3BCF250047635C /* NewsListViewActions.swift in Sources */,
 				8B026A232F3BCF250047635C /* HomeRootHostingController.swift in Sources */,
 				8B026A242F3BCF250047635C /* LoginView.swift in Sources */,
+				AA11BB22CC33DD4400EEFF02 /* PinView.swift in Sources */,
 				8B026A252F3BCF250047635C /* NewsDetailsAssembly.swift in Sources */,
 				8B026A262F3BCF250047635C /* FavoriteDetailsModuleInput.swift in Sources */,
 				8B026A272F3BCF250047635C /* FavoritesView.swift in Sources */,

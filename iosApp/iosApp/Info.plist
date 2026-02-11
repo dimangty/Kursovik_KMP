@@ -42,6 +42,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow access to your photo library to update your profile photo.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow camera access to take a profile photo.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 </dict>
