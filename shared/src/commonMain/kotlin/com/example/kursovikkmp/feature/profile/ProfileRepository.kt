@@ -2,12 +2,20 @@ package com.example.kursovikkmp.feature.profile
 
 import com.example.kursovikkmp.DB.ProfileDao
 
-class ProfileRepository(
-    private val profileDao: ProfileDao
-) {
-    fun hasSavedProfile(): Boolean = profileDao.get() != null
+interface ProfileRepository {
+    fun hasSavedProfile(): Boolean
+    fun getProfileOrMock(): ProfileData
+    suspend fun saveProfile(data: ProfileData)
+    suspend fun updatePhoto(photoPath: String)
+    suspend fun clear()
+}
 
-    fun getProfileOrMock(): ProfileData {
+class ProfileRepositoryImpl(
+    private val profileDao: ProfileDao
+) : ProfileRepository {
+    override fun hasSavedProfile(): Boolean = profileDao.get() != null
+
+    override fun getProfileOrMock(): ProfileData {
         return profileDao.get()?.let {
             ProfileData(
                 firstName = it.firstName,
@@ -23,11 +31,11 @@ class ProfileRepository(
         } ?: ProfileData.mock()
     }
 
-    suspend fun saveProfile(data: ProfileData) {
+    override suspend fun saveProfile(data: ProfileData) {
         profileDao.insert(data)
     }
 
-    suspend fun updatePhoto(photoPath: String) {
+    override suspend fun updatePhoto(photoPath: String) {
         if (hasSavedProfile()) {
             profileDao.updatePhoto(photoPath)
         } else {
@@ -36,7 +44,7 @@ class ProfileRepository(
         }
     }
 
-    suspend fun clear() {
+    override suspend fun clear() {
         profileDao.clear()
     }
 }

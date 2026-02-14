@@ -1,6 +1,6 @@
 package com.example.kursovikkmp.feature.device
 
-expect class DeviceService {
+interface DeviceService {
     fun isAndroid(): Boolean
     fun isIOS(): Boolean
 

@@ -2,7 +2,9 @@ package com.example.kursovikkmp
 
 import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.feature.device.DeviceService
+import com.example.kursovikkmp.feature.device.DeviceServiceImpl
 import com.example.kursovikkmp.feature.device.ResourceService
+import com.example.kursovikkmp.feature.device.ResourceServiceImpl
 import com.example.kursovikkmp.feature.favorites.details.FavoriteDetailsViewModel
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
@@ -16,16 +18,17 @@ import com.example.kursovikkmp.feature.profile.ProfileViewModel
 import com.example.kursovikkmp.feature.recipes.details.RecipesDetailsViewModel
 import com.example.kursovikkmp.feature.recipes.list.RecipesListViewModel
 import com.example.kursovikkmp.navigation.NavigationService
+import com.example.kursovikkmp.navigation.NavigationServiceImpl
 import org.koin.core.module.Module
-import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 internal actual val platformModule: Module = module {
     single<DatabaseDriverFactory> { DatabaseDriverFactory(get()) }
-    singleOf(::NavigationService)
-    singleOf(::DeviceService)
-    singleOf(::ResourceService)
+    single<NavigationService> { NavigationServiceImpl() }
+    single<DeviceService> { DeviceServiceImpl(get()) }
+    single<ResourceService> { ResourceServiceImpl(get()) }
+    single { get<NavigationService>() as NavigationServiceImpl }
 }
 
 internal actual val vmModule: Module = module {

@@ -5,11 +5,16 @@ import com.example.kursovikkmp.feature.fridge.model.FridgeRecommendedRecipe
 import com.example.kursovikkmp.feature.recipes.RecipesService
 import kotlinx.coroutines.delay
 
-class FridgeMockNetworkService(
-    private val recipesService: RecipesService
-) {
+interface FridgeMockNetworkService {
+    suspend fun getFridgeProducts(): List<FridgeProduct>
+    suspend fun getRecommendedRecipes(selectedProducts: List<String>): List<FridgeRecommendedRecipe>
+}
 
-    suspend fun getFridgeProducts(): List<FridgeProduct> {
+class FridgeMockNetworkServiceImpl(
+    private val recipesService: RecipesService
+) : FridgeMockNetworkService {
+
+    override suspend fun getFridgeProducts(): List<FridgeProduct> {
         delay(350)
         val recipes = recipesService.getRecipes()
         return recipes
@@ -24,7 +29,7 @@ class FridgeMockNetworkService(
             }
     }
 
-    suspend fun getRecommendedRecipes(selectedProducts: List<String>): List<FridgeRecommendedRecipe> {
+    override suspend fun getRecommendedRecipes(selectedProducts: List<String>): List<FridgeRecommendedRecipe> {
         delay(600)
         if (selectedProducts.isEmpty()) return emptyList()
 

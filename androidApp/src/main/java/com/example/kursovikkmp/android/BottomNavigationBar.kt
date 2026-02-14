@@ -33,7 +33,7 @@ import com.example.feature_news.NewsScreen
 import com.example.feature_auth.PinScreen
 import com.example.kursovikkmp.feature.home.HomeViewModel
 import com.example.kursovikkmp.navigation.NavigationAction
-import com.example.kursovikkmp.navigation.NavigationService
+import com.example.kursovikkmp.navigation.NavigationServiceImpl
 import org.koin.androidx.compose.koinViewModel
 import org.koin.java.KoinJavaComponent.inject
 
@@ -52,7 +52,7 @@ fun BottomNavigationBar() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
     val currentRoute = currentDestination?.route
-    val navigationService: NavigationService by inject(NavigationService::class.java)
+    val navigationService: NavigationServiceImpl by inject(NavigationServiceImpl::class.java)
     val defaultTabs = listOf("News", "Favorites", "Рецепты", "Холодильник")
     val tabs = if (homeState.tabs.size >= 4) homeState.tabs else defaultTabs
     val bottomNavigationItems = listOf(

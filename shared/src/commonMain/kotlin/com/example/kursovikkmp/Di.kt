@@ -4,8 +4,9 @@ import com.example.kursovikkmp.DI.NetworkModule
 import com.example.kursovikkmp.DI.StorageModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
 import com.example.kursovikkmp.feature.fridge.FridgeMockNetworkService
-import com.example.kursovikkmp.feature.news.NewsService
+import com.example.kursovikkmp.feature.fridge.FridgeMockNetworkServiceImpl
 import com.example.kursovikkmp.feature.recipes.RecipesService
+import com.example.kursovikkmp.feature.recipes.RecipesServiceImpl
 import com.example.kursovikkmp.network.NetworkSettings
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +15,6 @@ import kotlinx.coroutines.IO
 import kotlinx.coroutines.SupervisorJob
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
-import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -41,11 +41,10 @@ internal val commonModule = module {
         )
     }
 
-    singleOf(::NewsService)
-    singleOf(::RecipesService)
-    singleOf(::FridgeMockNetworkService)
+    single<RecipesService> { RecipesServiceImpl() }
+    single<FridgeMockNetworkService> { FridgeMockNetworkServiceImpl(get()) }
     factoryOf(::LceStateManager)
-    singleOf(::NetworkSettings)
+    single { NetworkSettings() }
 
     // Auth services
     single<com.example.kursovikkmp.feature.auth.AuthService> { com.example.kursovikkmp.feature.auth.AuthServiceImpl(get()) }

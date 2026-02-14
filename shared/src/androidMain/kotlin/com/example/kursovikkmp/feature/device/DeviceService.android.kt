@@ -1,23 +1,22 @@
 package com.example.kursovikkmp.feature.device
 
 import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 
-actual class DeviceService(private val appContext: Application) {
-    actual fun isAndroid(): Boolean {
+class DeviceServiceImpl(private val appContext: Application) : DeviceService {
+    override fun isAndroid(): Boolean {
         return true
     }
 
-    actual fun isIOS(): Boolean {
+    override fun isIOS(): Boolean {
         return false
     }
 
-    actual fun openMailToSupport(mail: String) {
+    override fun openMailToSupport(mail: String) {
     }
 
-    actual fun openUrl(urlString: String) {
+    override fun openUrl(urlString: String) {
         var browserIntent = Intent(
             Intent.ACTION_VIEW,
             Uri.parse(urlString)

@@ -5,7 +5,12 @@ import com.example.kursovikkmp.feature.recipes.model.RecipeIngredient
 import com.example.kursovikkmp.feature.recipes.model.RecipeStep
 import kotlinx.coroutines.delay
 
-class RecipesService {
+interface RecipesService {
+    suspend fun getRecipes(): List<Recipe>
+    suspend fun getRecipeById(id: String): Recipe?
+}
+
+class RecipesServiceImpl : RecipesService {
     private val mockRecipes = listOf(
         Recipe(
             id = "1",
@@ -192,12 +197,12 @@ class RecipesService {
         )
     )
 
-    suspend fun getRecipes(): List<Recipe> {
+    override suspend fun getRecipes(): List<Recipe> {
         delay(300)
         return mockRecipes
     }
 
-    suspend fun getRecipeById(id: String): Recipe? {
+    override suspend fun getRecipeById(id: String): Recipe? {
         delay(150)
         return mockRecipes.firstOrNull { it.id == id }
     }

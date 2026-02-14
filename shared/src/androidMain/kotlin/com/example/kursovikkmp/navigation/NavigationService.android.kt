@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-actual class NavigationService {
+class NavigationServiceImpl : NavigationService {
     private companion object {
         const val LOGIN_ROUTE = "login_screen"
         const val SIGN_UP_ROUTE = "signup_screen"
@@ -22,7 +22,7 @@ actual class NavigationService {
     private var navController: NavHostController? = null
 
     private val _currentDestination = MutableStateFlow("")
-    actual val currentDestination = _currentDestination.asStateFlow()
+    override val currentDestination = _currentDestination.asStateFlow()
 
     private val onDestinationChangedListener =
         NavController.OnDestinationChangedListener { _, destination, _ ->
@@ -37,7 +37,7 @@ actual class NavigationService {
         navController.addOnDestinationChangedListener(onDestinationChangedListener)
     }
 
-    actual fun <T> setPreviousBackStackEntry(key: String, value: T) {
+    override fun <T> setPreviousBackStackEntry(key: String, value: T) {
         android.os.Handler(Looper.getMainLooper()).post {
             navController?.previousBackStackEntry
                 ?.savedStateHandle
@@ -45,7 +45,7 @@ actual class NavigationService {
         }
     }
 
-    actual fun <T> getCurrentBackStackEntry(key: String): T? {
+    override fun <T> getCurrentBackStackEntry(key: String): T? {
         val current = navController?.currentBackStackEntry
         return if (current != null && current.savedStateHandle.contains(key)) {
             current.savedStateHandle[key]
@@ -54,14 +54,14 @@ actual class NavigationService {
         }
     }
 
-    actual fun <T> clearCurrentBackStackEntry(key: String) {
+    override fun <T> clearCurrentBackStackEntry(key: String) {
         android.os.Handler(Looper.getMainLooper()).post {
             navController?.currentBackStackEntry?.savedStateHandle?.remove<T>(key)
         }
     }
 
     @Suppress("LongMethod", "CyclomaticComplexMethod") // TODO
-    actual fun navigate(action: NavigationAction) {
+    override fun navigate(action: NavigationAction) {
         android.os.Handler(Looper.getMainLooper()).post {
             navController?.run {
                 when (action) {
@@ -101,7 +101,7 @@ actual class NavigationService {
         }
     }
 
-    actual fun navigateBack() {
+    override fun navigateBack() {
         android.os.Handler(Looper.getMainLooper()).post {
             navController?.navigateUp()
         }

@@ -2,7 +2,7 @@ package com.example.kursovikkmp.navigation
 
 import kotlinx.coroutines.flow.StateFlow
 
-expect class NavigationService {
+interface NavigationService {
     val currentDestination: StateFlow<String>
     fun navigate(action: NavigationAction)
     fun navigateBack()

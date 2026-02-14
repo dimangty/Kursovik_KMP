@@ -4,7 +4,9 @@ package com.example.kursovikkmp
 
 import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.feature.device.DeviceService
+import com.example.kursovikkmp.feature.device.DeviceServiceImpl
 import com.example.kursovikkmp.feature.device.ResourceService
+import com.example.kursovikkmp.feature.device.ResourceServiceImpl
 import com.example.kursovikkmp.feature.news.list.NewsListViewModel
 import com.example.kursovikkmp.feature.favorites.list.FavoritesListViewModel
 import com.example.kursovikkmp.feature.news.details.NewsDetailsViewModel
@@ -18,6 +20,7 @@ import com.example.kursovikkmp.feature.profile.ProfileViewModel
 import com.example.kursovikkmp.feature.recipes.details.RecipesDetailsViewModel
 import com.example.kursovikkmp.feature.recipes.list.RecipesListViewModel
 import com.example.kursovikkmp.navigation.NavigationService
+import com.example.kursovikkmp.navigation.NavigationServiceImpl
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
@@ -26,7 +29,6 @@ import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
-import org.koin.core.module.dsl.singleOf
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 import kotlin.reflect.KClass
@@ -71,8 +73,8 @@ internal actual val vmModule: Module = module {
 }
 
 internal actual val platformModule: Module = module {
-    singleOf(::DeviceService)
-    singleOf(::NavigationService)
-    singleOf(::ResourceService)
+    single<DeviceService> { DeviceServiceImpl() }
+    single<NavigationService> { NavigationServiceImpl() }
+    single<ResourceService> { ResourceServiceImpl() }
     single<DatabaseDriverFactory> { DatabaseDriverFactory() }
 }

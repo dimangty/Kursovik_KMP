@@ -5,8 +5,11 @@ import com.example.kursovikkmp.DB.DatabaseDriverFactory
 import com.example.kursovikkmp.DB.ProfileDao
 import com.example.kursovikkmp.Database
 import com.example.kursovikkmp.feature.favorites.list.FavoritesRepository
+import com.example.kursovikkmp.feature.favorites.list.FavoritesRepositoryImpl
 import com.example.kursovikkmp.feature.news.NewsService
+import com.example.kursovikkmp.feature.news.NewsServiceImpl
 import com.example.kursovikkmp.feature.profile.ProfileRepository
+import com.example.kursovikkmp.feature.profile.ProfileRepositoryImpl
 import com.example.kursovikkmp.network.DateSerializer
 import com.example.kursovikkmp.network.DateTimeSerializer
 import io.ktor.client.HttpClient
@@ -62,7 +65,7 @@ object NetworkModule {
         }
     }
 
-    val api = module { single { NewsService(get(), get()) } }
+    val api = module { single<NewsService> { NewsServiceImpl(get(), get()) } }
 
 }
 
@@ -79,7 +82,7 @@ object StorageModule {
     }
 
     val repositoryModule = module {
-        single { FavoritesRepository(get<ArticleDao>())}
-        single { ProfileRepository(get<ProfileDao>()) }
+        single<FavoritesRepository> { FavoritesRepositoryImpl(get<ArticleDao>()) }
+        single<ProfileRepository> { ProfileRepositoryImpl(get<ProfileDao>()) }
     }
 }
