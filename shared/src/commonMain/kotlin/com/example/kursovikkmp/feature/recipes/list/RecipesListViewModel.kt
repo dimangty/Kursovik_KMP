@@ -69,7 +69,8 @@ class RecipesListViewModel(
                 id = item.id,
                 title = item.title,
                 text = item.description,
-                duration = "⏱ ${item.durationMinutes} мин"
+                duration = "⏱ ${item.durationMinutes} мин",
+                imageUrl = item.imageUrl
             )
         }
     }

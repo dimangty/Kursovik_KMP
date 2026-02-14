@@ -65,6 +65,8 @@
 		A1B2C3E42F3C20000047635C /* RecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E32F3C20000047635C /* RecipesViewModel.swift */; };
 		A1B2C3D42F3C10000047635C /* RecipesDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D32F3C10000047635C /* RecipesDetailsView.swift */; };
 		A1B2C3F42F3C30000047635C /* RecipesDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3F32F3C30000047635C /* RecipesDetailsViewModel.swift */; };
+		F0AA00012F6A10000047635C /* FridgeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AA00002F6A10000047635C /* FridgeTabView.swift */; };
+		F0AA00032F6A10000047635C /* FridgeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AA00022F6A10000047635C /* FridgeTabViewModel.swift */; };
 		8B6BBAA62D6A1EC200408370 /* KoinHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBAA52D6A1EBC00408370 /* KoinHelper.swift */; };
 		8B6BBAAF2D6A1F7E00408370 /* ContainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBAAA2D6A1F7E00408370 /* ContainerModel.swift */; };
 		8B6BBAB02D6A1F7E00408370 /* IModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BBAAD2D6A1F7E00408370 /* IModelView.swift */; };
@@ -148,6 +150,8 @@
 		A1B2C3E32F3C20000047635C /* RecipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModel.swift; sourceTree = "<group>"; };
 		A1B2C3D32F3C10000047635C /* RecipesDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesDetailsView.swift; sourceTree = "<group>"; };
 		A1B2C3F32F3C30000047635C /* RecipesDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesDetailsViewModel.swift; sourceTree = "<group>"; };
+		F0AA00002F6A10000047635C /* FridgeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeTabView.swift; sourceTree = "<group>"; };
+		F0AA00022F6A10000047635C /* FridgeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeTabViewModel.swift; sourceTree = "<group>"; };
 		8B6BBAA52D6A1EBC00408370 /* KoinHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoinHelper.swift; sourceTree = "<group>"; };
 		8B6BBAA82D6A1F7E00408370 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		8B6BBAA92D6A1F7E00408370 /* ContainerEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerEmptyView.swift; sourceTree = "<group>"; };
@@ -493,6 +497,7 @@
 			children = (
 				8B0269D82F3BCF250047635C /* FavoriteDetails */,
 				8B0269E32F3BCF250047635C /* Favorites */,
+				F0AA00102F6A10000047635C /* Fridge */,
 				8B0269ED2F3BCF250047635C /* HomeRoot */,
 				8B0269F22F3BCF250047635C /* Login */,
 				8B0269FC2F3BCF250047635C /* NewsDetails */,
@@ -553,6 +558,31 @@
 				A1B2C3F12F3C30000047635C /* ViewModel */,
 			);
 			path = RecipesDetails;
+			sourceTree = "<group>";
+		};
+		F0AA00112F6A10000047635C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F0AA00002F6A10000047635C /* FridgeTabView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F0AA00122F6A10000047635C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F0AA00022F6A10000047635C /* FridgeTabViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F0AA00102F6A10000047635C /* Fridge */ = {
+			isa = PBXGroup;
+			children = (
+				F0AA00112F6A10000047635C /* View */,
+				F0AA00122F6A10000047635C /* ViewModel */,
+			);
+			path = Fridge;
 			sourceTree = "<group>";
 		};
 		8B026A1A2F3BCF250047635C /* UI */ = {
@@ -825,6 +855,8 @@
 				A1B2C3E42F3C20000047635C /* RecipesViewModel.swift in Sources */,
 				A1B2C3D42F3C10000047635C /* RecipesDetailsView.swift in Sources */,
 				A1B2C3F42F3C30000047635C /* RecipesDetailsViewModel.swift in Sources */,
+				F0AA00012F6A10000047635C /* FridgeTabView.swift in Sources */,
+				F0AA00032F6A10000047635C /* FridgeTabViewModel.swift in Sources */,
 				8B6BBB072D6DF2A700408370 /* Colors.swift in Sources */,
 				8B6BBB052D6DF14C00408370 /* View+Corners.swift in Sources */,
 				8B999BBB2F3BD2220047635C /* StringResource+Extensions.swift in Sources */,

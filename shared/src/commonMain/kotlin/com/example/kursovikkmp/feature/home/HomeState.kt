@@ -8,7 +8,7 @@ data class HomeState(val tabs: List<String> = listOf(),
     companion object {
         fun getMock() = HomeState().run {
             copy(
-                tabs = listOf("News", "Favorites", "Рецепты")
+                tabs = listOf("News", "Favorites", "Рецепты", "Холодильник")
             )
         }
     }

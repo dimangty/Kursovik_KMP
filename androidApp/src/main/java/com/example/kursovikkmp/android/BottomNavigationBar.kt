@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
@@ -52,8 +53,8 @@ fun BottomNavigationBar() {
     val currentDestination = navBackStackEntry?.destination
     val currentRoute = currentDestination?.route
     val navigationService: NavigationService by inject(NavigationService::class.java)
-    val defaultTabs = listOf("News", "Favorites", "Рецепты")
-    val tabs = if (homeState.tabs.size >= 3) homeState.tabs else defaultTabs
+    val defaultTabs = listOf("News", "Favorites", "Рецепты", "Холодильник")
+    val tabs = if (homeState.tabs.size >= 4) homeState.tabs else defaultTabs
     val bottomNavigationItems = listOf(
         BottomNavigationUiItem(
             label = tabs[0],
@@ -69,15 +70,22 @@ fun BottomNavigationBar() {
             label = tabs[2],
             icon = Icons.Filled.Home,
             route = Screens.Recipes.route
+        ),
+        BottomNavigationUiItem(
+            label = tabs[3],
+            icon = Icons.Filled.List,
+            route = Screens.Fridge.route
         )
     )
     val showMainBars = currentRoute == Screens.Home.route ||
             currentRoute == Screens.Favorites.route ||
-            currentRoute == Screens.Recipes.route
+            currentRoute == Screens.Recipes.route ||
+            currentRoute == Screens.Fridge.route
     val topBarTitle = when (currentRoute) {
         Screens.Home.route -> tabs[0]
         Screens.Favorites.route -> tabs[1]
         Screens.Recipes.route -> tabs[2]
+        Screens.Fridge.route -> tabs[3]
         else -> ""
     }
 
@@ -168,6 +176,10 @@ fun BottomNavigationBar() {
 
             composable(Screens.Recipes.route) {
                 RecipesScreen()
+            }
+
+            composable(Screens.Fridge.route) {
+                FridgeScreen()
             }
 
             composable(Screens.Profile.route) {

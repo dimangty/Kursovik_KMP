@@ -65,6 +65,19 @@ private struct RecipeItemView: View {
                 .fill(state.cellBackground.uiColor.toColor())
                 .cornerRadius(22)
             VStack(alignment: .leading, spacing: 8) {
+                if let url = URL(string: state.imageUrl), !state.imageUrl.isEmpty {
+                    AsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    } placeholder: {
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.15))
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 140)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
                 TextWithState(state.titleState)
                 TextWithState(state.textState)
                     .lineLimit(2)

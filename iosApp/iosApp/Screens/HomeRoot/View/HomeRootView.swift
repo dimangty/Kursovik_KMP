@@ -11,11 +11,11 @@ import SwiftUI
 struct HomeRootView: View {
 
     @StateObject private var viewModel = HomeRootViewModel()
-    private let defaultTabs = ["News", "Favorites", "Рецепты"]
+    private let defaultTabs = ["News", "Favorites", "Рецепты", "Холодильник"]
 
     private var mainTabs: [String] {
-        let tabs = Array(viewModel.tabArray.prefix(3))
-        return tabs.count == 3 ? tabs : defaultTabs
+        let tabs = Array(viewModel.tabArray.prefix(4))
+        return tabs.count == 4 ? tabs : defaultTabs
     }
 
     var body: some View {
@@ -40,6 +40,13 @@ struct HomeRootView: View {
                     Text(mainTabs[2])
                 }
                 .tag(2)
+
+            FridgeTabView()
+                .tabItem {
+                    Image(systemName: "snowflake")
+                    Text(mainTabs[3])
+                }
+                .tag(3)
         }
         .edgesIgnoringSafeArea(.top)
     }

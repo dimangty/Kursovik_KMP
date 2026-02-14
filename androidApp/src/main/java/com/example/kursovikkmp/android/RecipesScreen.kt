@@ -114,6 +114,18 @@ private fun RecipeItemView(item: RecipeUiState, onClicked: (String) -> Unit) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
+            if (item.imageUrl.isNotBlank()) {
+                AsyncImage(
+                    model = item.imageUrl,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(140.dp)
+                        .clip(RoundedCornerShape(12.dp)),
+                    contentScale = ContentScale.Crop
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+            }
             Text(text = item.title)
             Text(text = item.text, modifier = Modifier.padding(top = 8.dp))
             Text(text = item.duration, modifier = Modifier.padding(top = 8.dp))

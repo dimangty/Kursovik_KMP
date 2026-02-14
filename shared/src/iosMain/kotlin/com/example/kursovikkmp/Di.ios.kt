@@ -13,6 +13,7 @@ import com.example.kursovikkmp.feature.home.HomeViewModel
 import com.example.kursovikkmp.feature.auth.login.LoginViewModel
 import com.example.kursovikkmp.feature.auth.pin.PinViewModel
 import com.example.kursovikkmp.feature.auth.signup.SignUpViewModel
+import com.example.kursovikkmp.feature.fridge.list.FridgeViewModel
 import com.example.kursovikkmp.feature.profile.ProfileViewModel
 import com.example.kursovikkmp.feature.recipes.details.RecipesDetailsViewModel
 import com.example.kursovikkmp.feature.recipes.list.RecipesListViewModel
@@ -66,6 +67,7 @@ internal actual val vmModule: Module = module {
     factoryOf(::ProfileViewModel)
     factoryOf(::RecipesListViewModel)
     factoryOf(::RecipesDetailsViewModel)
+    factoryOf(::FridgeViewModel)
 }
 
 internal actual val platformModule: Module = module {

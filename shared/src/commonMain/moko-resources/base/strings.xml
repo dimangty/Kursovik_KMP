@@ -2,10 +2,16 @@
     <string name="scr_news_tab_title">News</string>
     <string name="scr_favorite_tab_title">Favorites</string>
     <string name="scr_recipes_tab_title">Рецепты</string>
+    <string name="scr_fridge_tab_title">Холодильник</string>
     <string name="scr_profile_tab_title">Profile</string>
     <string name="scr_news_screen_title">News</string>
     <string name="scr_favorite_screen_title">Favorites</string>
     <string name="scr_recipes_screen_title">Рецепты</string>
+    <string name="scr_fridge_screen_title">Холодильник</string>
+    <string name="scr_fridge_products_title">Продукты в холодильнике</string>
+    <string name="scr_fridge_recommendations_title">Подходящие рецепты</string>
+    <string name="scr_fridge_empty_recommendations">По выбранным продуктам рецепты не найдены</string>
+    <string name="scr_fridge_recommend_button">Рекомендовать рецепты</string>
     <string name="scr_recipe_details_screen_title">Рецепт</string>
     <string name="scr_recipe_ingredients_title">Ингредиенты</string>
     <string name="scr_recipe_steps_title">Шаги</string>

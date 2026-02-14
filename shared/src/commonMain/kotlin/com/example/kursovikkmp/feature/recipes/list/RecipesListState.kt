@@ -27,6 +27,7 @@ data class RecipeUiState(
     val title: String = "",
     val text: String = "",
     val duration: String = "",
+    val imageUrl: String = "",
     val cellBackground: ColorResource = MR.colors.white
 ) {
     val titleState: TextState = TextState.latoSemibold(17, MR.colors.black).updateValue(title)
@@ -38,8 +39,8 @@ data class RecipeUiState(
             id = "1",
             title = "Паста Карбонара",
             text = "Классическая паста с беконом и сыром.",
-            duration = "⏱ 25 мин"
+            duration = "⏱ 25 мин",
+            imageUrl = "https://images.unsplash.com/photo-1608756687911-aa1599ab0386"
         )
     }
 }
-

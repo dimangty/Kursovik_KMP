@@ -3,6 +3,7 @@ package com.example.kursovikkmp
 import com.example.kursovikkmp.DI.NetworkModule
 import com.example.kursovikkmp.DI.StorageModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
+import com.example.kursovikkmp.feature.fridge.FridgeMockNetworkService
 import com.example.kursovikkmp.feature.news.NewsService
 import com.example.kursovikkmp.feature.recipes.RecipesService
 import com.example.kursovikkmp.network.NetworkSettings
@@ -42,6 +43,7 @@ internal val commonModule = module {
 
     singleOf(::NewsService)
     singleOf(::RecipesService)
+    singleOf(::FridgeMockNetworkService)
     factoryOf(::LceStateManager)
     singleOf(::NetworkSettings)
 
