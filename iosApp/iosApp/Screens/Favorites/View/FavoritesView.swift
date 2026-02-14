@@ -19,7 +19,15 @@ struct FavoritesView: View {
                     .fill(viewModel.state.backGroundColor.uiColor.toColor())
                     .edgesIgnoringSafeArea(.top)
                 VStack {
-                    CustomNavigationStateView(titleBar: viewModel.state.titleBarState)
+                    CustomNavigationStateView(
+                        titleBar: viewModel.state.titleBarState,
+                        trailingView: AnyView(
+                            NavigationLink(destination: ProfileTabView()) {
+                                Image(systemName: "person.crop.circle")
+                                    .font(.title3)
+                            }
+                        )
+                    )
                     VStack(alignment: .leading, spacing: 16) {
                         LazyVGrid(columns: Array(repeating: GridItem(), count: 2)) {
                             ForEach(0 ..< viewModel.state.favoritesItems.count, id: \.self) { index in

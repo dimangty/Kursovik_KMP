@@ -13,29 +13,28 @@ import shared
 struct HomeRootView: View {
 
     @StateObject private var viewModel = HomeRootViewModel()
+    private let defaultTabs = ["News", "Favorite"]
+
+    private var mainTabs: [String] {
+        let tabs = Array(viewModel.tabArray.prefix(2))
+        return tabs.count == 2 ? tabs : defaultTabs
+    }
 
     var body: some View {
         TabView(selection: $viewModel.tabSelection) {
             NewsListView()
                 .tabItem {
                     Image(systemName: "newspaper")
-                    Text(viewModel.tabArray[0])
+                    Text(mainTabs[0])
                 }
                 .tag(0)
 
             FavoritesView()
                 .tabItem {
                     Image(systemName: "list.bullet")
-                    Text(viewModel.tabArray[1])
+                    Text(mainTabs[1])
                 }
                 .tag(1)
-
-            ProfileTabView()
-                .tabItem {
-                    Image(systemName: "person.crop.circle")
-                    Text(viewModel.tabArray[2])
-                }
-                .tag(2)
         }
         .edgesIgnoringSafeArea(.top)
     }
@@ -46,7 +45,7 @@ struct HomeRootView: View {
     HomeRootView()
 }
 
-private struct ProfileTabView: View {
+struct ProfileTabView: View {
 
     @StateObject private var viewModel = ProfileScreenViewModel()
     @State private var showImagePicker = false

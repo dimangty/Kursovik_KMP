@@ -13,14 +13,20 @@ struct CustomNavigationStateView: View {
 
     private let titleBar: TitleBarState
     private let backButtonHandler: (() -> Void)?
+    private let trailingView: AnyView?
 
     private var showBack: Bool {
         return titleBar.isNavigateBackVisible
     }
 
-    init(titleBar: TitleBarState?, backButtonHandler: (() -> Void)? = nil) {
+    init(
+        titleBar: TitleBarState?,
+        backButtonHandler: (() -> Void)? = nil,
+        trailingView: AnyView? = nil
+    ) {
         self.titleBar = titleBar ?? TitleBarState.companion.getMock()
         self.backButtonHandler = backButtonHandler
+        self.trailingView = trailingView
     }
 
     var body: some View {
@@ -39,6 +45,10 @@ struct CustomNavigationStateView: View {
                 .isHidden(!showBack)
 
                 Spacer()
+
+                if let trailingView {
+                    trailingView
+                }
             }
 
             TextWithState(titleBar.title)

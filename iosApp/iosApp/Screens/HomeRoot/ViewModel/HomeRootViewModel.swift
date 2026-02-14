@@ -12,7 +12,7 @@ import shared
 
 final class HomeRootViewModel: BaseViewModel<HomeViewModel, HomeState> {
     @Published var tabSelection: Int = 0
-    @Published var tabArray = ["News", "Favorite", "Profile"]
+    @Published var tabArray = ["News", "Favorite"]
     
     required override init() {
         super.init()
@@ -32,7 +32,7 @@ final class HomeRootViewModel: BaseViewModel<HomeViewModel, HomeState> {
     }
     
     override func onChangeState(_ state: HomeState) {
-        tabArray = state.tabs
+        tabArray = Array(state.tabs.prefix(2))
     }
 
 }

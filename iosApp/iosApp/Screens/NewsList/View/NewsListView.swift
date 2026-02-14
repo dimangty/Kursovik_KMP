@@ -18,7 +18,15 @@ struct NewsListView: View {
                 .fill(viewModel.state.backGroundColor.uiColor.toColor())
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                CustomNavigationStateView(titleBar: viewModel.state.titleBarState)
+                CustomNavigationStateView(
+                    titleBar: viewModel.state.titleBarState,
+                    trailingView: AnyView(
+                        NavigationLink(destination: ProfileTabView()) {
+                            Image(systemName: "person.crop.circle")
+                                .font(.title3)
+                        }
+                    )
+                )
                 ScrollView {
                     LazyVStack {
                         ForEach(0 ..< viewModel.state.newsItems.count, id: \.self) { index in

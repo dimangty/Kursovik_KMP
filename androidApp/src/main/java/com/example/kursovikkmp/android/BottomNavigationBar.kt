@@ -1,21 +1,24 @@
 package com.example.kursovikkmp.android
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.ui.unit.dp
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -27,33 +30,78 @@ import com.example.feature_favorites.FavoriteScreen
 import com.example.feature_news.NewsDetailsScreen
 import com.example.feature_news.NewsScreen
 import com.example.feature_auth.PinScreen
+import com.example.kursovikkmp.feature.home.HomeViewModel
 import com.example.kursovikkmp.navigation.NavigationAction
 import com.example.kursovikkmp.navigation.NavigationService
+import org.koin.androidx.compose.koinViewModel
 import org.koin.java.KoinJavaComponent.inject
 
+private data class BottomNavigationUiItem(
+    val label: String,
+    val icon: ImageVector,
+    val route: String
+)
+
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 fun BottomNavigationBar() {
     val navController = rememberNavController()
+    val homeViewModel: HomeViewModel = koinViewModel()
+    val homeState by homeViewModel.flowState.collectAsState()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
     val currentRoute = currentDestination?.route
-    var selectedItem by remember { mutableIntStateOf(0) }
     val navigationService: NavigationService by inject(NavigationService::class.java)
+    val defaultTabs = listOf("News", "Favorites")
+    val tabs = if (homeState.tabs.size >= 2) homeState.tabs else defaultTabs
+    val bottomNavigationItems = listOf(
+        BottomNavigationUiItem(
+            label = tabs[0],
+            icon = Icons.Filled.Home,
+            route = Screens.Home.route
+        ),
+        BottomNavigationUiItem(
+            label = tabs[1],
+            icon = Icons.Filled.Favorite,
+            route = Screens.Favorites.route
+        )
+    )
+    val showMainBars = currentRoute == Screens.Home.route || currentRoute == Screens.Favorites.route
+    val topBarTitle = when (currentRoute) {
+        Screens.Home.route -> tabs[0]
+        Screens.Favorites.route -> tabs[1]
+        else -> ""
+    }
 
     navigationService.setNavController(navController)
 
-    val showBottomBar = currentRoute == Screens.Home.route
-            || currentRoute == Screens.Favorites.route
-            || currentRoute == Screens.Profile.route
-
     Scaffold(
         modifier = Modifier.fillMaxSize(),
+        topBar = {
+            if (showMainBars) {
+                TopAppBar(
+                    title = { Text(topBarTitle) },
+                    actions = {
+                        IconButton(
+                            onClick = {
+                                navController.navigate(Screens.Profile.route)
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.AccountCircle,
+                                contentDescription = "Profile"
+                            )
+                        }
+                    }
+                )
+            }
+        },
         bottomBar = {
-            if (showBottomBar) {
+            if (showMainBars) {
                 NavigationBar {
-                    BottomNavigationItem().bottomNavigationItems().forEachIndexed { index, navigationItem ->
+                    bottomNavigationItems.forEach { navigationItem ->
                         NavigationBarItem(
-                            selected = index == selectedItem,
+                            selected = currentRoute == navigationItem.route,
                             label = {
                                 Text(navigationItem.label)
                             },
@@ -64,7 +112,6 @@ fun BottomNavigationBar() {
                                 )
                             },
                             onClick = {
-                                selectedItem = index
                                 navController.navigate(navigationItem.route) {
                                     popUpTo(navController.graph.findStartDestination().id) {
                                         saveState = true
@@ -82,7 +129,8 @@ fun BottomNavigationBar() {
         NavHost(
             navController = navController,
             startDestination = Screens.Login.route,
-            modifier = Modifier.padding(bottom = if (showBottomBar) paddingValues.calculateBottomPadding() else 0.dp)) {
+            modifier = Modifier.padding(paddingValues)
+        ) {
 
             composable(Screens.Login.route) {
                 com.example.feature_auth.LoginScreen()
