@@ -5,13 +5,18 @@ import com.example.kursovikkmp.base.BaseViewModel
 import com.example.kursovikkmp.common.view.updateValue
 import com.example.kursovikkmp.feature.auth.AuthService
 import com.example.kursovikkmp.navigation.NavigationAction
+import com.example.kursovikkmp.shared.common.extension.asCommonFlow
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
     private val profileRepository: ProfileRepository,
     private val authService: AuthService
 ) : BaseViewModel<ProfileState, ProfileEvents>() {
+
+    private val _effect = MutableSharedFlow<ProfileEffect>()
+    val effectFlow = _effect.asCommonFlow()
 
     override fun initToolbar() {
         var titleBar = state.titleBarState.copy()
@@ -30,6 +35,12 @@ class ProfileViewModel(
 
     override fun onEvent(event: ProfileEvents) {
         when (event) {
+            ProfileEvents.AvatarTapped -> {
+                viewModelScope.launch {
+                    _effect.emit(ProfileEffect.ShowImageSourceDialog)
+                }
+            }
+
             is ProfileEvents.PhotoChanged -> {
                 viewModelScope.launch {
                     profileRepository.updatePhoto(event.photoPath)

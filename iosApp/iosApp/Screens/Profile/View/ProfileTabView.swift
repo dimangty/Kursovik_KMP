@@ -14,6 +14,7 @@ struct ProfileTabView: View {
 
     @StateObject private var viewModel = ProfileScreenViewModel()
     @State private var showImagePicker = false
+    @State private var showActionSheet = false
     @State private var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var localPhotoPath: String = ""
 
@@ -40,20 +41,8 @@ struct ProfileTabView: View {
                 }
                 .frame(width: 120, height: 120)
                 .clipShape(Circle())
-
-                HStack(spacing: 12) {
-                    Button("Camera") {
-                        guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
-                        pickerSourceType = .camera
-                        showImagePicker = true
-                    }
-                    .buttonStyle(.bordered)
-
-                    Button("Gallery") {
-                        pickerSourceType = .photoLibrary
-                        showImagePicker = true
-                    }
-                    .buttonStyle(.bordered)
+                .onTapGesture {
+                    viewModel.onEvent(event: .AvatarTapped())
                 }
 
                 if viewModel.state.isMockData {
@@ -83,6 +72,18 @@ struct ProfileTabView: View {
             }
             .padding(16)
         }
+        .confirmationDialog("Select Image Source", isPresented: $showActionSheet) {
+            Button("Camera") {
+                guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+                pickerSourceType = .camera
+                showImagePicker = true
+            }
+            Button("Gallery") {
+                pickerSourceType = .photoLibrary
+                showImagePicker = true
+            }
+            Button("Cancel", role: .cancel) {}
+        }
         .sheet(isPresented: $showImagePicker) {
             PhotoPicker(sourceType: pickerSourceType) { image in
                 guard let path = persistImage(image) else { return }
@@ -99,6 +100,11 @@ struct ProfileTabView: View {
                 localPhotoPath = viewModel.state.photoPath
             }
             viewModel.sendViewAppearedEvent()
+            viewModel.observeEffects { effect in
+                if effect is ProfileEffect.ShowImageSourceDialog {
+                    showActionSheet = true
+                }
+            }
         }
     }
 
@@ -136,6 +142,14 @@ private final class ProfileScreenViewModel: BaseViewModel<shared.ProfileViewMode
 
     required override init() {
         super.init()
+    }
+
+    func observeEffects(callback: @escaping (ProfileEffect) -> Void) {
+        guard let viewModel = mViewModel else { return }
+        viewModel.effectFlow.watch { effect in
+            guard let effect = effect else { return }
+            callback(effect)
+        }
     }
 
     func onEvent(event: ProfileEvents) {

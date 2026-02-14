@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,21 +19,26 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.kursovikkmp.feature.profile.ProfileEffect
 import com.example.kursovikkmp.feature.profile.ProfileEvents
 import com.example.kursovikkmp.feature.profile.ProfileState
 import com.example.kursovikkmp.feature.profile.ProfileViewModel
@@ -45,6 +51,18 @@ fun ProfileScreen() {
     val viewModel: ProfileViewModel = koinViewModel()
     val state by viewModel.flowState.collectAsState()
     val context = LocalContext.current
+    var showDialog by remember { mutableStateOf(false) }
+
+    // Collect effects
+    LaunchedEffect(Unit) {
+        viewModel.effectFlow.collect { effect ->
+            when (effect) {
+                is ProfileEffect.ShowImageSourceDialog -> {
+                    showDialog = true
+                }
+            }
+        }
+    }
 
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicturePreview()
@@ -66,10 +84,34 @@ fun ProfileScreen() {
         }
     }
 
+    // Show dialog
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text("Select Image Source") },
+            text = { Text("Choose where to get your profile photo from") },
+            confirmButton = {
+                TextButton(onClick = {
+                    showDialog = false
+                    cameraLauncher.launch(null)
+                }) {
+                    Text("Camera")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    showDialog = false
+                    galleryLauncher.launch("image/*")
+                }) {
+                    Text("Gallery")
+                }
+            }
+        )
+    }
+
     ProfileScreenView(
         state = state,
-        onCameraClick = { cameraLauncher.launch(null) },
-        onGalleryClick = { galleryLauncher.launch("image/*") },
+        onAvatarClick = { viewModel.pushEvent(ProfileEvents.AvatarTapped) },
         onLogoutClick = { viewModel.pushEvent(ProfileEvents.LogoutTapped) }
     )
 }
@@ -77,8 +119,7 @@ fun ProfileScreen() {
 @Composable
 private fun ProfileScreenView(
     state: ProfileState,
-    onCameraClick: () -> Unit,
-    onGalleryClick: () -> Unit,
+    onAvatarClick: () -> Unit,
     onLogoutClick: () -> Unit
 ) {
     Column(
@@ -101,22 +142,16 @@ private fun ProfileScreenView(
                 modifier = Modifier
                     .size(120.dp)
                     .clip(CircleShape)
+                    .clickable { onAvatarClick() }
             )
         } else {
             Image(
                 imageVector = Icons.Default.AccountCircle,
                 contentDescription = "Profile placeholder",
-                modifier = Modifier.size(120.dp)
+                modifier = Modifier
+                    .size(120.dp)
+                    .clickable { onAvatarClick() }
             )
-        }
-
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            OutlinedButton(onClick = onCameraClick) {
-                Text("Camera")
-            }
-            OutlinedButton(onClick = onGalleryClick) {
-                Text("Gallery")
-            }
         }
 
         if (state.isMockData) {
