@@ -5,6 +5,7 @@
     <string name="scr_fridge_tab_title">Холодильник</string>
     <string name="scr_profile_tab_title">Profile</string>
     <string name="scr_news_screen_title">News</string>
+    <string name="scr_news_search_placeholder">Поиск по заголовку</string>
     <string name="scr_favorite_screen_title">Favorites</string>
     <string name="scr_recipes_screen_title">Рецепты</string>
     <string name="scr_fridge_screen_title">Холодильник</string>

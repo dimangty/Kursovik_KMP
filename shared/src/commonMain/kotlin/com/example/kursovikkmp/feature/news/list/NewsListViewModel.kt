@@ -46,7 +46,7 @@ class NewsListViewModel(private val newsService: NewsService,
                 loadNews()
             }
         } else {
-            updateState { copy(newsItems = news.mapToUiItems()) }
+            applyFiltersAndUpdateState()
         }
 
     }
@@ -55,7 +55,12 @@ class NewsListViewModel(private val newsService: NewsService,
         var titleBar = state.titleBarState.copy()
         titleBar = titleBar.copy(title = titleBar.title.updateValue(getString(MR.strings.scr_news_screen_title)),
                                  isNavigateBackVisible = false)
-        updateState { copy(titleBarState = titleBar) }
+        updateState {
+            copy(
+                titleBarState = titleBar,
+                searchPlaceholder = getString(MR.strings.scr_news_search_placeholder)
+            )
+        }
     }
 
 
@@ -70,6 +75,10 @@ class NewsListViewModel(private val newsService: NewsService,
             }
             is NewsListEvents.OnItemClicked -> {
                 navigate(NavigationAction.NavigateToNewsDetails(event.title))
+            }
+            is NewsListEvents.OnSearchQueryChanged -> {
+                updateState { copy(searchQuery = event.query) }
+                applyFiltersAndUpdateState()
             }
         }
     }
@@ -89,7 +98,7 @@ class NewsListViewModel(private val newsService: NewsService,
                 val regResponse = response.body<NewsList>()
                 news = regResponse.articles.toMutableList()
                 newsService.news = news
-                updateState { copy(newsItems = news.mapToUiItems()) }
+                applyFiltersAndUpdateState()
             } else {
                 val error = response.body<ApiErrorWrapper>().error
                 val message = error?.message ?: response.bodyAsText()
@@ -119,6 +128,19 @@ class NewsListViewModel(private val newsService: NewsService,
         }
     }
 
+    private fun applyFiltersAndUpdateState() {
+        val query = state.searchQuery.trim()
+        val filteredNews = if (query.isEmpty()) {
+            news
+        } else {
+            news.filter { article ->
+                article.title?.contains(query, ignoreCase = true) == true
+            }.toMutableList()
+        }
+
+        updateState { copy(newsItems = filteredNews.mapToUiItems()) }
+    }
+
     private fun checkIsFavorite(article: Article): Boolean {
         return favorites.any { it.title == article.title}
     }
@@ -136,7 +158,7 @@ class NewsListViewModel(private val newsService: NewsService,
 
         delay(100)
         loadFavoriteNews()
-        updateState { copy(newsItems = news.mapToUiItems()) }
+        applyFiltersAndUpdateState()
     }
 
 }

@@ -13,6 +13,8 @@ import dev.icerock.moko.resources.ImageResource
 
 data class NewsListState(
     val newsItems: List<NewsUiState> = listOf(),
+    val searchQuery: String = "",
+    val searchPlaceholder: String = "",
     override val titleBarState: TitleBarState = TitleBarState.getMock(),
     val backGroundColor: ColorResource = MR.colors.grey,
 ) : BaseViewState {

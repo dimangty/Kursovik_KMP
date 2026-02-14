@@ -13,5 +13,5 @@ import shared
 enum NewsListViewActions {
     case articleTapped(_ title: String)
     case favoriteTapped(_ title: String)
+    case searchChanged(_ query: String)
 }
-

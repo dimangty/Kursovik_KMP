@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -52,6 +53,15 @@ fun NewsScreenView(
             .background(color = state.backGroundColor.color())
     ) {
         Toolbar(toolbarState = state.titleBarState)
+        OutlinedTextField(
+            value = state.searchQuery,
+            onValueChange = { onUiEvent(NewsListEvents.OnSearchQueryChanged(it)) },
+            modifier = Modifier
+                .padding(horizontal = 8.dp)
+                .padding(bottom = 8.dp),
+            singleLine = true,
+            placeholder = { androidx.compose.material3.Text(state.searchPlaceholder) }
+        )
         LazyColumn(modifier = Modifier.padding(horizontal = 8.dp)) {
             item { VSpacer(8.dp) }
             items(state.newsItems) { item ->

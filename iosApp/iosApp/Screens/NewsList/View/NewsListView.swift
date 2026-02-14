@@ -27,6 +27,15 @@ struct NewsListView: View {
                         }
                     )
                 )
+                TextField(
+                    viewModel.state.searchPlaceholder,
+                    text: Binding(
+                        get: { viewModel.state.searchQuery },
+                        set: { viewModel.onEvent(event: .searchChanged($0)) }
+                    )
+                )
+                .textFieldStyle(.roundedBorder)
+                .padding(.horizontal, 16)
                 ScrollView {
                     LazyVStack {
                         ForEach(0 ..< viewModel.state.newsItems.count, id: \.self) { index in

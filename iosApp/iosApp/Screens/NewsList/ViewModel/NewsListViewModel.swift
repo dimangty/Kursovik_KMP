@@ -28,6 +28,8 @@ final class NewsListViewModel: BaseViewModel<shared.NewsListViewModel, NewsListS
             break
         case .favoriteTapped(let title):
             mViewModel?.pushEvent(event: .OnFavoriteClicked(title: title))
+        case .searchChanged(let query):
+            mViewModel?.pushEvent(event: .OnSearchQueryChanged(query: query))
         }
     }
 
