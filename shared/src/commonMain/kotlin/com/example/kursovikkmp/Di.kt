@@ -4,6 +4,7 @@ import com.example.kursovikkmp.DI.NetworkModule
 import com.example.kursovikkmp.DI.StorageModule
 import com.example.kursovikkmp.common.mvvm.LceStateManager
 import com.example.kursovikkmp.feature.news.NewsService
+import com.example.kursovikkmp.feature.recipes.RecipesService
 import com.example.kursovikkmp.network.NetworkSettings
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -40,6 +41,7 @@ internal val commonModule = module {
     }
 
     singleOf(::NewsService)
+    singleOf(::RecipesService)
     factoryOf(::LceStateManager)
     singleOf(::NetworkSettings)
 

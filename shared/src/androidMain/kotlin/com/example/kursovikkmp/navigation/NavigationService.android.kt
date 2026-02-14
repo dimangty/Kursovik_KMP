@@ -66,7 +66,8 @@ actual class NavigationService {
             navController?.run {
                 when (action) {
                     is NavigationAction.NavigateToFavoritesDetails,
-                    is NavigationAction.NavigateToNewsDetails -> {
+                    is NavigationAction.NavigateToNewsDetails,
+                    is NavigationAction.NavigateToRecipesDetails -> {
                         navigate(action)
                     }
 

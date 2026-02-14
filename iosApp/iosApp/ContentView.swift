@@ -25,6 +25,8 @@ struct ContentView: View {
                         NewsDetailsView(title: title)
                     case .favoriteDetails(let title):
                         FavoriteDetailsView(title: title)
+                    case .recipesDetails(let recipeId):
+                        RecipesDetailsView(recipeId: recipeId)
                     }
                 }
         }

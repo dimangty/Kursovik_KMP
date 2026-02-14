@@ -52,8 +52,8 @@ fun BottomNavigationBar() {
     val currentDestination = navBackStackEntry?.destination
     val currentRoute = currentDestination?.route
     val navigationService: NavigationService by inject(NavigationService::class.java)
-    val defaultTabs = listOf("News", "Favorites")
-    val tabs = if (homeState.tabs.size >= 2) homeState.tabs else defaultTabs
+    val defaultTabs = listOf("News", "Favorites", "Рецепты")
+    val tabs = if (homeState.tabs.size >= 3) homeState.tabs else defaultTabs
     val bottomNavigationItems = listOf(
         BottomNavigationUiItem(
             label = tabs[0],
@@ -64,12 +64,20 @@ fun BottomNavigationBar() {
             label = tabs[1],
             icon = Icons.Filled.Favorite,
             route = Screens.Favorites.route
+        ),
+        BottomNavigationUiItem(
+            label = tabs[2],
+            icon = Icons.Filled.Home,
+            route = Screens.Recipes.route
         )
     )
-    val showMainBars = currentRoute == Screens.Home.route || currentRoute == Screens.Favorites.route
+    val showMainBars = currentRoute == Screens.Home.route ||
+            currentRoute == Screens.Favorites.route ||
+            currentRoute == Screens.Recipes.route
     val topBarTitle = when (currentRoute) {
         Screens.Home.route -> tabs[0]
         Screens.Favorites.route -> tabs[1]
+        Screens.Recipes.route -> tabs[2]
         else -> ""
     }
 
@@ -158,6 +166,10 @@ fun BottomNavigationBar() {
                 FavoriteScreen()
             }
 
+            composable(Screens.Recipes.route) {
+                RecipesScreen()
+            }
+
             composable(Screens.Profile.route) {
                 ProfileScreen()
             }
@@ -173,6 +185,13 @@ fun BottomNavigationBar() {
                 val args = it.toRoute<NavigationAction.NavigateToFavoritesDetails>()
                 FavoriteDetailsScreen(
                     args.title
+                )
+            }
+
+            composable<NavigationAction.NavigateToRecipesDetails> {
+                val args = it.toRoute<NavigationAction.NavigateToRecipesDetails>()
+                RecipesDetailsScreen(
+                    args.recipeId
                 )
             }
 

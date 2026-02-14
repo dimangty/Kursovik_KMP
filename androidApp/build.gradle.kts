@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation(projects.shared)
+    implementation(project(":androidApp:core"))
     implementation(projects.androidApp.featureNews)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)

@@ -14,6 +14,8 @@ import com.example.kursovikkmp.feature.auth.login.LoginViewModel
 import com.example.kursovikkmp.feature.auth.pin.PinViewModel
 import com.example.kursovikkmp.feature.auth.signup.SignUpViewModel
 import com.example.kursovikkmp.feature.profile.ProfileViewModel
+import com.example.kursovikkmp.feature.recipes.details.RecipesDetailsViewModel
+import com.example.kursovikkmp.feature.recipes.list.RecipesListViewModel
 import com.example.kursovikkmp.navigation.NavigationService
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClass
@@ -62,6 +64,8 @@ internal actual val vmModule: Module = module {
     factoryOf(::PinViewModel)
     factoryOf(::SignUpViewModel)
     factoryOf(::ProfileViewModel)
+    factoryOf(::RecipesListViewModel)
+    factoryOf(::RecipesDetailsViewModel)
 }
 
 internal actual val platformModule: Module = module {
